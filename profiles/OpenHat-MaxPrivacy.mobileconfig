@@ -13,7 +13,7 @@
 	<key>PayloadDisplayName</key>
 	<string>OpenHat Max Privacy (Mullvad Adblock)</string>
 	<key>PayloadDescription</key>
-	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen. Open the Privacy Audit page to see what this changes versus Apple defaults and what you still have to tap.</string>
+	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>

@@ -1,42 +1,49 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <title>Erase for stronger locks</title>
-  <style>
-    body {
-      font: 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
-      max-width: 40rem;
-      margin: 2rem auto;
-      padding: 0 1rem 4rem;
-      background: #0e1116;
-      color: #e6edf3;
-    }
-    .warn { color: #f85149; }
-    a { color: #3d9cf0; }
-    .btn {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      color: #e6edf3;
-      border: 1px solid #7a2a26;
-      border-radius: 12px;
-      padding: 14px 16px;
-      margin: 16px 0;
-    }
-    .muted { color: #8b949e; }
-  </style>
+  <meta name="theme-color" content="#11191f">
+  <title>Advanced setup — Apple Configurator</title>
+  <link rel="stylesheet" href="../vendor/pico.min.css">
+  <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
-  <p class="warn"><strong>Stop. This path erases the entire iPhone.</strong></p>
-  <h1>Erase for stronger locks</h1>
-  <p>Apple Configurator <strong>Prepare → Supervise</strong> wipes all content and settings. There is no way to get these extra locks without that erase.</p>
-  <p>If you do not want to erase, go back to <a href="../">Keep my data</a>.</p>
-  <p>Encrypted Finder backup first. Then follow <a href="CONFIGURATOR.md">CONFIGURATOR.md</a>.</p>
-  <p class="muted">Only after the phone is Supervised, install this profile:</p>
-  <a class="btn" href="OpenHat-Supervised.mobileconfig">Install Supervised profile (after wipe)</a>
-  <p class="muted">On a phone you did not erase and supervise, this file’s app blocks are ignored. Do not skip the wipe and hope.</p>
+  <header class="page">
+    <span class="badge bad">Advanced · erases the iPhone</span>
+    <h1>Apple Configurator</h1>
+    <p class="lead">Supervised setup. Prepare erases all content and settings. Basic setup does not require this.</p>
+  </header>
+
+  <main>
+    <div class="stack">
+      <a role="button" class="secondary" href="../">← Back to Basic setup</a>
+    </div>
+
+    <div class="note danger">
+      <strong>Prepare always erases the iPhone.</strong>
+      <p>Use this path only if you need Supervised restrictions. Otherwise return to Basic setup.</p>
+    </div>
+
+    <p>Encrypted Finder backup first. Then follow the Configurator steps.</p>
+    <div class="stack">
+      <a class="action secondary" href="CONFIGURATOR.md">
+        <span>
+          Configurator instructions
+          <small>Mac + cable · read before you start</small>
+        </span>
+        <span class="go">Open</span>
+      </a>
+      <a class="action danger" href="OpenHat-Supervised.mobileconfig">
+        <span>
+          Install Supervised configuration
+          <small>Only after Prepare has finished</small>
+        </span>
+        <span class="go">Install</span>
+      </a>
+    </div>
+    <p class="muted">On a device that is not Supervised, app blocks in this file are ignored.</p>
+  </main>
 </body>
 </html>

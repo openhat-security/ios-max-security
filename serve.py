@@ -18,9 +18,11 @@ import socket
 import sys
 import uuid
 from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlparse
 
 ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT / "tools"))
+from build_profile import DNS_PROVIDERS, build_setup_profile  # noqa: E402
 PORT_DEFAULT = 8080
 WEBCLIP_NS = uuid.UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 
@@ -89,6 +91,35 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
         parsed = urlparse(self.path)
         rel = parsed.path.lstrip("/")
+        if rel in (
+            "profiles/OpenHat-Setup.mobileconfig",
+            "OpenHat-Setup.mobileconfig",
+        ):
+            qs = parse_qs(parsed.query)
+            dns = (qs.get("dns") or ["mullvad-adblock"])[0]
+            if dns in ("mullvad", "mullvad-adblock"):
+                dns = "mullvad-adblock"
+            elif dns != "quad9":
+                dns = "mullvad-adblock"
+            if dns not in DNS_PROVIDERS:
+                dns = "mullvad-adblock"
+            pin = (qs.get("pin") or ["0"])[0] in ("1", "true", "yes")
+            safari = (qs.get("safari") or ["0"])[0] in ("1", "true", "yes")
+            raw = build_setup_profile(dns, pin=pin, safari=safari)
+            host = self.headers.get("Host", "127.0.0.1:8080")
+            scheme = "https" if self.headers.get("X-Forwarded-Proto") == "https" else "http"
+            page_url = f"{scheme}://{host}/"
+            body = inject_audit_webclip(raw, page_url)
+            self.send_response(200)
+            self.send_header("Content-Type", MIME[".mobileconfig"])
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header(
+                "Content-Disposition",
+                'attachment; filename="OpenHat-MaxPrivacy.mobileconfig"',
+            )
+            self.end_headers()
+            self.wfile.write(body)
+            return
         if rel.endswith(".mobileconfig"):
             disk = (ROOT / rel).resolve()
             if str(disk).startswith(str(ROOT.resolve())) and disk.is_file():
