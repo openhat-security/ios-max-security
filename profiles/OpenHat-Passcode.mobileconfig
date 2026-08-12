@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
+	<key>PayloadUUID</key>
+	<string>2274D744-1A89-545D-84DD-E7F983359D47</string>
+	<key>PayloadIdentifier</key>
+	<string>org.openhat.ios-max-privacy.passcode-profile</string>
+	<key>PayloadDisplayName</key>
+	<string>OpenHat Passcode Policy</string>
+	<key>PayloadDescription</key>
+	<string>Optional: non-simple passcode, lock immediately.</string>
+	<key>PayloadOrganization</key>
+	<string>OpenHat</string>
+	<key>PayloadRemovalDisallowed</key>
+	<false/>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>ConsentText</key>
+	<dict>
+		<key>default</key>
+		<string>Optional extra profile. Requires a passcode that is not a simple pattern (123456, 111111) and is at least 6 characters. The phone locks immediately when idle. It does not erase the device after failed attempts.
+
+If your current passcode is too weak, iOS will ask you to change it within 60 minutes of install.</string>
+	</dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadUUID</key>
+			<string>D570C462-19FC-5996-9258-50AA414A6049</string>
+			<key>PayloadIdentifier</key>
+			<string>org.openhat.ios-max-privacy.passcode</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenHat Passcode Policy</string>
+			<key>PayloadDescription</key>
+			<string>Require a non-simple passcode of at least 6 characters; lock immediately.</string>
+			<key>PayloadOrganization</key>
+			<string>OpenHat</string>
+			<key>forcePIN</key>
+			<true/>
+			<key>allowSimple</key>
+			<false/>
+			<key>minLength</key>
+			<integer>6</integer>
+			<key>maxGracePeriod</key>
+			<integer>0</integer>
+			<key>maxInactivity</key>
+			<integer>2</integer>
+			<key>requireAlphanumeric</key>
+			<false/>
+		</dict>
+	</array>
+</dict>
+</plist>

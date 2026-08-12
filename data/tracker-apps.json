@@ -1,0 +1,78 @@
+{
+  "disclaimer": "These apps are not malware. They are widely documented as building advertising and identity graphs. A user-installed profile cannot hide them on a normal iPhone. Delete them, use Screen Time → Never Allow, or install OpenHat-Supervised.mobileconfig after Apple Configurator supervision (no MDM, no paid Developer Program).",
+  "screen_time": "Settings → Screen Time → Content & Privacy Restrictions → Allowed Apps / Never Allow",
+  "default_block": [
+    {
+      "name": "Instagram",
+      "bundle_id": "com.burbn.instagram",
+      "reason": "Meta identity graph, tracking pixels, extensive device signals"
+    },
+    {
+      "name": "Facebook",
+      "bundle_id": "com.facebook.Facebook",
+      "reason": "Meta identity graph and off-platform tracking"
+    },
+    {
+      "name": "Facebook Messenger",
+      "bundle_id": "com.facebook.Messenger",
+      "reason": "Contacts upload and Meta graph; use Signal instead"
+    },
+    {
+      "name": "Snapchat",
+      "bundle_id": "com.toyopagroup.picaboo",
+      "reason": "Aggressive device fingerprinting and advertising ID use"
+    },
+    {
+      "name": "TikTok",
+      "bundle_id": "com.zhiliaoapp.musically",
+      "reason": "Extensive device and behavior collection"
+    },
+    {
+      "name": "X (Twitter)",
+      "bundle_id": "com.atebits.Tweetie2",
+      "reason": "Advertising profile and tracker network"
+    },
+    {
+      "name": "Pinterest",
+      "bundle_id": "pinterest",
+      "reason": "Interest graph sold into ad networks"
+    },
+    {
+      "name": "Reddit",
+      "bundle_id": "com.reddit.Reddit",
+      "reason": "Advertising ID and behavioral profiling"
+    },
+    {
+      "name": "LinkedIn",
+      "bundle_id": "com.linkedin.LinkedIn",
+      "reason": "Microsoft advertising graph; contacts scraping"
+    }
+  ],
+  "consider_removing": [
+    {
+      "name": "WhatsApp",
+      "bundle_id": "net.whatsapp.WhatsApp",
+      "reason": "Meta-owned; metadata to Facebook. Keep only if you have no Signal alternative."
+    },
+    {
+      "name": "YouTube",
+      "bundle_id": "com.google.ios.youtube",
+      "reason": "Google ad graph. Use the website in Firefox Focus if possible."
+    },
+    {
+      "name": "Gmail",
+      "bundle_id": "com.google.Gmail",
+      "reason": "Use iOS Mail or Proton. The Gmail app is extra telemetry."
+    },
+    {
+      "name": "Google Chrome",
+      "bundle_id": "com.google.chrome.ios",
+      "reason": "Syncs browsing into a Google account"
+    },
+    {
+      "name": "TikTok Other",
+      "bundle_id": "com.ss.iphone.ugc.Aweme",
+      "reason": "Alternate TikTok bundle in some regions"
+    }
+  ]
+}
