@@ -47,9 +47,11 @@ services:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - ./out:/srv/enroll:ro
       - ../profiles:/srv/profiles:ro
+      - ../wipe-required:/srv/wipe-required:ro
       - ../index.html:/srv/index.html:ro
       - ../catalog.json:/srv/catalog.json:ro
       - ../data:/srv/data:ro
+      - ../README.md:/srv/README.md:ro
       - caddy_data:/data
       - caddy_config:/config
 

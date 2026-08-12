@@ -13,7 +13,7 @@
 	<key>PayloadDisplayName</key>
 	<string>OpenHat Supervised Max Privacy (Mullvad Adblock)</string>
 	<key>PayloadDescription</key>
-	<string>Same privacy baseline plus blocked high-tracking apps. Requires Apple Configurator supervision. See CONFIGURATOR.md.</string>
+	<string>Same privacy baseline plus blocked high-tracking apps. Requires Apple Configurator supervision (erases the iPhone). See wipe-required/CONFIGURATOR.md.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>

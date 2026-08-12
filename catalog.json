@@ -1974,10 +1974,10 @@
         "Apple Restrictions payload"
       ],
       "via": "manual",
-      "after": "Supervised; then install OpenHat-Supervised.mobileconfig",
+      "after": "Supervised; then install wipe-required/OpenHat-Supervised.mobileconfig",
       "apple_default": "Unsupervised",
       "verify": "Settings \u2192 General \u2192 About \u2192 Supervised (or the profile applies AirDrop/Siri/app blocks)",
-      "notes": "USB + a Mac. Erases the device. Unlocks the 47 supervised keys already in the standard profile AND the Instagram/Snapchat block list. See CONFIGURATOR.md."
+      "notes": "USB + a Mac. ERASES the entire iPhone. Isolated in wipe-required/ so it cannot be mixed with the no-wipe Safari profiles. See wipe-required/CONFIGURATOR.md."
     },
     {
       "id": "tracker-apps-delete",
