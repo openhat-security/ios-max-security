@@ -1,5 +1,5 @@
-# Route A — no wipe, no MDM
+# Keep my data
 
-These `.mobileconfig` files install from Safari. They do **not** erase the iPhone, do **not** enroll in MDM, and do **not** need a paid Apple Developer Program.
+These files install from Safari. They do **not** erase the iPhone.
 
-They cannot hide Instagram/Snapchat. That needs Supervised mode, which Apple only grants after a full erase — see `../wipe-required/`.
+They cannot hide Instagram or Snapchat. That needs a full erase — see `../wipe-required/`.

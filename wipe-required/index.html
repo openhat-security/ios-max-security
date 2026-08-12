@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
-  <title>Route B/D — erases the iPhone</title>
+  <title>Erase for stronger locks</title>
   <style>
     body {
       font: 16px/1.5 -apple-system, BlinkMacSystemFont, sans-serif;
@@ -31,16 +31,12 @@
 </head>
 <body>
   <p class="warn"><strong>Stop. This path erases the entire iPhone.</strong></p>
-  <h1>Route B / D — Supervised</h1>
-  <p>Apple Configurator <strong>Prepare → Supervise</strong> wipes all content and settings. There is no way to become Supervised without that erase (or Apple Business Manager, which also wipes on first setup).</p>
-  <ul>
-    <li>Route B: wipe + Supervise, <em>no</em> MDM, no paid Developer Program.</li>
-    <li>Route D: same wipe, then also enroll in MDM (<code>feature/mdm</code>).</li>
-    <li>If you do not want to erase: go back to <a href="../">Route A</a>.</li>
-  </ul>
+  <h1>Erase for stronger locks</h1>
+  <p>Apple Configurator <strong>Prepare → Supervise</strong> wipes all content and settings. There is no way to get these extra locks without that erase.</p>
+  <p>If you do not want to erase, go back to <a href="../">Keep my data</a>.</p>
   <p>Encrypted Finder backup first. Then follow <a href="CONFIGURATOR.md">CONFIGURATOR.md</a>.</p>
-  <p class="muted">Only after the phone is Supervised, install this profile (app blocks + supervised keys):</p>
+  <p class="muted">Only after the phone is Supervised, install this profile:</p>
   <a class="btn" href="OpenHat-Supervised.mobileconfig">Install Supervised profile (after wipe)</a>
-  <p class="muted">On an unsupervised iPhone this file’s app blocks are ignored. Do not skip the wipe and hope.</p>
+  <p class="muted">On a phone you did not erase and supervise, this file’s app blocks are ignored. Do not skip the wipe and hope.</p>
 </body>
 </html>

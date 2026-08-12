@@ -153,25 +153,25 @@
   </style>
 </head>
 <body>
-  <p class="tag ok">Route A · no wipe · no MDM</p>
+  <p class="tag ok">Does not erase your iPhone</p>
   <h1>OpenHat Max Privacy</h1>
-  <p class="lead">One profile for iPhone, plus a live checklist of everything the four source guides cover. A website cannot read your Settings app — this page is the closest thing to a “what will change” link.</p>
+  <p class="lead">One profile for iPhone, plus a checklist of leftover taps. A website cannot read your Settings app — this page is the closest thing to a “what will change” link.</p>
 
   <div class="card danger">
-    <strong>Some paths erase the entire iPhone.</strong>
-    <p style="margin: 8px 0 0;">Route A on this page does <em>not</em>. Hiding Instagram/Snapchat and other Supervised locks (Routes B and D) require Apple Configurator <strong>Prepare</strong>, which wipes all content and settings. MDM by itself (Route C) does not wipe, and cannot hide those apps. Details and a flow chart: <a href="README.md">README</a>.</p>
+    <strong>The other setup erases the entire iPhone.</strong>
+    <p style="margin: 8px 0 0;">This page does <em>not</em>. Hiding Instagram, Snapchat, and similar — and forcing Siri or AirDrop off — requires Apple Configurator <strong>Prepare</strong>, which wipes all content and settings. That path is separate: <a href="wipe-required/">erase for stronger locks</a>. Flow chart: <a href="README.md">README</a>.</p>
   </div>
 
   <nav class="jump">
-    <a href="#install">Install (no wipe)</a>
-    <a href="#routes">Other routes</a>
+    <a href="#install">Install (keep my data)</a>
+    <a href="#erase">Erase path</a>
     <a href="#current">See current state</a>
     <a href="#preview">What will change</a>
     <a href="#audit">Leftover taps</a>
   </nav>
 
   <div class="card" id="install">
-    <strong>Route A — use Safari on the iPhone. Does not erase. Does not use MDM.</strong>
+    <strong>Keep my data — use Safari on the iPhone. Does not erase.</strong>
     <p class="muted" style="margin: 8px 0 0;">After Allow, open <code>Settings → General → VPN &amp; Device Management</code>. Tap the profile, then <strong>More Details</strong> before Install — that is Apple’s own list of what this file contains. If a setting is already at the desired value, iOS will not pop up “already enabled.” It just stays that way.</p>
     <div class="row">
       <a class="btn" href="profiles/OpenHat-MaxPrivacy.mobileconfig">Install Max Privacy</a>
@@ -182,25 +182,14 @@
     <p class="muted" style="margin: 12px 0 0; font-size: 0.92rem;">Default DNS is Mullvad Adblock. Quad9 replaces it (same profile id). The passcode file is separate so a weak PIN cannot block the privacy install. Safari deny list is separate so a filter rejection cannot break the main profile. Instagram and Snapchat stay until you delete them — Apple will not let this file hide them.</p>
   </div>
 
-  <h2 id="routes">Other routes (not this installer)</h2>
-  <div class="card">
-    <p class="muted" style="margin: 0 0 8px;">These are isolated from Route A on purpose. Do not mix them up with the buttons above.</p>
+  <h2 id="erase">The other setup (erases the iPhone)</h2>
+  <div class="card danger">
+    <p style="margin: 0 0 8px;">Not the buttons above. Only open this if you accept a full wipe.</p>
     <div class="routes">
       <a href="wipe-required/">
         <span class="tag bad">Erases iPhone</span>
-        <strong> Route B — Supervise, no MDM</strong>
-        <span class="path">wipe-required/ · Apple Configurator Prepare · no Developer cert · most secure without MDM</span>
-      </a>
-      <a href="README.md">
-        <span class="tag warn">MDM · no wipe</span>
-        <strong> Route C — User Enrollment</strong>
-        <span class="path">feature/mdm branch · mdm/ · push cert + HTTPS · cannot hide Instagram</span>
-      </a>
-      <a href="wipe-required/">
-        <span class="tag bad">Erases iPhone</span>
-        <span class="tag warn">MDM</span>
-        <strong> Route D — Supervise + MDM</strong>
-        <span class="path">wipe-required/ + feature/mdm · most secure overall</span>
+        <strong> Erase for stronger locks</strong>
+        <span class="path">Mac + cable + Apple Configurator. Then Instagram, Snapchat, TikTok and similar can be hidden.</span>
       </a>
     </div>
   </div>
@@ -208,7 +197,7 @@
   <h2 id="current">Can a link show what is currently on the iPhone?</h2>
   <div class="card">
     <p class="tag bad">No live readout</p>
-    <p>Safari, a PWA, and this page are sandboxed. They cannot open Location Services, Analytics, Lockdown Mode, or app permissions and report back. Shortcuts cannot read those toggles either. Only MDM enrollment (Route C/D on <code>feature/mdm</code>) can query some of them — that is remote control, isolated from this installer.</p>
+    <p>Safari, a PWA, and this page are sandboxed. They cannot open Location Services, Analytics, Lockdown Mode, or app permissions and report back. Shortcuts cannot read those toggles either.</p>
     <p><strong>Where the live state actually lives</strong> (tap these on the phone):</p>
     <ol>
       <li><code>Settings → Privacy &amp; Security</code> — tracking, analytics, ads, location, App Privacy Report (which servers apps contact).</li>
@@ -220,7 +209,7 @@
 
   <h2 id="trackers">High-tracking apps this profile cannot hide</h2>
   <div class="card">
-    <p>Apple will not let a Safari-installed profile remove Instagram or Snapchat. Delete them, use Screen Time → Never Allow, or accept a <strong>full iPhone erase</strong> (Route B) and install the profile in <code>wipe-required/</code>. List from <code>data/tracker-apps.json</code>:</p>
+    <p>Apple will not let a Safari-installed profile remove Instagram or Snapchat. Delete them, use Screen Time → Never Allow, or accept a <strong>full iPhone erase</strong> and follow <a href="wipe-required/">erase for stronger locks</a>. List from <code>data/tracker-apps.json</code>:</p>
     <div id="trackers"></div>
   </div>
 
@@ -245,7 +234,7 @@
     <a href="https://github.com/iPrivacyGuides/iOS-Privacy-Guide">iPrivacyGuides/iOS-Privacy-Guide</a>,
     and
     <a href="https://github.com/danieloz147/ios-profile-builder">ios-profile-builder</a>
-    (plist pattern only — no MDM or custom CA on this page).
+    (plist pattern only — unsigned on purpose).
     Unsigned on purpose. No telemetry in this page.
   </footer>
 
@@ -376,7 +365,7 @@
           `<li><strong>${a.name}</strong> <code>${a.bundle_id}</code> — ${a.reason}</li>`
         ).join("");
         el.innerHTML = `<p class="muted">${data.disclaimer}</p>
-          <p><strong>Blocked only after a full erase (Route B/D) + wipe-required profile</strong></p>
+          <p><strong>Blocked only after a full erase + the supervised profile</strong></p>
           <ul>${block}</ul>
           <p><strong>Consider removing</strong></p>
           <ul>${consider}</ul>

@@ -23,7 +23,7 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device). No MDM and no Apple Developer Program required.
+		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device).
 
 Adds a block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn, plus every restriction in the standard OpenHat profile.
 
