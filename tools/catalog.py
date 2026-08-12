@@ -1,8 +1,8 @@
 """Full inventory of the four source guides.
 
 via:
-  profile              — written into the .mobileconfig; applies on a normal iPhone
-  profile-supervised   — in the same file; iOS ignores it unless the device is supervised
+  profile              — written into profiles/*.mobileconfig; applies on a normal iPhone (no wipe)
+  profile-supervised   — only in wipe-required/OpenHat-Supervised.mobileconfig; needs Supervised (full erase)
   manual               — user must tap in Settings; a profile cannot set this
   skipped              — deliberately not automated (destructive, anti-theft, or needs credentials)
   app                  — recommended app/service, not a system toggle
@@ -1706,9 +1706,9 @@ CATALOG: list[dict] = [
         "source": ["apple"],
         "via": "manual",
         "apple_default": "Unsupervised",
-        "after": "Supervised; then install OpenHat-Supervised.mobileconfig",
+        "after": "Supervised; then install wipe-required/OpenHat-Supervised.mobileconfig",
         "verify": "Settings → General → About → Supervised (or the profile applies AirDrop/Siri/app blocks)",
-        "notes": "USB + a Mac. Erases the device. Unlocks the 47 supervised keys already in the standard profile AND the Instagram/Snapchat block list. See CONFIGURATOR.md.",
+        "notes": "USB + a Mac. ERASES the entire iPhone. Isolated in wipe-required/ so it cannot be mixed with the no-wipe Safari profiles. See wipe-required/CONFIGURATOR.md.",
     },
     {
         "id": "tracker-apps-delete",

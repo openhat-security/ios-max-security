@@ -80,8 +80,6 @@ Before Install, tap More Details to see every payload. Remove anytime: Settings 
 			<string>OpenHat</string>
 			<key>allowDiagnosticSubmission</key>
 			<false/>
-			<key>allowDiagnosticSubmissionModification</key>
-			<false/>
 			<key>allowApplePersonalizedAdvertising</key>
 			<false/>
 			<key>forceLimitAdTracking</key>
@@ -145,98 +143,6 @@ Before Install, tap More Details to see every payload. Remove anytime: Settings 
 			<key>allowPassbookWhileLocked</key>
 			<false/>
 			<key>allowAssistantWhileLocked</key>
-			<false/>
-			<key>allowAssistant</key>
-			<false/>
-			<key>allowAssistantUserGeneratedContent</key>
-			<false/>
-			<key>allowDictation</key>
-			<false/>
-			<key>allowAirDrop</key>
-			<false/>
-			<key>allowGameCenter</key>
-			<false/>
-			<key>allowAddingGameCenterFriends</key>
-			<false/>
-			<key>allowMultiplayerGaming</key>
-			<false/>
-			<key>allowNews</key>
-			<false/>
-			<key>allowPodcasts</key>
-			<false/>
-			<key>allowMusicService</key>
-			<false/>
-			<key>allowRadioService</key>
-			<false/>
-			<key>allowBookstore</key>
-			<false/>
-			<key>allowFindMyFriends</key>
-			<false/>
-			<key>allowFindMyFriendsModification</key>
-			<false/>
-			<key>allowAppClips</key>
-			<false/>
-			<key>allowMarketplaceAppInstallation</key>
-			<false/>
-			<key>allowWebDistributionAppInstallation</key>
-			<false/>
-			<key>allowAutomaticAppDownloads</key>
-			<false/>
-			<key>allowProximitySetupToNewDevice</key>
-			<false/>
-			<key>allowPasswordSharing</key>
-			<false/>
-			<key>allowPasswordProximityRequests</key>
-			<false/>
-			<key>allowPasswordAutoFill</key>
-			<false/>
-			<key>safariAllowAutoFill</key>
-			<false/>
-			<key>forceAuthenticationBeforeAutoFill</key>
-			<true/>
-			<key>allowiPhoneMirroring</key>
-			<false/>
-			<key>allowiPhoneWidgetsOnMac</key>
-			<false/>
-			<key>allowLiveVoicemail</key>
-			<false/>
-			<key>allowRCSMessaging</key>
-			<false/>
-			<key>allowVideoConferencingRemoteControl</key>
-			<false/>
-			<key>allowAirPrintiBeaconDiscovery</key>
-			<false/>
-			<key>forceAirPrintTrustedTLSRequirement</key>
-			<true/>
-			<key>allowHostPairing</key>
-			<false/>
-			<key>forceAutomaticDateAndTime</key>
-			<true/>
-			<key>allowDefinitionLookup</key>
-			<false/>
-			<key>allowGenmoji</key>
-			<false/>
-			<key>allowImagePlayground</key>
-			<false/>
-			<key>allowImageWand</key>
-			<false/>
-			<key>allowWritingTools</key>
-			<false/>
-			<key>allowPersonalizedHandwritingResults</key>
-			<false/>
-			<key>allowAppleIntelligenceReport</key>
-			<false/>
-			<key>allowMailSmartReplies</key>
-			<false/>
-			<key>allowMailSummary</key>
-			<false/>
-			<key>allowNotesTranscription</key>
-			<false/>
-			<key>allowNotesTranscriptionSummary</key>
-			<false/>
-			<key>allowSafariSummary</key>
-			<false/>
-			<key>allowVisualIntelligenceSummary</key>
 			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>

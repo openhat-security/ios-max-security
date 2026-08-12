@@ -62,7 +62,8 @@ def restrictions_payload(*, supervised_apps: bool = False) -> dict:
         "PayloadDescription": "Disable Apple telemetry, ad tracking, and lock-screen leakage.",
         "PayloadOrganization": ORG,
     }
-    p.update(restriction_keys(("profile", "profile-supervised")))
+    vias = ("profile", "profile-supervised") if supervised_apps else ("profile",)
+    p.update(restriction_keys(vias))
     if supervised_apps:
         p["blockedAppBundleIDs"] = tracker_bundle_ids()
     return p
@@ -173,7 +174,8 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
         "PayloadDisplayName": f"OpenHat Supervised Max Privacy ({spec['label']})",
         "PayloadDescription": (
             "Same privacy baseline plus blocked high-tracking apps. "
-            "Requires Apple Configurator supervision. See CONFIGURATOR.md."
+            "Requires Apple Configurator supervision (erases the iPhone). "
+            "See wipe-required/CONFIGURATOR.md."
         ),
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
@@ -251,11 +253,12 @@ def validate(raw: bytes) -> None:
     assert restrictions["forceLimitAdTracking"] is True
     assert restrictions["allowApplePersonalizedAdvertising"] is False
     assert restrictions["allowEnterpriseAppTrust"] is False
-    assert restrictions["allowRCSMessaging"] is False
+    assert "allowRCSMessaging" not in restrictions
     assert "allowCloudPhotoLibrary" not in restrictions
     assert "allowFindMyDevice" not in restrictions
     assert "allowChat" not in restrictions
     assert "allowFingerprintForUnlock" not in restrictions
+    assert "blockedAppBundleIDs" not in restrictions
     dns = next(
         p for p in data["PayloadContent"] if p["PayloadType"] == "com.apple.dnsSettings.managed"
     )
@@ -289,9 +292,16 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build OpenHat iOS privacy profiles.")
     root = Path(__file__).resolve().parent.parent
     parser.add_argument("--out", type=Path, default=root / "profiles")
+    parser.add_argument(
+        "--wipe-out",
+        type=Path,
+        default=root / "wipe-required",
+        help="Supervised profile (erases the iPhone). Isolated from --out.",
+    )
     parser.add_argument("--catalog", type=Path, default=root / "catalog.json")
     args = parser.parse_args()
     args.out.mkdir(parents=True, exist_ok=True)
+    args.wipe_out.mkdir(parents=True, exist_ok=True)
 
     mapping = {
         "mullvad-adblock": "OpenHat-MaxPrivacy.mobileconfig",
@@ -312,9 +322,13 @@ def main() -> None:
 
     supervised = build_supervised_profile()
     plistlib.loads(supervised)
-    spath = args.out / "OpenHat-Supervised.mobileconfig"
+    spath = args.wipe_out / "OpenHat-Supervised.mobileconfig"
     spath.write_bytes(supervised)
     print(f"wrote {spath} ({len(supervised)} bytes)")
+    leftover = args.out / "OpenHat-Supervised.mobileconfig"
+    if leftover.exists():
+        leftover.unlink()
+        print(f"removed {leftover} (wipe-required only)")
 
     safari = build_safari_denylist_profile()
     plistlib.loads(safari)
