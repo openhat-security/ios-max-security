@@ -6,7 +6,7 @@ Built for public **iOS 26** (currently 26.6). See [Supported iOS](#supported-ios
 
 Everything after that is optional. You can leave off at any green “stop” below. Your photos and apps stay put unless you choose the last step, which **erases the whole iPhone**. Most people never do that last step.
 
-## Where you can stop
+## Configurations
 
 ```mermaid
 flowchart TD

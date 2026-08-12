@@ -17,7 +17,7 @@ body:
     id: proposal
     attributes:
       label: Proposal
-      description: Prefer an Apple Restrictions key or a catalog `via: manual` item over a new payload type.
+      description: "Prefer an Apple Restrictions key or a catalog `via: manual` item over a new payload type."
     validations:
       required: true
   - type: dropdown
