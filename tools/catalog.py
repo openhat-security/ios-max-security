@@ -10,6 +10,13 @@ via:
 
 from __future__ import annotations
 
+# Public iOS this catalog is built against. Unknown restriction keys are
+# ignored on older builds. iOS 27 beta is not supported.
+CURRENT_PUBLIC_IOS = "26.6"
+MIN_IOS_FULL_RESTRICTIONS = "18.2"
+MIN_IOS_SAFARI_DENYLIST = "16"
+MIN_IOS_ENCRYPTED_DNS = "14"
+
 SOURCES = {
     "encrypted-dns": "paulmillr/encrypted-dns",
     "celenityy": "celenityy/ios-settings",

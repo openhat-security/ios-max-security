@@ -11,7 +11,14 @@ import uuid
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from catalog import public_catalog, restriction_keys  # noqa: E402
+from catalog import (  # noqa: E402
+    CURRENT_PUBLIC_IOS,
+    MIN_IOS_ENCRYPTED_DNS,
+    MIN_IOS_FULL_RESTRICTIONS,
+    MIN_IOS_SAFARI_DENYLIST,
+    public_catalog,
+    restriction_keys,
+)
 
 NS = uuid.UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 ORG = "OpenHat"
@@ -309,6 +316,13 @@ def write_catalog(path: Path) -> None:
             "profile will write versus Apple defaults, plus every leftover tap "
             "from the four source guides. Live state is only in Settings on the phone."
         ),
+        "ios": {
+            "current_public": CURRENT_PUBLIC_IOS,
+            "full_restrictions": MIN_IOS_FULL_RESTRICTIONS,
+            "safari_denylist": MIN_IOS_SAFARI_DENYLIST,
+            "encrypted_dns": MIN_IOS_ENCRYPTED_DNS,
+            "beta_unsupported": "27",
+        },
         "counts": {
             "profile": sum(1 for r in rows if r["via"] == "profile"),
             "profile-supervised": sum(1 for r in rows if r["via"] == "profile-supervised"),

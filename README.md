@@ -2,6 +2,8 @@
 
 Install **OpenHat Max Privacy** on the iPhone. That is the main step. You can stop there.
 
+Built for public **iOS 26** (currently 26.6). See [Supported iOS](#supported-ios).
+
 Everything after that is optional. You can leave off at any green “stop” below. Your photos and apps stay put unless you choose the last step, which **erases the whole iPhone**. Most people never do that last step.
 
 ## Where you can stop
@@ -118,6 +120,26 @@ A Safari install cannot apply those locks. Apple Configurator **Prepare** superv
 After the wipe, install `wipe-required/OpenHat-Supervised.mobileconfig`.
 
 ---
+
+## Supported iOS
+
+| | Version |
+| --- | --- |
+| Current public iOS we build against | **iOS 26.6** |
+| Full restriction set (Apple Intelligence keys) | **iOS 18.2 and later** |
+| Optional Safari website block list | **iOS 16 and later** |
+| Encrypted DNS | **iOS 14 and later** |
+| iOS 27 developer / public beta | **Not supported** until Apple ships it |
+
+Unknown restriction keys are ignored on older iOS. The leftover Settings checklist is the same on every version: a website cannot flip those switches.
+
+## Contributing
+
+Bug reports, catalog items, and installer changes are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md). Security reports go through [SECURITY.md](SECURITY.md), not a public issue.
+
+## License
+
+[MIT](LICENSE). Pico CSS in `vendor/` is MIT ([Pico CSS](https://picocss.com)).
 
 ## Sources
 
