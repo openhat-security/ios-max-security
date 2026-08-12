@@ -1,0 +1,58 @@
+# OpenHat NanoMDM + SCEP + Caddy
+# TLS is terminated at Caddy. NanoMDM itself speaks HTTP on the internal network.
+
+services:
+  scep:
+    build:
+      context: .
+      dockerfile: Dockerfile.scep
+    restart: unless-stopped
+    environment:
+      SCEP_CHALLENGE: ${SCEP_CHALLENGE:-nanomdm}
+    volumes:
+      - ./depot:/depot
+    expose:
+      - "8080"
+
+  nanomdm:
+    build:
+      context: .
+      dockerfile: Dockerfile.nanomdm
+    restart: unless-stopped
+    depends_on:
+      - scep
+    environment:
+      NANOMDM_API_KEY: ${NANOMDM_API_KEY:-nanomdm}
+    volumes:
+      - ./db:/db
+      - ./pki:/pki
+    ports:
+      - "127.0.0.1:9000:9000"
+    expose:
+      - "9000"
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - scep
+      - nanomdm
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      MDM_HOSTNAME: ${MDM_HOSTNAME:-localhost}
+      ACME_EMAIL: ${ACME_EMAIL:-admin@example.com}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./out:/srv/enroll:ro
+      - ../profiles:/srv/profiles:ro
+      - ../index.html:/srv/index.html:ro
+      - ../catalog.json:/srv/catalog.json:ro
+      - ../data:/srv/data:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  caddy_data:
+  caddy_config:

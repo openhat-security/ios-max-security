@@ -1,0 +1,15 @@
+FROM debian:bookworm-slim
+ARG NANOMDM_VERSION=0.9.0
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl unzip openssl \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL -o /tmp/nano.zip \
+      "https://github.com/micromdm/nanomdm/releases/download/v${NANOMDM_VERSION}/nanomdm-linux-amd64-v${NANOMDM_VERSION}.zip" \
+    && unzip /tmp/nano.zip -d /usr/local/bin \
+    && mv /usr/local/bin/nanomdm-linux-amd64 /usr/local/bin/nanomdm \
+    && chmod +x /usr/local/bin/nanomdm \
+    && rm /tmp/nano.zip
+WORKDIR /db
+EXPOSE 9000
+COPY nanomdm-entrypoint.sh /usr/local/bin/nanomdm-entrypoint.sh
+RUN chmod +x /usr/local/bin/nanomdm-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/nanomdm-entrypoint.sh"]

@@ -1,0 +1,30 @@
+{$MDM_HOSTNAME} {
+	encode gzip
+	email {$ACME_EMAIL}
+
+	handle /scep* {
+		reverse_proxy scep:8080
+	}
+
+	handle /mdm* {
+		reverse_proxy nanomdm:9000
+	}
+
+	handle /v1* {
+		reverse_proxy nanomdm:9000
+	}
+
+	handle /checkin* {
+		reverse_proxy nanomdm:9000
+	}
+
+	handle /enroll* {
+		root * /srv/enroll
+		file_server
+	}
+
+	handle {
+		root * /srv
+		file_server
+	}
+}

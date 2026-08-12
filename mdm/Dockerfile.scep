@@ -1,0 +1,15 @@
+FROM debian:bookworm-slim
+ARG SCEP_VERSION=2.3.0
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates curl unzip \
+    && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL -o /tmp/scep.zip \
+      "https://github.com/micromdm/scep/releases/download/v${SCEP_VERSION}/scepserver-linux-amd64-v${SCEP_VERSION}.zip" \
+    && unzip /tmp/scep.zip -d /usr/local/bin \
+    && mv /usr/local/bin/scepserver-linux-amd64 /usr/local/bin/scepserver \
+    && chmod +x /usr/local/bin/scepserver \
+    && rm /tmp/scep.zip
+WORKDIR /depot
+EXPOSE 8080
+COPY scep-entrypoint.sh /usr/local/bin/scep-entrypoint.sh
+RUN chmod +x /usr/local/bin/scep-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/scep-entrypoint.sh"]
