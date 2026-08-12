@@ -1,0 +1,58 @@
+name: Bug report
+description: Something in the installer or a profile did not work as documented.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Search existing issues first. Do not report leftover Settings taps as a bug — a website cannot flip those.
+  - type: dropdown
+    id: ios
+    attributes:
+      label: iOS version
+      description: Current public release we build against is iOS 26.6. Full restriction keys apply from iOS 18.2.
+      options:
+        - iOS 26.6 (current public)
+        - iOS 26 (other 26.x)
+        - iOS 18.2–18.x
+        - iOS 16–18.1
+        - iOS 27 beta (unsupported)
+        - Other / not sure
+    validations:
+      required: true
+  - type: dropdown
+    id: path
+    attributes:
+      label: Which setup
+      options:
+        - Basic (Safari, no erase)
+        - Basic plus PIN extra
+        - Basic plus Safari deny list
+        - Basic plus PIN and Safari deny list
+        - Advanced / Supervised (erase)
+    validations:
+      required: true
+  - type: textarea
+    id: happened
+    attributes:
+      label: What happened
+      description: What you saw, versus what you expected.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. python3 serve.py
+        2. Open the URL in Safari on iPhone
+        3. …
+    validations:
+      required: true
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

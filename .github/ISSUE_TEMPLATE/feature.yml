@@ -1,0 +1,41 @@
+name: Feature request
+description: Propose a catalog item, payload, or installer change.
+title: "[Feature] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Features that need MDM, a custom root CA, or a jailbreak will be closed. Supervised-only keys belong in `wipe-required/`.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What privacy gap remains after the current profile and leftover-taps list?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: "Prefer an Apple Restrictions key or a catalog `via: manual` item over a new payload type."
+    validations:
+      required: true
+  - type: dropdown
+    id: via
+    attributes:
+      label: How should this apply
+      options:
+        - Unsupervised profile (no erase)
+        - Leftover Settings tap (manual)
+        - Supervised only (erase / wipe-required)
+        - Installer UI only
+        - Not sure
+    validations:
+      required: true
+  - type: checkboxes
+    id: conduct
+    attributes:
+      label: Code of Conduct
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

@@ -1,6 +1,13 @@
 {
   "title": "OpenHat iOS Max Privacy \u2014 change catalog",
   "disclaimer": "A website cannot read iPhone Settings. This catalog is what the profile will write versus Apple defaults, plus every leftover tap from the four source guides. Live state is only in Settings on the phone.",
+  "ios": {
+    "current_public": "26.6",
+    "full_restrictions": "18.2",
+    "safari_denylist": "16",
+    "encrypted_dns": "14",
+    "beta_unsupported": "27"
+  },
   "counts": {
     "profile": 36,
     "profile-supervised": 47,

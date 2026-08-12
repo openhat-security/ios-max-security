@@ -11,7 +11,14 @@ import uuid
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from catalog import public_catalog, restriction_keys  # noqa: E402
+from catalog import (  # noqa: E402
+    CURRENT_PUBLIC_IOS,
+    MIN_IOS_ENCRYPTED_DNS,
+    MIN_IOS_FULL_RESTRICTIONS,
+    MIN_IOS_SAFARI_DENYLIST,
+    public_catalog,
+    restriction_keys,
+)
 
 NS = uuid.UUID("6ba7b810-9dad-11d1-80b4-00c04fd430c8")
 ORG = "OpenHat"
@@ -125,33 +132,67 @@ def passcode_payload() -> dict:
 
 
 def build_profile(provider_id: str) -> bytes:
+    return build_setup_profile(provider_id, pin=False, safari=False)
+
+
+def build_setup_profile(
+    provider_id: str, *, pin: bool = False, safari: bool = False
+) -> bytes:
     spec = DNS_PROVIDERS[provider_id]
+    extras = []
+    if pin:
+        extras.append("a stronger PIN policy")
+    if safari:
+        extras.append("a Safari website block list")
+    extra_txt = ""
+    if extras:
+        extra_txt = " Also includes " + " and ".join(extras) + "."
+    fail_txt = ""
+    if pin or safari:
+        fail_txt = (
+            "\n\nIf Install fails, your PIN may be too simple or this iPhone "
+            "may reject the Safari filter. Remove this profile attempt, turn "
+            "that extra off, and install again."
+        )
     consent = (
         "This profile encrypts DNS via "
         f"{spec['label']} and turns off Apple analytics, personalized ads, "
         "and app tracking requests. It also tightens the lock screen and "
-        "disables iCloud Backup.\n\n"
+        f"disables iCloud Backup.{extra_txt}\n\n"
         "It cannot read your current Settings, turn off Location Services, "
         "enable Lockdown Mode, or sign you out of Apple ID.\n\n"
         "Before Install, tap More Details to see every payload. "
         "Remove anytime: Settings > General > VPN & Device Management."
+        f"{fail_txt}"
     )
+    bits = [spec["label"]]
+    if pin:
+        bits.append("PIN")
+    if safari:
+        bits.append("Safari list")
+    content = [dns_payload(provider_id), restrictions_payload()]
+    if pin:
+        content.append(passcode_payload())
+    if safari:
+        content.append(web_filter_payload())
     profile = {
         "PayloadType": "Configuration",
         "PayloadVersion": VERSION,
         "PayloadUUID": uid(f"root.{provider_id}"),
         "PayloadIdentifier": BUNDLE,
-        "PayloadDisplayName": f"OpenHat Max Privacy ({spec['label']})",
+        "PayloadDisplayName": f"OpenHat Max Privacy ({', '.join(bits)})",
         "PayloadDescription": (
             "Encrypted DNS, no Apple analytics, no ad tracking, tighter lock "
-            "screen. Open the Privacy Audit page to see what this changes "
-            "versus Apple defaults and what you still have to tap."
+            "screen"
+            + (", PIN policy" if pin else "")
+            + (", Safari site list" if safari else "")
+            + "."
         ),
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
         "PayloadScope": "System",
         "ConsentText": {"default": consent},
-        "PayloadContent": [dns_payload(provider_id), restrictions_payload()],
+        "PayloadContent": content,
     }
     return plistlib.dumps(profile, fmt=plistlib.FMT_XML, sort_keys=False)
 
@@ -275,6 +316,13 @@ def write_catalog(path: Path) -> None:
             "profile will write versus Apple defaults, plus every leftover tap "
             "from the four source guides. Live state is only in Settings on the phone."
         ),
+        "ios": {
+            "current_public": CURRENT_PUBLIC_IOS,
+            "full_restrictions": MIN_IOS_FULL_RESTRICTIONS,
+            "safari_denylist": MIN_IOS_SAFARI_DENYLIST,
+            "encrypted_dns": MIN_IOS_ENCRYPTED_DNS,
+            "beta_unsupported": "27",
+        },
         "counts": {
             "profile": sum(1 for r in rows if r["via"] == "profile"),
             "profile-supervised": sum(1 for r in rows if r["via"] == "profile-supervised"),
@@ -310,6 +358,21 @@ def main() -> None:
     for provider_id, filename in mapping.items():
         raw = build_profile(provider_id)
         validate(raw)
+        path = args.out / filename
+        path.write_bytes(raw)
+        print(f"wrote {path} ({len(raw)} bytes)")
+
+    combos = [
+        ("mullvad-adblock", True, False, "OpenHat-MaxPrivacy-PIN.mobileconfig"),
+        ("mullvad-adblock", False, True, "OpenHat-MaxPrivacy-Safari.mobileconfig"),
+        ("mullvad-adblock", True, True, "OpenHat-MaxPrivacy-PIN-Safari.mobileconfig"),
+        ("quad9", True, False, "OpenHat-MaxPrivacy-Quad9-PIN.mobileconfig"),
+        ("quad9", False, True, "OpenHat-MaxPrivacy-Quad9-Safari.mobileconfig"),
+        ("quad9", True, True, "OpenHat-MaxPrivacy-Quad9-PIN-Safari.mobileconfig"),
+    ]
+    for provider_id, pin, safari, filename in combos:
+        raw = build_setup_profile(provider_id, pin=pin, safari=safari)
+        plistlib.loads(raw)
         path = args.out / filename
         path.write_bytes(raw)
         print(f"wrote {path} ({len(raw)} bytes)")
