@@ -1,88 +1,73 @@
-# OpenHat iOS Max Privacy
+# OpenHat Max Privacy for iPhone
 
-**Erase warning (read this first):** hiding Instagram/Snapchat, forcing Siri and AirDrop off, and other Supervised-only locks require Apple to **erase the entire iPhone**. That is Route B or D. Encrypted backup first. There is no unsupervise toggle — only another erase.
+This branch is the **remote management** edition. Personal setup (no remote management) is a separate choice with its own diagram. Do not mix the two charts.
 
-**Most people should stop at Route A.** It does **not** erase the iPhone, does **not** use MDM, and does **not** need a paid Developer Program.
+**Read this first.** Erasing the iPhone is required only for the stronger locks (hide Instagram / Snapchat, force Siri and AirDrop off). Enrolling for remote management does **not** erase the phone by itself. Combining stronger locks **with** remote management **does** erase the phone.
 
-Not every MDM path wipes the phone. Safari MDM enrollment (Route C, `feature/mdm` branch) keeps your data but **cannot** do app blocks. Full MDM + app blocks (Route D) **does** wipe.
+---
 
-## Which route?
+## Personal setup
+
+No remote management. Most people should **keep their data**.
 
 ```mermaid
 flowchart TD
-  start[Harden this iPhone] --> qwipe{Willing to erase the entire iPhone?}
+  start[Harden this iPhone] --> wipe{Willing to erase the entire iPhone?}
 
-  qwipe -->|No — keep my data| qmdm1{Need a remote MDM server?}
-  qmdm1 -->|No| A[Route A — Safari profile]
-  qmdm1 -->|Yes| C[Route C — MDM User Enrollment]
+  wipe -->|No — keep my photos and apps| keep[Keep my data]
+  wipe -->|Yes — I accept a full wipe| erase[Erase for stronger locks]
 
-  qwipe -->|Yes — I accept a full wipe| qmdm2{Need remote MDM after that?}
-  qmdm2 -->|No| B[Route B — Configurator Supervise]
-  qmdm2 -->|Yes| D[Route D — Wipe + Supervise + MDM]
+  keep --> k1[Install a profile in Safari]
+  k1 --> k2[Encrypted DNS, ads and analytics off, tighter lock screen]
+  k2 --> k3[You still tap Location, Lockdown, iCloud, and delete apps yourself]
 
-  A --> A1[profiles/ — no wipe, no MDM, no Developer cert]
-  A1 --> A2[Encrypted DNS, ads/analytics off, lock screen]
-  A2 --> A3[You still tap: Location, Lockdown, iCloud, delete apps]
-
-  B --> B1[wipe-required/ — ERASES the iPhone]
-  B1 --> B2[No MDM, no paid Developer Program]
-  B2 --> B3[Most secure without MDM: app blocks + supervised keys]
-
-  C --> C1[feature/mdm · mdm/ — no wipe]
-  C1 --> C2[Needs push cert + HTTPS]
-  C2 --> C3[Can push profiles / query / lock]
-  C3 --> C4[Not Supervised: Instagram stays unless you delete it]
-
-  D --> D1[wipe-required/ plus feature/mdm — ERASES the iPhone]
-  D1 --> D2[Most secure overall]
-  D2 --> D3[App blocks + remote InstallProfile]
+  erase --> e1[ERASES the iPhone]
+  e1 --> e2[Mac, a cable, and Apple Configurator]
+  e2 --> e3[Instagram, Snapchat, TikTok and similar can be hidden]
+  e3 --> e4[Siri and AirDrop can be forced off]
 ```
 
-| Route | Erase iPhone? | MDM? | Developer cert? | What you get | Where in this repo |
-| --- | --- | --- | --- | --- | --- |
-| **A — default** | **No** | **No** | **No** | DNS, telemetry/ads off, lock screen. Instagram still installable. | `profiles/` |
-| **B** | **Yes** | **No** | **No** | Everything in A, plus Siri/AirDrop off, Instagram/Snapchat/TikTok hidden | `wipe-required/` |
-| **C** | **No** | **Yes** | **Yes** | Remote push of Route A profiles. No app denylist. | `mdm/` on `feature/mdm` |
-| **D — strongest** | **Yes** | **Yes** | **Yes** | Route B plus remote management | `wipe-required/` + `feature/mdm` |
+| Setup | Erases the iPhone? | What you get |
+| --- | --- | --- |
+| **Keep my data** | **No** | Encrypted DNS, ads and analytics off, tighter lock screen. Instagram and Snapchat stay until you delete them. |
+| **Erase for stronger locks** | **Yes** | Everything above, plus those apps can be blocked and Siri / AirDrop forced off. |
 
-**Most secure:** D. **Most secure without paying Apple or running a server:** B. **Do this first, no drama:** A.
+Keep my data: run `python3 serve.py`, open the URL in Safari, tap **Install Max Privacy**.
 
----
-
-## Route A — no wipe, no MDM (`profiles/`)
-
-1. `python3 serve.py`
-2. On the iPhone, open the URL **in Safari**.
-3. Tap **Install Max Privacy**. Then **Settings → General → VPN & Device Management → Install**.
-4. Finish leftover taps on the audit page (`/#audit`).
-
-| File | When |
-| --- | --- |
-| `profiles/OpenHat-MaxPrivacy.mobileconfig` | Default. Mullvad Adblock DNS + unsupervised restrictions. |
-| `profiles/OpenHat-MaxPrivacy-Quad9.mobileconfig` | Same with Quad9 DNS. Replaces the default. |
-| `profiles/OpenHat-Passcode.mobileconfig` | Optional PIN policy. |
-| `profiles/OpenHat-SafariDenyList.mobileconfig` | Optional Safari-only tracker URL list. |
-
-Rebuild: `python3 tools/build_profile.py`
-
-Leftover taps: Location Services, Lockdown Mode, iCloud app sync / sign-out, Private Wi-Fi Address, delete high-tracking apps (or Screen Time → Never Allow), VPN.
+Erase for stronger locks: read [`wipe-required/README.md`](wipe-required/README.md) before you plug in a cable.
 
 ---
 
-## Route B — erases the iPhone, still no MDM (`wipe-required/`)
+## Remote management
 
-Read [`wipe-required/README.md`](wipe-required/README.md) before you plug in a cable. Apple Configurator **Prepare → Supervise** wipes the device. Then install `wipe-required/OpenHat-Supervised.mobileconfig`.
+This is a **different** path. It is optional. It is not required for either personal setup above.
 
----
+```mermaid
+flowchart TD
+  start[Want the iPhone managed remotely?] --> wipe{Willing to erase the entire iPhone?}
 
-## Routes C and D — MDM (`mdm/` on `feature/mdm`)
+  wipe -->|No — keep my data| enroll[Enroll without erasing]
+  wipe -->|Yes — I accept a full wipe| both[Erase, then enroll]
 
-MDM is isolated from this default path. The `mdm/` stack lives on the **`feature/mdm`** branch, not on `main`. Checkout that branch only if you have a paid Apple Developer Program push certificate and a public HTTPS hostname.
+  enroll --> n1[Keeps photos and apps]
+  n1 --> n2[A server can push settings, lock the phone]
+  n2 --> n3[Cannot hide Instagram or Snapchat]
 
-- **C** = Safari enrollment profile → **no erase**, not Supervised, cannot hide Instagram.
-- **D** = Configurator Prepare with Supervise **and** MDM → **erases the iPhone**, then remote app blocks.
+  both --> y1[ERASES the iPhone]
+  y1 --> y2[Stronger locks plus remote management]
+  y2 --> y3[Apps can be hidden and the server can still manage the phone]
+```
 
-See [`mdm/README.md`](mdm/README.md) on `feature/mdm`.
+| Setup | Erases the iPhone? | What you get |
+| --- | --- | --- |
+| **Enroll without erasing** | **No** | Remote push of the personal privacy profile. Instagram stays unless you delete it. |
+| **Erase, then enroll** | **Yes** | Stronger locks (app blocks, Siri / AirDrop off) **and** remote management. The more private of these two. |
+
+Enroll without erasing: open the enrollment page in Safari on the iPhone (`/enroll/` on your management server).
+
+Erase, then enroll: follow [`wipe-required/CONFIGURATOR.md`](wipe-required/CONFIGURATOR.md), turn **Supervise** on, then enroll. After that the server can install `wipe-required/OpenHat-Supervised.mobileconfig`.
+
+How to run the server: [`mdm/README.md`](mdm/README.md).
 
 ---
 
@@ -91,6 +76,6 @@ See [`mdm/README.md`](mdm/README.md) on `feature/mdm`.
 - [paulmillr/encrypted-dns](https://github.com/paulmillr/encrypted-dns)
 - [celenityy/ios-settings](https://github.com/celenityy/ios-settings)
 - [iPrivacyGuides/iOS-Privacy-Guide](https://github.com/iPrivacyGuides/iOS-Privacy-Guide)
-- [danieloz147/ios-profile-builder](https://github.com/danieloz147/ios-profile-builder) (plist assembly only)
+- [danieloz147/ios-profile-builder](https://github.com/danieloz147/ios-profile-builder)
 - [Apple Restrictions payload](https://developer.apple.com/documentation/devicemanagement/restrictions)
 - [NanoMDM](https://github.com/micromdm/nanomdm)

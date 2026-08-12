@@ -1,37 +1,49 @@
-# OpenHat NanoMDM
+# Remote management server
 
-**This folder is isolated from the default installer.** Route A (`profiles/`) never enrolls a phone in MDM.
+This folder is **not** the personal installer. The Safari profile in `profiles/` never enrolls a phone here.
 
-MDM is **not** the same as erasing the iPhone:
+The user-facing MDM chart lives in the [root README](../README.md#remote-management). This page is how to run the server.
 
-| Route | Erase? | Supervised? | What MDM adds |
-| --- | --- | --- | --- |
-| **C — User Enrollment** (Safari, this folder) | **No** | **No** | Push Route A profiles, query, lock. **Cannot** hide Instagram. |
-| **D — Prepare + Supervise + MDM** | **Yes** | **Yes** | Everything in C, plus app blocks via `wipe-required/OpenHat-Supervised.mobileconfig`. |
+```mermaid
+flowchart TD
+  start[Want the iPhone managed remotely?] --> wipe{Willing to erase the entire iPhone?}
 
-If you only wanted encrypted DNS, stay on `main` and use Route A. Do not run this stack.
+  wipe -->|No — keep my data| enroll[Enroll without erasing]
+  wipe -->|Yes — I accept a full wipe| both[Erase, then enroll]
 
-You can:
+  enroll --> n1[Keeps photos and apps]
+  n1 --> n2[A server can push settings, lock the phone]
+  n2 --> n3[Cannot hide Instagram or Snapchat]
 
-- **Self-host** (`MDM_PROVIDER=self`) — this compose stack, your domain, your push cert.
-- **Point at OpenHat** (`MDM_PROVIDER=openhat`) — set `MDM_PUBLIC_URL` to the hosted endpoint when it exists. Same enrollment generator.
+  both --> y1[ERASES the iPhone]
+  y1 --> y2[Stronger locks plus remote management]
+  y2 --> y3[Apps can be hidden and the server can still manage the phone]
+```
 
-## What you must have (cannot be faked in git)
+| Setup | Erases the iPhone? | What the server can do |
+| --- | --- | --- |
+| **Enroll without erasing** | **No** | Push the personal privacy profile, query, lock. Cannot hide Instagram. |
+| **Erase, then enroll** | **Yes** | App blocks plus remote management. |
 
-1. **Paid Apple Developer Program** (you are waiting on this) to get an **MDM push certificate** from [identity.apple.com](https://identity.apple.com). See MicroMDM’s [APNs cert notes](https://github.com/micromdm/micromdm/blob/main/docs/user-guide/quickstart.md).
-2. A **public HTTPS** hostname (Caddy in this compose uses Let’s Encrypt). Example: `mdm.example.com`.
+## Run the server
+
+You can self-host (`MDM_PROVIDER=self`) or point enrollment at a hosted OpenHat URL (`MDM_PROVIDER=openhat`).
+
+You will need:
+
+1. An MDM push certificate from [identity.apple.com](https://identity.apple.com). See MicroMDM’s [APNs cert notes](https://github.com/micromdm/micromdm/blob/main/docs/user-guide/quickstart.md).
+2. A public HTTPS hostname (Caddy in this compose uses Let’s Encrypt). Example: `mdm.example.com`.
 3. Devices you are allowed to manage. Enrolling someone else’s phone without consent is not supported.
 
-## Quick start (Route C — no wipe)
+### Enroll without erasing
 
 ```bash
 cd mdm
 cp config.example.env .env
 # edit .env — MDM_PUBLIC_URL, secrets, leave PUSH files empty until you have the cert
 
-./bootstrap.sh          # init SCEP CA, start compose
+./bootstrap.sh
 ./generate_enrollment.py
-# profiles written to mdm/out/OpenHat-MDM-Enroll.mobileconfig
 
 # after you have push.pem + push.key:
 ./upload_pushcert.sh
@@ -40,12 +52,12 @@ cp config.example.env .env
 ./enqueue_profile.py ../profiles/OpenHat-MaxPrivacy.mobileconfig --udid DEVICE_UDID
 ```
 
-Open `https://$MDM_PUBLIC_URL/enroll/` for the enroll page. That enrollment **does not erase** the phone and **does not** supervise it.
+Open `https://$MDM_PUBLIC_URL/enroll/` in Safari on the iPhone. That enrollment **does not erase** the phone.
 
-## Route D — erase, then MDM
+### Erase, then enroll
 
 1. Read [`../wipe-required/CONFIGURATOR.md`](../wipe-required/CONFIGURATOR.md). **Prepare erases the iPhone.**
-2. In Configurator Prepare, enable **Supervise** and **Automatically enroll in MDM**, pointing at `https://$MDM_PUBLIC_URL/enroll/OpenHat-MDM-Enroll.mobileconfig` (or install that profile after setup).
+2. In Configurator Prepare, enable **Supervise** and MDM enrollment, pointing at `https://$MDM_PUBLIC_URL/enroll/OpenHat-MDM-Enroll.mobileconfig` (or install that profile after setup).
 3. After enrollment:
 
 ```bash

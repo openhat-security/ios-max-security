@@ -160,7 +160,7 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
     spec = DNS_PROVIDERS[provider_id]
     consent = (
         "For a phone already SUPERVISED with Apple Configurator (USB, erases "
-        "the device). No MDM and no Apple Developer Program required.\n\n"
+        "the device).\n\n"
         "Adds a block list for Instagram, Facebook, Messenger, Snapchat, "
         "TikTok, X, Pinterest, Reddit, and LinkedIn, plus every restriction "
         "in the standard OpenHat profile.\n\n"

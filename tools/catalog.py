@@ -1701,7 +1701,7 @@ CATALOG: list[dict] = [
     },
     {
         "id": "configurator-supervise",
-        "title": "Supervise the iPhone with Apple Configurator (no MDM, no paid Developer Program)",
+        "title": "Supervise the iPhone with Apple Configurator",
         "category": "Apps",
         "source": ["apple"],
         "via": "manual",

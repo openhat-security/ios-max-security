@@ -106,14 +106,14 @@ def main() -> None:
     html.write_text(
         """<!DOCTYPE html>
 <html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>OpenHat MDM enroll — Route C</title>
+<title>Enroll without erasing</title>
 <body style="font:16px/1.5 -apple-system,sans-serif;max-width:40rem;margin:2rem auto;padding:0 1rem;background:#0e1116;color:#e6edf3">
-<p style="color:#3fb950"><strong>Route C — this enrollment does not erase the iPhone.</strong></p>
-<h1>Enroll in OpenHat MDM</h1>
+<p style="color:#3fb950"><strong>This enrollment does not erase the iPhone.</strong></p>
+<h1>Remote management</h1>
 <p>Open this page in <strong>Safari</strong> on the iPhone.</p>
 <p><a href="OpenHat-MDM-Enroll.mobileconfig" style="color:#3d9cf0">Install enrollment profile</a></p>
-<p>The server can install profiles, query the device, and — if AccessRights include it — lock or erase later. This is <em>not</em> Supervised. Instagram/Snapchat stay until you delete them.</p>
-<p style="color:#f85149"><strong>Route D (app blocks) erases the whole iPhone</strong> via Apple Configurator Prepare → Supervise, then this same enrollment. Do not start Prepare unless you accept a full wipe. See <code>wipe-required/</code>.</p>
+<p>The server can install profiles, query the device, and — if allowed — lock or erase later. This does not hide Instagram or Snapchat.</p>
+<p style="color:#f85149"><strong>Hiding those apps erases the whole iPhone</strong> (Apple Configurator Prepare, then this same enrollment). Do not start Prepare unless you accept a full wipe.</p>
 </body></html>
 """,
         encoding="utf-8",
