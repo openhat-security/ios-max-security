@@ -1,7 +1,7 @@
 import { parsePlist } from "./plist.js";
 import { wireInstallButton } from "./profile-install.js";
 import { githubUrlBox } from "./copy.js";
-import { wireThemeControls, applyHostGuard } from "./theme.js";
+import { wireThemeControls, applyHostGuard } from "./theme.js?v=7";
 
 wireThemeControls();
 const host = applyHostGuard();
@@ -136,26 +136,26 @@ function render(profile, xml, path) {
   document.getElementById("lead").textContent =
     profile.PayloadDescription || "Apple configuration profile — settings only, not an app.";
 
-  const proof = el(`<details class="audit-payload proof-panel"></details>`);
-  const bounce = el(
-    `<span class="proof-bounce is-live">Click here for proof this is not a virus!</span>`
-  );
+  // const proof = el(`<details class="audit-payload proof-panel"></details>`);
+  // const bounce = el(
+  //   `<span class="proof-bounce is-live">Click here for proof this is not a virus!</span>`
+  // );
   const sum = document.createElement("summary");
-  sum.append(bounce);
-  proof.append(sum);
-  proof.addEventListener("toggle", () => {
-    bounce.classList.toggle("is-live", !proof.open);
-    bounce.textContent = proof.open
-      ? "Proof this is not a virus"
-      : "Click here for proof this is not a virus!";
-  });
+  // sum.append(bounce);
+  // proof.append(sum);
+  // proof.addEventListener("toggle", () => {
+  //   bounce.classList.toggle("is-live", !proof.open);
+  //   bounce.textContent = proof.open
+  //     ? "Proof this is not a virus"
+  //     : "Click here for proof this is not a virus!";
+  // });
 
-  const trust = el(`<div class="note"></div>`);
-  trust.innerHTML = `<strong>This is not an app and cannot be a virus.</strong>
-    <p>A <code>.mobileconfig</code> is a text settings file (XML). It has no executable code.
-    iOS will show the same name and payloads under Settings → General → VPN &amp; Device Management.
-    You can remove it later. It is not locked on the phone.</p>`;
-  proof.append(trust);
+  // const trust = el(`<div class="note"></div>`);
+  // trust.innerHTML = `<strong>This is not an app and cannot be a virus.</strong>
+  //   <p>A <code>.mobileconfig</code> is a text settings file (XML). It has no executable code.
+  //   iOS will show the same name and payloads under Settings → General → VPN &amp; Device Management.
+  //   You can remove it later. It is not locked on the phone.</p>`;
+  // proof.append(trust);
 
   const meta = el("<ul class='audit-keys'></ul>");
   meta.append(el(`<li><strong>Organization</strong> ${profile.PayloadOrganization || "—"}</li>`));
@@ -163,22 +163,22 @@ function render(profile, xml, path) {
   meta.append(el(`<li><strong>Removable</strong> ${profile.PayloadRemovalDisallowed ? "No" : "Yes"}</li>`));
   meta.append(el(`<li><strong>Payloads</strong> ${payloads.length}</li>`));
   meta.append(el(`<li><strong>File</strong> ${path} · ${xml.length.toLocaleString()} bytes of XML</li>`));
-  proof.append(meta);
+  // proof.append(meta);
 
-  proof.append(el("<h2>Same file on GitHub</h2>"));
-  proof.append(
-    el(
-      `<p class="section-desc">This page loaded <code>${path}</code> from the site. That is the same public file on GitHub. If you do not trust the button, copy the address and paste it in Safari yourself.</p>`
-    )
-  );
-  const proofActions = el("<div class='profile-actions'></div>");
-  const viewSrc = el(
-    `<a href="${github}" role="button" class="github-cta"><span class="gh-mark" aria-hidden="true"></span> View the source code for this profile</a>`
-  );
-  proofActions.append(viewSrc);
-  proof.append(proofActions);
-  proof.append(githubUrlBox(github));
-  root.append(proof);
+  // proof.append(el("<h2>Same file on GitHub</h2>"));
+  // proof.append(
+  //   el(
+  //     `<p class="section-desc">This page loaded <code>${path}</code> from the site. That is the same public file on GitHub. If you do not trust the button, copy the address and paste it in Safari yourself.</p>`
+  //   )
+  // );
+  // const proofActions = el("<div class='profile-actions'></div>");
+  // const viewSrc = el(
+  //   `<a href="${github}" role="button" class="github-cta"><span class="gh-mark" aria-hidden="true"></span> View the source code for this profile</a>`
+  // );
+  // proofActions.append(viewSrc);
+  // proof.append(proofActions);
+  // proof.append(githubUrlBox(github));
+  // root.append(proof);
 
   const actions = el("<div class='profile-actions audit-actions'></div>");
   const install = el(`<a href="${path}" role="button">Install this profile</a>`);

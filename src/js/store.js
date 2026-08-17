@@ -1,13 +1,15 @@
 const KEY = "openhat-ios-ui-v1";
 
+const STYLES = ["app", "blackhat", "primer", "paper", "terminal"];
+
 function read() {
   try {
     return Object.assign(
-      { installs: {}, color: "system", style: "app" },
+      { installs: {}, color: "light", style: "app" },
       JSON.parse(localStorage.getItem(KEY) || "{}")
     );
   } catch (e) {
-    return { installs: {}, color: "system", style: "app" };
+    return { installs: {}, color: "light", style: "app" };
   }
 }
 
@@ -26,24 +28,23 @@ export function wasInstalled(url) {
 }
 
 export function getColor() {
-  const c = read().color;
-  return c === "light" || c === "dark" ? c : "system";
+  return read().color === "dark" ? "dark" : "light";
 }
 
 export function setColor(color) {
   const data = read();
-  data.color = color === "light" || color === "dark" ? color : "system";
+  data.color = color === "dark" ? "dark" : "light";
   write(data);
 }
 
 export function getStyle() {
   const s = read().style;
-  return ["app", "primer", "paper", "terminal"].includes(s) ? s : "app";
+  return STYLES.includes(s) ? s : "app";
 }
 
 export function setStyle(style) {
   const data = read();
-  data.style = ["app", "primer", "paper", "terminal"].includes(style) ? style : "app";
+  data.style = STYLES.includes(style) ? style : "app";
   write(data);
 }
 

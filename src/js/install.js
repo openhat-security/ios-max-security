@@ -1,6 +1,6 @@
 import { wireInstallButton } from "./profile-install.js";
 import { wireCopyButton } from "./copy.js";
-import { wireThemeControls, hostStatus } from "./theme.js";
+import { wireThemeControls, hostStatus } from "./theme.js?v=7";
 
 wireThemeControls();
 

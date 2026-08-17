@@ -1,6 +1,7 @@
-import { getColor, setColor, getStyle, setStyle } from "./store.js";
+import { getColor, setColor, getStyle, setStyle } from "./store.js?v=7";
 
 const OVERLAY = {
+  blackhat: "theme-blackhat.css",
   primer: "theme-primer.css",
   paper: "theme-paper.css",
   terminal: "theme-terminal.css",
@@ -12,41 +13,50 @@ function cssDir() {
   return base.href.replace(/app\.css[^/]*$/, "");
 }
 
-export function applyTheme() {
-  const color = getColor();
-  const style = getStyle();
+export function applyTheme(overrides = {}) {
+  if (overrides.color) setColor(overrides.color);
+  if (overrides.style) setStyle(overrides.style);
+  const color = overrides.color || getColor();
+  const style = overrides.style || getStyle();
   document.documentElement.dataset.color = color;
   document.documentElement.dataset.style = style;
   const overlay = document.getElementById("theme-overlay");
   if (overlay) {
     if (OVERLAY[style]) {
-      overlay.href = cssDir() + OVERLAY[style] + "?v=5";
+      overlay.href = cssDir() + OVERLAY[style] + "?v=7";
       overlay.disabled = false;
     } else {
       overlay.removeAttribute("href");
       overlay.disabled = true;
     }
   }
-  document.querySelectorAll("[data-color-set]").forEach((btn) => {
-    btn.classList.toggle("on", btn.getAttribute("data-color-set") === color);
-  });
+  const toggle = document.getElementById("mode-toggle");
+  if (toggle) {
+    const dark = color === "dark";
+    toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+    toggle.setAttribute("aria-pressed", String(dark));
+  }
+  const meta = document.querySelector('meta[name="theme-color"]');
+  if (meta) {
+    const bg = getComputedStyle(document.documentElement).getPropertyValue("--bg").trim();
+    if (bg) meta.content = bg;
+  }
   const select = document.getElementById("style-select");
-  if (select) select.value = style;
+  if (select && !overrides.style) select.value = style;
 }
 
 export function wireThemeControls() {
   applyTheme();
-  document.querySelectorAll("[data-color-set]").forEach((btn) => {
-    btn.addEventListener("click", () => {
-      setColor(btn.getAttribute("data-color-set"));
-      applyTheme();
+  const toggle = document.getElementById("mode-toggle");
+  if (toggle) {
+    toggle.addEventListener("click", () => {
+      applyTheme({ color: getColor() === "dark" ? "light" : "dark" });
     });
-  });
+  }
   const select = document.getElementById("style-select");
   if (select) {
     select.addEventListener("change", () => {
-      setStyle(select.value);
-      applyTheme();
+      applyTheme({ style: select.value });
     });
   }
 }

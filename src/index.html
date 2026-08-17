@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-color="light" data-style="app">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0a0000">
+  <meta name="theme-color" content="#f7f0f0">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>OpenHat - ios-max-security</title>
-  <link rel="stylesheet" href="css/app.css?v=6" id="theme-base">
+  <link rel="stylesheet" href="css/app.css?v=8" id="theme-base">
   <link rel="stylesheet" href="" id="theme-overlay" disabled>
-  <script src="js/theme-boot.js?v=5"></script>
+  <script src="js/theme-boot.js?v=7"></script>
 </head>
 <body>
   <div class="scan" aria-hidden="true"></div>
@@ -22,16 +22,16 @@
       <label class="chrome-field">Style
         <select id="style-select">
           <option value="app">Red Hat</option>
+          <option value="blackhat">Black Hat</option>
           <option value="primer">Primer</option>
           <option value="paper">Paper</option>
           <option value="terminal">Terminal</option>
         </select>
       </label>
-      <div class="color-toggle" role="group" aria-label="Color">
-        <button type="button" data-color-set="system">Sys</button>
-        <button type="button" data-color-set="light">Light</button>
-        <button type="button" data-color-set="dark">Dark</button>
-      </div>
+      <button type="button" class="mode-toggle" id="mode-toggle" aria-label="Switch to dark mode">
+        <span class="icon-moon" aria-hidden="true"></span>
+        <span class="icon-sun" aria-hidden="true"></span>
+      </button>
     </div>
     <!-- <p class="kicker">iPhone security</p> -->
     <h1>Maximize your privacy on iOS</h1>
@@ -45,8 +45,9 @@
     
     <div class="intro">
       <p>
-        Below, you'll find profiles that disable all of the invasive features from Apple which I've found. Level 1 is the most basic privacy profile, which disables the <b> most invasive </b> features from Apple, such as Apple Intelligence, Location Services, 'Analytics and Improvements', Tracking, along with more sensitive PII which is surely not sold to third parties, nor the US Government.
+        Below, you'll find profiles that disable all of the invasive features from Apple which I've found. Level 1 is the most basic privacy profile, which disables the <b> most invasive </b> features from Apple, such as Apple Intelligence, Location Services, 'Analytics and Improvements', Tracking, along with additional sensitive PII collected by Apple which is surely not sold to third parties (or the gov't 🙄).
         <a class="read-more" href="#intro-more" id="read-more" aria-expanded="false" aria-controls="intro-more">Read more</a>
+  
       </p>
       
       <div class="intro-more" id="intro-more" hidden>
@@ -242,6 +243,6 @@
     <p><a href="mdm.html">Level 3 (no erase)</a> · <a href="wipe.html">Level 4 (erases iPhone)</a></p>
   </footer>
 
-  <script type="module" src="js/install.js?v=6"></script>
+  <script type="module" src="js/install.js?v=8"></script>
 </body>
 </html>

@@ -1,0 +1,92 @@
+/* Same energy as Red Hat: scanlines, glow, hat — monochrome. */
+html[data-style="blackhat"],
+html[data-style="blackhat"][data-color="dark"] {
+  --bg: #050505;
+  --bg-grad: #101010;
+  --panel: #121212;
+  --panel-2: #1a1a1a;
+  --ink: #f2f2f2;
+  --muted: #8a8a8a;
+  --red: #e8e8e8;
+  --red-hot: #ffffff;
+  --red-dim: #3a3a3a;
+  --line: #2a2a2a;
+  --ok: #3fb950;
+  --ok-bg: #1a3d22;
+  --code-bg: #000;
+  --code-ink: #d8d8d8;
+  --danger-bg: #161616;
+  --glow: rgba(255, 255, 255, 0.1);
+  --scan-line: rgba(0, 0, 0, 0.28);
+  --scan-opacity: 0.35;
+}
+
+html[data-style="blackhat"][data-color="light"] {
+  --bg: #f4f4f4;
+  --bg-grad: #fafafa;
+  --panel: #fff;
+  --panel-2: #f0f0f0;
+  --ink: #111;
+  --muted: #5a5a5a;
+  --red: #1a1a1a;
+  --red-hot: #000;
+  --red-dim: #c8c8c8;
+  --line: #d4d4d4;
+  --ok: #1a7f37;
+  --ok-bg: #d8f0de;
+  --code-bg: #fff;
+  --code-ink: #222;
+  --danger-bg: #ececec;
+  --glow: rgba(0, 0, 0, 0.05);
+  --scan-line: rgba(0, 0, 0, 0.04);
+  --scan-opacity: 0.2;
+}
+
+html[data-style="blackhat"] .kicker,
+html[data-style="blackhat"] h1 {
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.2);
+}
+
+html[data-style="blackhat"][data-color="light"] .kicker,
+html[data-style="blackhat"][data-color="light"] h1 {
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.12);
+}
+
+html[data-style="blackhat"] .hat {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.35);
+}
+
+html[data-style="blackhat"] .hat::after {
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+}
+
+html[data-style="blackhat"][data-color="light"] .hat,
+html[data-style="blackhat"][data-color="light"] .hat::after {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+}
+
+html[data-style="blackhat"] a:hover { color: #c8c8c8; }
+
+html[data-style="blackhat"][data-color="light"] a:hover { color: #333; }
+
+html[data-style="blackhat"] .profile-card {
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+html[data-style="blackhat"] .profile-card.recommended,
+html[data-style="blackhat"] .proof-panel {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 0 22px rgba(255, 255, 255, 0.08);
+}
+
+html[data-style="blackhat"][data-color="light"] .profile-card.recommended,
+html[data-style="blackhat"][data-color="light"] .proof-panel {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2), 0 0 18px rgba(0, 0, 0, 0.06);
+}
+
+html[data-style="blackhat"] .proof-bounce {
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.28);
+}
+
+html[data-style="blackhat"][data-color="light"] .proof-bounce {
+  text-shadow: 0 0 8px rgba(0, 0, 0, 0.12);
+}

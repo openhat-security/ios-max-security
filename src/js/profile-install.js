@@ -1,4 +1,4 @@
-import { markInstalled, wasInstalled, INSTALL_DONE } from "./store.js";
+import { markInstalled, wasInstalled, INSTALL_DONE } from "./store.js?v=7";
 
 /** Serve .mobileconfig with the MIME type iOS expects (static hosts often use octet-stream). */
 export async function installProfile(url, filename) {

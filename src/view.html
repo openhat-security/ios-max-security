@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-color="light" data-style="app">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#0a0000">
+  <meta name="theme-color" content="#f7f0f0">
   <title>View profile — OpenHat Security</title>
-  <link rel="stylesheet" href="css/app.css?v=5" id="theme-base">
+  <link rel="stylesheet" href="css/app.css?v=8" id="theme-base">
   <link rel="stylesheet" href="" id="theme-overlay" disabled>
-  <script src="js/theme-boot.js?v=5"></script>
+  <script src="js/theme-boot.js?v=7"></script>
 </head>
 <body>
   <div class="scan" aria-hidden="true"></div>
@@ -21,26 +21,28 @@
       <label class="chrome-field">Style
         <select id="style-select">
           <option value="app">Red Hat</option>
+          <option value="blackhat">Black Hat</option>
           <option value="primer">Primer</option>
           <option value="paper">Paper</option>
           <option value="terminal">Terminal</option>
         </select>
       </label>
-      <div class="color-toggle" role="group" aria-label="Color">
-        <button type="button" data-color-set="system">Sys</button>
-        <button type="button" data-color-set="light">Light</button>
-        <button type="button" data-color-set="dark">Dark</button>
-      </div>
+      <button type="button" class="mode-toggle" id="mode-toggle" aria-label="Switch to dark mode">
+        <span class="icon-moon" aria-hidden="true"></span>
+        <span class="icon-sun" aria-hidden="true"></span>
+      </button>
     </div>
-    <p class="kicker">iPhone security</p>
-    <p class="badge">Audit · not an install</p>
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <p style="margin: 0;"><a href="./">← Back to levels</a></p>
+      <span class="badge" style="margin-left: auto;">Level Details</span>
+    </div>
+
     <h1 id="title">View profile</h1>
     <p class="lead" id="lead">Loading the exact file…</p>
   </header>
 
-  <p><a href="./">← Back to levels</a></p>
   <main id="audit"></main>
 
-  <script type="module" src="js/profile-view.js?v=5"></script>
+  <script type="module" src="js/profile-view.js?v=7"></script>
 </body>
 </html>
