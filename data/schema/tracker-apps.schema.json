@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tracker-apps.schema.json",
+  "title": "Tracker app bundle IDs",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/app" }
+    },
+    "consider": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/app" }
+    }
+  },
+  "$defs": {
+    "app": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "bundle_id", "reason"],
+      "properties": {
+        "name": { "type": "string" },
+        "bundle_id": { "type": "string" },
+        "reason": { "type": "string" }
+      }
+    }
+  }
+}

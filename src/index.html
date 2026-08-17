@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a0000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>OpenHat - ios-max-security</title>
+  <link rel="stylesheet" href="css/app.css?v=5" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="js/theme-boot.js?v=5"></script>
+</head>
+<body>
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</a>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="primer">Primer</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <div class="color-toggle" role="group" aria-label="Color">
+        <button type="button" data-color-set="system">Sys</button>
+        <button type="button" data-color-set="light">Light</button>
+        <button type="button" data-color-set="dark">Dark</button>
+      </div>
+    </div>
+    <p class="kicker">iPhone security</p>
+    <h1>OpenHat Security</h1>
+    <div class="intro">
+      <p>These profiles come from iOS and macOS research. An iPhone cannot be fully locked down. Pick how far you want to go.</p>
+      <p>You manage what you install. OpenHat cannot see your data.</p>
+      <p>Levels 1–2 do not erase. Level 3 is optional self-hosted MDM. Level 4 erases the iPhone.</p>
+    </div>
+    <div class="domain-check" id="domain-check">
+      <p>You should be at <strong>openhat-security.github.io/ios-max-security</strong>. GitHub hosts this for free from a public repo. Confirm with the GitHub button or by pasting this link:</p>
+      <div class="url-box">
+        <button type="button" class="url-copy" data-copy="https://openhat-security.github.io/ios-max-security/">Copy</button>
+        <pre class="copy-block"><code><a href="https://openhat-security.github.io/ios-max-security/">https://openhat-security.github.io/ios-max-security/</a></code></pre>
+      </div>
+      <p>If this address is <strong>not</strong> that host, treat the page as a phishing attack and do not tap Install or any profile link below.</p>
+      <div class="note danger phish-banner">
+        <strong>This is not the official host.</strong> You are not on openhat-security.github.io. Treat this as a phishing attack. Do not tap Install or any profile link below.
+      </div>
+      <div class="note local-banner">
+        <strong>Local preview.</strong> Official public host is <code>openhat-security.github.io/ios-max-security</code>.
+      </div>
+    </div>
+    <a class="paper-jump audit-payload proof-panel" href="paper.html">
+      <span class="proof-bounce">Learn how Apple + third parties track you</span>
+      <span class="paper-go" aria-hidden="true">→</span>
+    </a>
+  </header>
+
+  <main id="profiles">
+    <section class="profile-section" id="level-1">
+      <h2>Level 1 — start here</h2>
+      <p class="section-desc">Private DNS + privacy locks. Pick one.</p>
+      <div class="note safari-box">Safari only — Chrome and in-app browsers will not install a profile.</div>
+      <div class="profile-grid pair">
+        <article class="profile-card recommended">
+          <div class="profile-head">
+            <h3>Level 1 · Mullvad</h3>
+            <span class="tag ok">Recommended</span>
+          </div>
+          <p class="profile-desc">Ads and trackers blocked</p>
+          <div class="profile-actions">
+            <a href="profiles/OpenHat-Level-1-Mullvad.mobileconfig" role="button" data-install>Install</a>
+            <a href="view.html?p=profiles/OpenHat-Level-1-Mullvad.mobileconfig" role="button" class="secondary">View</a>
+          </div>
+        </article>
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>Level 1 · Quad9</h3>
+          </div>
+          <p class="profile-desc">Malware blocked</p>
+          <div class="profile-actions">
+            <a href="profiles/OpenHat-Level-1-Quad9.mobileconfig" role="button" data-install>Install</a>
+            <a href="view.html?p=profiles/OpenHat-Level-1-Quad9.mobileconfig" role="button" class="secondary">View</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="profile-section" id="level-2-one">
+      <h2>Level 2.1 — one extra</h2>
+      <p class="section-desc">Level 1 plus PIN <em>or</em> the Safari list. Pick DNS on the button.</p>
+      <div class="profile-grid pair">
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>2.11</h3>
+            <span class="profile-sub">PIN</span>
+          </div>
+          <div class="profile-actions split">
+            <a href="profiles/OpenHat-Level-2.11-Mullvad.mobileconfig" role="button" data-install>Mullvad</a>
+            <a href="profiles/OpenHat-Level-2.11-Quad9.mobileconfig" role="button" data-install>Quad9</a>
+          </div>
+          <p class="view-row">
+            <a href="view.html?p=profiles/OpenHat-Level-2.11-Mullvad.mobileconfig">View Mullvad</a>
+            ·
+            <a href="view.html?p=profiles/OpenHat-Level-2.11-Quad9.mobileconfig">View Quad9</a>
+          </p>
+        </article>
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>2.12</h3>
+            <span class="profile-sub">Safari list</span>
+          </div>
+          <div class="profile-actions split">
+            <a href="profiles/OpenHat-Level-2.12-Mullvad.mobileconfig" role="button" data-install>Mullvad</a>
+            <a href="profiles/OpenHat-Level-2.12-Quad9.mobileconfig" role="button" data-install>Quad9</a>
+          </div>
+          <p class="view-row">
+            <a href="view.html?p=profiles/OpenHat-Level-2.12-Mullvad.mobileconfig">View Mullvad</a>
+            ·
+            <a href="view.html?p=profiles/OpenHat-Level-2.12-Quad9.mobileconfig">View Quad9</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="profile-section" id="level-2-two">
+      <h2>Level 2.2 — both extras</h2>
+      <p class="section-desc">Level 1 + PIN + Safari list. Pick DNS on the button.</p>
+      <div class="profile-grid">
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>2.21</h3>
+            <span class="profile-sub">PIN + Safari</span>
+          </div>
+          <div class="profile-actions split">
+            <a href="profiles/OpenHat-Level-2.21-Mullvad.mobileconfig" role="button" data-install>Mullvad</a>
+            <a href="profiles/OpenHat-Level-2.21-Quad9.mobileconfig" role="button" data-install>Quad9</a>
+          </div>
+          <p class="view-row">
+            <a href="view.html?p=profiles/OpenHat-Level-2.21-Mullvad.mobileconfig">View Mullvad</a>
+            ·
+            <a href="view.html?p=profiles/OpenHat-Level-2.21-Quad9.mobileconfig">View Quad9</a>
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="profile-section" id="extras">
+      <h2>Extras</h2>
+      <p class="section-desc">Add-ons if you already have Level 1 and skipped Level 2.</p>
+      <div class="profile-grid pair">
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>Extra 1.1</h3>
+            <span class="profile-sub">PIN only</span>
+          </div>
+          <div class="profile-actions">
+            <a href="profiles/OpenHat-Extras-1.1.mobileconfig" role="button" data-install>Install</a>
+            <a href="view.html?p=profiles/OpenHat-Extras-1.1.mobileconfig" role="button" class="secondary">View</a>
+          </div>
+        </article>
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>Extra 1.2</h3>
+            <span class="profile-sub">Safari list only</span>
+          </div>
+          <div class="profile-actions">
+            <a href="profiles/OpenHat-Extras-1.2.mobileconfig" role="button" data-install>Install</a>
+            <a href="view.html?p=profiles/OpenHat-Extras-1.2.mobileconfig" role="button" class="secondary">View</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="profile-section" id="level-3">
+      <h2>Level 3 — MDM, no erase</h2>
+      <p class="section-desc">Optional. You run the server. We cannot see your data.</p>
+      <div class="profile-grid">
+        <article class="profile-card">
+          <div class="profile-head">
+            <h3>Level 3</h3>
+            <span class="profile-sub">Self-hosted MDM</span>
+          </div>
+          <div class="profile-actions">
+            <a href="mdm.html" class="outline guide-link">Instructions</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="profile-section danger" id="level-4">
+      <h2>Level 4 — erases the iPhone</h2>
+      <p class="section-desc">Erase, Lockdown Mode, then Supervised. Read the steps first.</p>
+      <div class="profile-grid pair">
+        <article class="profile-card danger">
+          <div class="profile-head">
+            <h3>Level 4 · Mullvad</h3>
+          </div>
+          <div class="profile-actions">
+            <a href="wipe.html" class="outline guide-link">Instructions</a>
+            <a href="profiles/OpenHat-Level-4-Mullvad.mobileconfig" role="button" class="danger" data-install>Install</a>
+            <a href="view.html?p=profiles/OpenHat-Level-4-Mullvad.mobileconfig" role="button" class="secondary">View</a>
+          </div>
+        </article>
+        <article class="profile-card danger">
+          <div class="profile-head">
+            <h3>Level 4 · Quad9</h3>
+          </div>
+          <div class="profile-actions">
+            <a href="wipe.html" class="outline guide-link">Instructions</a>
+            <a href="profiles/OpenHat-Level-4-Quad9.mobileconfig" role="button" class="danger" data-install>Install</a>
+            <a href="view.html?p=profiles/OpenHat-Level-4-Quad9.mobileconfig" role="button" class="secondary">View</a>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Remove later: Settings → General → VPN &amp; Device Management → the profile → Remove.</p>
+    <p><a href="mdm.html">Level 3 (no erase)</a> · <a href="wipe.html">Level 4 (erases iPhone)</a></p>
+  </footer>
+
+  <script type="module" src="js/install.js?v=5"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "$schema": "./schema/dns.schema.json",
+  "items": [
+    {
+      "id": "mullvad-adblock",
+      "label": "Mullvad Adblock",
+      "short": "Mullvad",
+      "protocol": "HTTPS",
+      "url": "https://adblock.doh.mullvad.net/dns-query",
+      "addresses": [
+        "194.242.2.3",
+        "2a07:e340::3"
+      ],
+      "notes": "Mullvad VPN AB (Sweden). Encrypts DNS and blocks ads, trackers, and malware."
+    },
+    {
+      "id": "quad9",
+      "label": "Quad9",
+      "short": "Quad9",
+      "protocol": "HTTPS",
+      "url": "https://dns.quad9.net/dns-query",
+      "addresses": [
+        "9.9.9.9",
+        "149.112.112.112",
+        "2620:fe::fe",
+        "2620:fe::9"
+      ],
+      "notes": "Quad9 Foundation (Switzerland). Encrypts DNS and blocks known malware domains."
+    }
+  ]
+}

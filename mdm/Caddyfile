@@ -22,9 +22,4 @@
 		root * /srv/enroll
 		file_server
 	}
-
-	handle {
-		root * /srv
-		file_server
-	}
 }

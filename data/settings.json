@@ -1,0 +1,1281 @@
+{
+  "$schema": "./schema/settings.schema.json",
+  "items": [
+    {
+      "id": "analytics",
+      "key": "allowDiagnosticSubmission",
+      "value": false,
+      "via": "profile",
+      "title": "Share iPhone Analytics",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Privacy & Security → Analytics & Improvements → Share iPhone Analytics",
+      "notes": "If the toggle is greyed out after install, the profile owns it."
+    },
+    {
+      "id": "analytics-lock",
+      "key": "allowDiagnosticSubmissionModification",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Lock analytics toggle so it cannot be turned back on",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "User can change it",
+      "after": "Locked off (supervised only)",
+      "verify": "Same Analytics screen; toggle should be disabled on a supervised device",
+      "notes": "Ignored on a normal personal iPhone."
+    },
+    {
+      "id": "personalized-ads",
+      "key": "allowApplePersonalizedAdvertising",
+      "value": false,
+      "via": "profile",
+      "title": "Apple personalized ads",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Privacy & Security → Apple Advertising → Personalized Ads",
+      "notes": ""
+    },
+    {
+      "id": "att",
+      "key": "forceLimitAdTracking",
+      "value": true,
+      "via": "profile",
+      "title": "Allow Apps to Request to Track",
+      "category": "Third-party tracking",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On (apps can prompt)",
+      "after": "Off; Limit Ad Tracking forced",
+      "verify": "Settings → Privacy & Security → Tracking",
+      "notes": "forceLimitAdTracking also disables the tracking prompt."
+    },
+    {
+      "id": "ondevice-dictation",
+      "key": "forceOnDeviceOnlyDictation",
+      "value": true,
+      "via": "profile",
+      "title": "Dictation stays on-device",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "May use Siri servers",
+      "after": "On-device only",
+      "verify": "Keyboard dictation still works; no Siri server round-trip for dictation",
+      "notes": ""
+    },
+    {
+      "id": "ondevice-translate",
+      "key": "forceOnDeviceOnlyTranslation",
+      "value": true,
+      "via": "profile",
+      "title": "Translation stays on-device",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "May use Siri servers",
+      "after": "On-device only",
+      "verify": "Settings → Apps → Translate → On-Device Mode",
+      "notes": ""
+    },
+    {
+      "id": "ext-ai",
+      "key": "allowExternalIntelligenceIntegrations",
+      "value": false,
+      "via": "profile",
+      "title": "External Apple Intelligence / ChatGPT-style integrations",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On (iOS 18.2+)",
+      "after": "Off",
+      "verify": "Apple Intelligence settings; external model providers unavailable",
+      "notes": "Apple currently allows this on unsupervised devices; they say it will require supervision later."
+    },
+    {
+      "id": "ext-ai-signin",
+      "key": "allowExternalIntelligenceIntegrationsSignIn",
+      "value": false,
+      "via": "profile",
+      "title": "Sign-in to external intelligence providers",
+      "category": "Apple telemetry",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed",
+      "after": "Forced anonymous / signed out",
+      "verify": "Same Apple Intelligence settings",
+      "notes": ""
+    },
+    {
+      "id": "icloud-backup",
+      "key": "allowCloudBackup",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Backup",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On if iCloud is signed in",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → iCloud Backup",
+      "notes": "Use encrypted Finder/iTunes backups instead. forceEncryptedBackup is also set."
+    },
+    {
+      "id": "encrypted-backup",
+      "key": "forceEncryptedBackup",
+      "value": true,
+      "via": "profile",
+      "title": "Encrypt computer backups",
+      "category": "iCloud",
+      "source": [
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "Optional",
+      "after": "Required",
+      "verify": "Finder or iTunes backup dialog requires a password",
+      "notes": ""
+    },
+    {
+      "id": "icloud-docs",
+      "key": "allowCloudDocumentSync",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Drive / document sync",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (may need supervision on iOS 13+)",
+      "verify": "Settings → [your name] → iCloud → iCloud Drive",
+      "notes": "Apple marked this supervised-only on newer iOS; still included. Confirm in Settings."
+    },
+    {
+      "id": "icloud-keychain",
+      "key": "allowCloudKeychainSync",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Keychain",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Passwords and Keychain",
+      "notes": "Use Bitwarden or Proton Pass instead, as both guides recommend."
+    },
+    {
+      "id": "handoff",
+      "key": "allowActivityContinuation",
+      "value": false,
+      "via": "profile",
+      "title": "Handoff / Continuity (activity continuation)",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → General → AirPlay & Handoff → Handoff",
+      "notes": ""
+    },
+    {
+      "id": "shared-stream",
+      "key": "allowSharedStream",
+      "value": false,
+      "via": "profile",
+      "title": "Shared Photo Stream / iCloud Shared Albums",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Apps → Photos → Shared Albums",
+      "notes": ""
+    },
+    {
+      "id": "photo-stream",
+      "key": "allowPhotoStream",
+      "value": false,
+      "via": "profile",
+      "title": "My Photo Stream",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On (older iOS)",
+      "after": "Off",
+      "verify": "Photos settings (removed on iOS 17+)",
+      "notes": "Deprecated on iOS 17+; harmless if ignored."
+    },
+    {
+      "id": "spotlight-web",
+      "key": "allowSpotlightInternetResults",
+      "value": false,
+      "via": "profile",
+      "title": "Siri / Spotlight internet suggestions",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Apple Intelligence & Siri → Suggestions from Apple / Content from Apple",
+      "notes": ""
+    },
+    {
+      "id": "auto-unlock",
+      "key": "allowAutoUnlock",
+      "value": false,
+      "via": "profile",
+      "title": "Auto Unlock with Watch / nearby Apple devices",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On if Watch is paired",
+      "after": "Off",
+      "verify": "Watch / Face ID settings",
+      "notes": ""
+    },
+    {
+      "id": "managed-cloud-sync",
+      "key": "allowManagedAppsCloudSync",
+      "value": false,
+      "via": "profile",
+      "title": "Managed apps iCloud sync",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Only relevant if MDM apps are present",
+      "notes": ""
+    },
+    {
+      "id": "enterprise-book-backup",
+      "key": "allowEnterpriseBookBackup",
+      "value": false,
+      "via": "profile",
+      "title": "Enterprise book backup / metadata sync",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "n/a on a personal phone",
+      "notes": "Paired with allowEnterpriseBookMetadataSync=false."
+    },
+    {
+      "id": "enterprise-book-meta",
+      "key": "allowEnterpriseBookMetadataSync",
+      "value": false,
+      "via": "profile",
+      "title": "Enterprise book metadata sync",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "n/a on a personal phone",
+      "notes": ""
+    },
+    {
+      "id": "roaming-fetch",
+      "key": "allowGlobalBackgroundFetchWhenRoaming",
+      "value": false,
+      "via": "profile",
+      "title": "Background fetch while roaming",
+      "category": "Network",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Cellular roaming behavior",
+      "notes": ""
+    },
+    {
+      "id": "remote-observe",
+      "key": "allowRemoteScreenObservation",
+      "value": false,
+      "via": "profile",
+      "title": "Remote screen observation (Classroom)",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed",
+      "after": "Off",
+      "verify": "Classroom app cannot observe the screen",
+      "notes": ""
+    },
+    {
+      "id": "airdrop-unmanaged",
+      "key": "forceAirDropUnmanaged",
+      "value": true,
+      "via": "profile",
+      "title": "Treat AirDrop as unmanaged",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Managed if MDM",
+      "after": "Unmanaged drop target",
+      "verify": "n/a on a personal phone without MDM",
+      "notes": ""
+    },
+    {
+      "id": "airplay-password",
+      "key": "forceAirPlayOutgoingRequestsPairingPassword",
+      "value": true,
+      "via": "profile",
+      "title": "Require pairing password for outgoing AirPlay",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "Not required",
+      "after": "Required",
+      "verify": "AirPlay to a TV prompts for a password",
+      "notes": ""
+    },
+    {
+      "id": "enterprise-trust",
+      "key": "allowEnterpriseAppTrust",
+      "value": false,
+      "via": "profile",
+      "title": "Trust Enterprise Developer button",
+      "category": "Apps",
+      "source": [
+        "apple",
+        "builder"
+      ],
+      "apple_default": "On",
+      "after": "Off — unsigned enterprise apps cannot be newly trusted",
+      "verify": "Settings → General → VPN & Device Management (no Trust button)",
+      "notes": "Does not revoke trust already granted. Blocks a common malware sideload path."
+    },
+    {
+      "id": "safari-fraud",
+      "key": "safariForceFraudWarning",
+      "value": true,
+      "via": "profile",
+      "title": "Safari fraudulent website warning",
+      "category": "Safari",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On, but user can disable",
+      "after": "Forced on",
+      "verify": "Settings → Apps → Safari → Fraudulent Website Warning",
+      "notes": ""
+    },
+    {
+      "id": "safari-cookies",
+      "key": "safariAcceptCookies",
+      "value": 1,
+      "via": "profile",
+      "title": "Prevent Cross-Site Tracking (cookies)",
+      "category": "Safari",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "User can toggle",
+      "after": "Prevent Cross-Site Tracking locked on",
+      "verify": "Settings → Apps → Safari → Prevent Cross-Site Tracking",
+      "notes": "Value 1 = tracking prevention on; user can still enable Block All Cookies."
+    },
+    {
+      "id": "safari-popups",
+      "key": "safariAllowPopups",
+      "value": false,
+      "via": "profile",
+      "title": "Safari pop-up windows",
+      "category": "Safari",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "Blocked, user can enable",
+      "after": "Blocked",
+      "verify": "Settings → Apps → Safari → Block Pop-ups",
+      "notes": ""
+    },
+    {
+      "id": "untrusted-tls",
+      "key": "allowUntrustedTLSPrompt",
+      "value": false,
+      "via": "profile",
+      "title": "Reject untrusted HTTPS certificates without prompting",
+      "category": "Network",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "User is prompted",
+      "after": "Automatically rejected",
+      "verify": "Visiting a site with a bad cert fails closed",
+      "notes": "Stops a class of captive-portal and MITM prompts. Hotel Wi-Fi login pages may break until you use the captive-portal sheet."
+    },
+    {
+      "id": "ls-cc",
+      "key": "allowLockScreenControlCenter",
+      "value": false,
+      "via": "profile",
+      "title": "Control Center on Lock Screen",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Lock the phone and swipe for Control Center — it should not appear",
+      "notes": ""
+    },
+    {
+      "id": "ls-notifications",
+      "key": "allowLockScreenNotificationsView",
+      "value": false,
+      "via": "profile",
+      "title": "Notification Center history on Lock Screen",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (new banners can still appear)",
+      "verify": "Lock screen cannot open past notifications",
+      "notes": "Also set Show Previews to When Unlocked manually."
+    },
+    {
+      "id": "ls-today",
+      "key": "allowLockScreenTodayView",
+      "value": false,
+      "via": "profile",
+      "title": "Today View / Search on Lock Screen",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Cannot swipe to Today View while locked",
+      "notes": ""
+    },
+    {
+      "id": "ls-wallet",
+      "key": "allowPassbookWhileLocked",
+      "value": false,
+      "via": "profile",
+      "title": "Wallet / Passbook on Lock Screen",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Face ID & Passcode → Wallet",
+      "notes": ""
+    },
+    {
+      "id": "siri-locked",
+      "key": "allowAssistantWhileLocked",
+      "value": false,
+      "via": "profile",
+      "title": "Siri while locked",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Side button Siri does nothing on the lock screen",
+      "notes": ""
+    },
+    {
+      "id": "siri-off",
+      "key": "allowAssistant",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Siri entirely off",
+      "category": "Siri",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Apple Intelligence & Siri missing or disabled",
+      "notes": "On a normal iPhone, turn Siri off manually (see manual list)."
+    },
+    {
+      "id": "siri-ugc",
+      "key": "allowAssistantUserGeneratedContent",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Siri web / user-generated content",
+      "category": "Siri",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Siri cannot query web UGC",
+      "notes": ""
+    },
+    {
+      "id": "dictation-off",
+      "key": "allowDictation",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Dictation off",
+      "category": "Siri",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Microphone key on keyboard has no dictation",
+      "notes": "Unsupervised devices still get on-device-only dictation from the other key."
+    },
+    {
+      "id": "airdrop-off",
+      "key": "allowAirDrop",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "AirDrop off",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Settings → General → AirDrop",
+      "notes": "On a normal iPhone set Receiving Off manually. Use LocalSend for local sharing."
+    },
+    {
+      "id": "gamecenter",
+      "key": "allowGameCenter",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Game Center",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Game Center icon gone on a supervised device",
+      "notes": ""
+    },
+    {
+      "id": "gc-friends",
+      "key": "allowAddingGameCenterFriends",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Game Center friends / multiplayer / chat",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Game Center social features",
+      "notes": "Also allowMultiplayerGaming=false."
+    },
+    {
+      "id": "gc-multiplayer",
+      "key": "allowMultiplayerGaming",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Game Center multiplayer",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Game Center multiplayer",
+      "notes": ""
+    },
+    {
+      "id": "news",
+      "key": "allowNews",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple News",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "News app",
+      "notes": "On a normal iPhone, delete or ignore News and turn off its Siri Learn From This App."
+    },
+    {
+      "id": "podcasts",
+      "key": "allowPodcasts",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple Podcasts",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Podcasts app",
+      "notes": ""
+    },
+    {
+      "id": "music-service",
+      "key": "allowMusicService",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple Music streaming service",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Classic Music mode (supervised only)",
+      "verify": "Music app",
+      "notes": ""
+    },
+    {
+      "id": "radio",
+      "key": "allowRadioService",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple Music Radio",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Music Radio",
+      "notes": ""
+    },
+    {
+      "id": "bookstore",
+      "key": "allowBookstore",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple Book Store",
+      "category": "Apple apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Books app store tab",
+      "notes": ""
+    },
+    {
+      "id": "find-friends",
+      "key": "allowFindMyFriends",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Find My Friends / Share My Location",
+      "category": "Location",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Settings → [your name] → Find My → Share My Location",
+      "notes": "Also allowFindMyFriendsModification=false. Do this manually on a normal iPhone."
+    },
+    {
+      "id": "find-friends-mod",
+      "key": "allowFindMyFriendsModification",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Changing Find My Friends",
+      "category": "Location",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed",
+      "after": "Locked (supervised only)",
+      "verify": "Find My settings",
+      "notes": ""
+    },
+    {
+      "id": "app-clips",
+      "key": "allowAppClips",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "App Clips",
+      "category": "Apps",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "NFC / Safari App Clips do not install",
+      "notes": ""
+    },
+    {
+      "id": "marketplace",
+      "key": "allowMarketplaceAppInstallation",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Third-party app marketplaces",
+      "category": "Apps",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed in some regions",
+      "after": "Off (supervised only)",
+      "verify": "Cannot install marketplace apps",
+      "notes": "EU sideloading. Also allowWebDistributionAppInstallation=false."
+    },
+    {
+      "id": "web-dist",
+      "key": "allowWebDistributionAppInstallation",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Web distribution app installs",
+      "category": "Apps",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed in some regions",
+      "after": "Off (supervised only)",
+      "verify": "Cannot install apps from websites",
+      "notes": ""
+    },
+    {
+      "id": "auto-app-dl",
+      "key": "allowAutomaticAppDownloads",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Automatic app downloads from other devices",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Settings → Apps → App Store → Automatic Downloads → Apps",
+      "notes": "Turn this off manually on a normal iPhone. App Updates stay on."
+    },
+    {
+      "id": "proximity-setup",
+      "key": "allowProximitySetupToNewDevice",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Set up nearby new devices (and iOS→Android transfer)",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "No prompt to set up a nearby new device",
+      "notes": ""
+    },
+    {
+      "id": "pw-share",
+      "key": "allowPasswordSharing",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "AirDrop / Passwords app password sharing",
+      "category": "Passwords",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Cannot AirDrop a password",
+      "notes": ""
+    },
+    {
+      "id": "pw-proximity",
+      "key": "allowPasswordProximityRequests",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Request passwords from nearby devices",
+      "category": "Passwords",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Nearby password requests",
+      "notes": ""
+    },
+    {
+      "id": "pw-autofill",
+      "key": "allowPasswordAutoFill",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "iCloud Keychain AutoFill",
+      "category": "Passwords",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Settings → General → AutoFill & Passwords",
+      "notes": "Turn AutoFill off manually and use Bitwarden. Third-party managers still work when this key is false."
+    },
+    {
+      "id": "safari-autofill",
+      "key": "safariAllowAutoFill",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Safari AutoFill (contacts / cards / passwords)",
+      "category": "Safari",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Settings → Apps → Safari → AutoFill",
+      "notes": "Disable Use Contact Info and Credit Cards manually on a normal iPhone."
+    },
+    {
+      "id": "auth-before-autofill",
+      "key": "forceAuthenticationBeforeAutoFill",
+      "value": true,
+      "via": "profile-supervised",
+      "title": "Require Face ID / passcode before AutoFill",
+      "category": "Passwords",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "User choice",
+      "after": "Required (supervised only)",
+      "verify": "AutoFill prompts for Face ID",
+      "notes": ""
+    },
+    {
+      "id": "mirroring",
+      "key": "allowiPhoneMirroring",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "iPhone Mirroring to Mac",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Mac iPhone Mirroring app",
+      "notes": ""
+    },
+    {
+      "id": "widgets-mac",
+      "key": "allowiPhoneWidgetsOnMac",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "iPhone widgets on Mac",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Mac desktop widgets",
+      "notes": ""
+    },
+    {
+      "id": "live-voicemail",
+      "key": "allowLiveVoicemail",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Live Voicemail (processed in the cloud on some versions)",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Phone → Live Voicemail",
+      "notes": ""
+    },
+    {
+      "id": "rcs",
+      "key": "allowRCSMessaging",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "RCS messaging (not end-to-end encrypted like iMessage)",
+      "category": "Apps",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On (iOS 18+)",
+      "after": "Off (supervised only)",
+      "verify": "Settings → Apps → Messages → RCS",
+      "notes": "Turn RCS off manually on a normal iPhone. Prefer Signal."
+    },
+    {
+      "id": "facetime-remote",
+      "key": "allowVideoConferencingRemoteControl",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "FaceTime remote control of this device",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed",
+      "after": "Off (supervised only)",
+      "verify": "FaceTime remote control requests",
+      "notes": ""
+    },
+    {
+      "id": "airprint-ibeacon",
+      "key": "allowAirPrintiBeaconDiscovery",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "AirPrint iBeacon discovery (phishing beacons)",
+      "category": "Network",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "AirPrint printer discovery",
+      "notes": ""
+    },
+    {
+      "id": "airprint-tls",
+      "key": "forceAirPrintTrustedTLSRequirement",
+      "value": true,
+      "via": "profile-supervised",
+      "title": "Require trusted TLS for AirPrint",
+      "category": "Network",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Not required",
+      "after": "Required (supervised only)",
+      "verify": "AirPrint to untrusted printers fails",
+      "notes": ""
+    },
+    {
+      "id": "host-pairing",
+      "key": "allowHostPairing",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "USB pairing with computers",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Finder/iTunes cannot pair",
+      "notes": "Blocks a common forensic/extraction path. Also turn off USB Accessories on Lock Screen manually."
+    },
+    {
+      "id": "auto-datetime",
+      "key": "forceAutomaticDateAndTime",
+      "value": true,
+      "via": "profile-supervised",
+      "title": "Set Date & Time automatically (locked on)",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On, user can disable",
+      "after": "Forced on (supervised only)",
+      "verify": "Settings → General → Date & Time → Set Automatically",
+      "notes": "Keep this on manually. Wrong clocks break TLS."
+    },
+    {
+      "id": "definition-lookup",
+      "key": "allowDefinitionLookup",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Lookup / definition (sends highlighted text to Apple)",
+      "category": "Siri",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Look Up in selected text",
+      "notes": ""
+    },
+    {
+      "id": "genmoji",
+      "key": "allowGenmoji",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Genmoji / Image Playground / Image Wand / Writing Tools",
+      "category": "Siri",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On (Apple Intelligence)",
+      "after": "Off (supervised only)",
+      "verify": "Keyboard Genmoji / Image Playground",
+      "notes": "Also allowImagePlayground, allowImageWand, allowWritingTools, allowPersonalizedHandwritingResults, allowAppleIntelligenceReport, Mail/Notes/Safari summaries."
+    },
+    {
+      "id": "image-playground",
+      "key": "allowImagePlayground",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Image Playground",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Image Playground app",
+      "notes": ""
+    },
+    {
+      "id": "image-wand",
+      "key": "allowImageWand",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Image Wand",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Notes Image Wand",
+      "notes": ""
+    },
+    {
+      "id": "writing-tools",
+      "key": "allowWritingTools",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple Intelligence writing tools",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Writing Tools menu",
+      "notes": ""
+    },
+    {
+      "id": "handwriting-ai",
+      "key": "allowPersonalizedHandwritingResults",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Personalized handwriting generation",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Apple Intelligence handwriting",
+      "notes": ""
+    },
+    {
+      "id": "ai-report",
+      "key": "allowAppleIntelligenceReport",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Apple Intelligence reports",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Apple Intelligence report",
+      "notes": ""
+    },
+    {
+      "id": "mail-smart",
+      "key": "allowMailSmartReplies",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Mail smart replies / summaries",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Mail compose",
+      "notes": "Also allowMailSummary=false."
+    },
+    {
+      "id": "mail-summary",
+      "key": "allowMailSummary",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Mail summaries",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Mail summary UI",
+      "notes": ""
+    },
+    {
+      "id": "notes-transcribe",
+      "key": "allowNotesTranscription",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Notes transcription / summary",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Notes",
+      "notes": "Also allowNotesTranscriptionSummary=false."
+    },
+    {
+      "id": "notes-summary",
+      "key": "allowNotesTranscriptionSummary",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Notes transcription summary",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Notes",
+      "notes": ""
+    },
+    {
+      "id": "safari-summary",
+      "key": "allowSafariSummary",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Safari page summaries",
+      "category": "Safari",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Safari summarize button",
+      "notes": ""
+    },
+    {
+      "id": "visual-intel",
+      "key": "allowVisualIntelligenceSummary",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Visual intelligence summaries",
+      "category": "Siri",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Camera visual intelligence",
+      "notes": ""
+    },
+    {
+      "id": "watch-wrist",
+      "key": "forceWatchWristDetection",
+      "value": true,
+      "via": "profile",
+      "title": "Force Apple Watch wrist detection",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "User choice",
+      "after": "On if a Watch is paired",
+      "verify": "Watch unlocks only while on wrist",
+      "notes": "Stops a removed Watch from unlocking the iPhone."
+    }
+  ]
+}

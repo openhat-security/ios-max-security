@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Queue an InstallProfile command on NanoMDM (privacy profile → enrolled device)."""
+"""Queue an InstallProfile command on NanoMDM (privacy profile → enrolled device).
+
+Stdlib only (`urllib.request`). Do not add pip dependencies.
+"""
 
 from __future__ import annotations
 

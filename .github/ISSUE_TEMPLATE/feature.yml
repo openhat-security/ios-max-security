@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Features that need MDM, a custom root CA, or a jailbreak will be closed. Supervised-only keys belong in `wipe-required/`.
+        Features that need MDM, a custom root CA, or a jailbreak will be closed. Supervised-only keys belong in Level 4 (`src/profiles/OpenHat-Level-4-*.mobileconfig`).
   - type: textarea
     id: problem
     attributes:
@@ -27,7 +27,7 @@ body:
       options:
         - Unsupervised profile (no erase)
         - Leftover Settings tap (manual)
-        - Supervised only (erase / wipe-required)
+        - Supervised only (erase / Level 4)
         - Installer UI only
         - Not sure
     validations:

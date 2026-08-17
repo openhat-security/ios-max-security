@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "leftovers.schema.json",
+  "title": "Settings a profile cannot write",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/leftover" }
+    }
+  },
+  "$defs": {
+    "leftover": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "via", "title", "category", "source",
+        "apple_default", "after", "verify", "notes"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "via": { "enum": ["profile", "manual", "skipped", "app"] },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "source": { "type": "array", "items": { "type": "string" } },
+        "apple_default": { "type": "string" },
+        "after": { "type": "string" },
+        "verify": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

@@ -20,29 +20,50 @@ A Safari installer and `.mobileconfig` profiles that harden a personal iPhone **
 
 Unknown restriction keys are ignored on older iOS. Do not drop iOS 18.2+ keys to “support” older phones; those phones already skip them.
 
+## Standard library only (do not add pip)
+
+All Python in this repo — `build_profile.py` and `mdm/*.py` — must stay on the **Python 3 standard library**. No `requirements.txt`, no `pip install`, no new third-party imports.
+
+This is a security rule, not a style preference. A privacy installer should not ask anyone to pull packages from PyPI. If a change needs a library that is not in stdlib, it does not belong here. Use `json`, `plistlib`, `uuid`, `pathlib`, `urllib.request`, and the rest of the stdlib.
+
+The optional MDM **server** is Docker (NanoMDM / SCEP / Caddy). That is separate from our Python. Do not wrap those daemons in a pip package.
+
 ## Development setup
 
-You need Python 3.9+ (stdlib only: no pip packages for the installer).
+You need Python 3.9+ (stdlib only).
 
 ```bash
-python3 tools/build_profile.py
-echo "iPhone Safari: http://$(ipconfig getifaddr en0):8080/" && python3 -m http.server 8080
+python3 build_profile.py
+echo "iPhone Safari: http://$(ipconfig getifaddr en0):8080/" && python3 -m http.server 8080 --directory src
 ```
 
 Open the printed LAN URL **in Safari on an iPhone**. Chrome and desktop Safari will not install a configuration profile the same way. Public host is GitHub Pages.
+
+## Repo layout
+
+| Path | What it is |
+| --- | --- |
+| `src/` | GitHub Pages site. Published as the site root, so URLs stay `/`, `/paper.html`, `/wipe.html`, `/mdm.html`, `/profiles/…` |
+| `data/` | Schema-stable JSON: Apple settings, leftovers, DNS, deny list, apps |
+| `build_profile.py` | Writes `src/profiles/*.mobileconfig` from `data/` |
+| `mdm/` | Self-hosted MDM server (not the public Level 3 page) |
+| `logos/` | Brand marks |
+
+Local preview must serve `src/`, not the repo root.
 
 ## Where to edit
 
 | Change | Edit this | Then |
 | --- | --- | --- |
-| Restriction / leftover-tap catalog | `tools/catalog.py` | `python3 tools/build_profile.py` |
-| DNS providers | `tools/build_profile.py` (`DNS_PROVIDERS`) | rebuild |
+| Apple restriction key | `data/settings.json` | `python3 build_profile.py` |
+| Leftover Settings taps | `data/leftovers.json` | no rebuild (docs only) |
+| DNS providers | `data/dns.json` | rebuild |
 | Safari deny list | `data/safari-denylist.json` | rebuild |
 | Tracker apps | `data/tracker-apps.json` | rebuild |
-| Installer UI | `js/install.js`, `css/app.css`, `index.html`, `data/profiles.json` | refresh Safari |
-| Supervised (erase) path | `wipe-required/` | keep it isolated from `profiles/` |
+| Installer UI | `src/index.html`, `src/css/`, `src/js/` | refresh Safari |
+| Supervised (erase) path | `src/wipe.html`, `src/configurator.html`, Level 4 files in `src/profiles/` | Level 4 still erases the iPhone |
 
-**Do not hand-edit** `profiles/*.mobileconfig` or `catalog.json`. Those are generated.
+**Do not hand-edit** `src/profiles/*.mobileconfig`. Those are generated from `data/settings.json` and the other `data/*.json` lists. Each file has a schema in `data/schema/`.
 
 ## Hard limits (do not “fix”)
 
@@ -51,19 +72,21 @@ These are Apple’s rules, not missing payloads:
 - No custom root CA / HTTPS interception
 - No MDM enrollment on `main`
 - No jailbreak
+- No PyPI / pip dependencies in any Python we ship
 - Do not set `allowCloudPhotoLibrary=false` (can delete undownloaded photos)
 - Do not set `allowFindMyDevice=false` on the default profile
 - Do not force-disable iMessage or Face ID on the default profile
-- `blockedAppBundleIDs` only works after Apple Configurator **Prepare** (erases the phone) — that stays in `wipe-required/`
+- `blockedAppBundleIDs` only works after Apple Configurator **Prepare** (erases the phone) — that is Level 4 in `src/profiles/`
 
 If a setting cannot be flipped by a profile, add it to the catalog as `via: "manual"` (or `skipped` / `app`). Do not invent a restriction key.
 
 ## Pull requests
 
 1. Open an issue first for anything that changes payload keys or the keep-vs-erase story.
-2. Keep `main` free of MDM. Supervised / erase work belongs in `wipe-required/`.
+2. Keep `main` free of MDM. Supervised / erase work belongs on `wipe.html` / Level 4 profiles.
 3. Rebuild generated files in the same commit as the catalog or data change.
 4. Say how you tested: iOS version, Safari install, and whether extras (PIN / Safari list) were on.
+5. Do not add pip packages. New `import`s must be from the Python standard library.
 
 Use the pull request template. Be kind; we follow the [Code of Conduct](CODE_OF_CONDUCT.md).
 

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ios.schema.json",
+  "title": "Supported iOS versions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "current_public", "full_restrictions", "safari_denylist",
+    "encrypted_dns", "beta_unsupported"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "current_public": { "type": "string" },
+    "full_restrictions": { "type": "string" },
+    "safari_denylist": { "type": "string" },
+    "encrypted_dns": { "type": "string" },
+    "beta_unsupported": { "type": "string" }
+  }
+}

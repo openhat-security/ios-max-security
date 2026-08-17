@@ -1,0 +1,25 @@
+{
+  "$schema": "./schema/sources.schema.json",
+  "items": [
+    {
+      "id": "encrypted-dns",
+      "name": "paulmillr/encrypted-dns"
+    },
+    {
+      "id": "celenityy",
+      "name": "celenityy/ios-settings"
+    },
+    {
+      "id": "iprivacy",
+      "name": "iPrivacyGuides/iOS-Privacy-Guide"
+    },
+    {
+      "id": "builder",
+      "name": "danieloz147/ios-profile-builder"
+    },
+    {
+      "id": "apple",
+      "name": "Apple Restrictions payload"
+    }
+  ]
+}

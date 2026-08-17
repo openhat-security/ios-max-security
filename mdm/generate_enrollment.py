@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Build an MDM enrollment profile from mdm/.env (self-hosted or OpenHat URL)."""
+"""Build an MDM enrollment profile from mdm/.env (self-hosted or OpenHat URL).
+
+Stdlib only. Do not add pip dependencies.
+"""
 
 from __future__ import annotations
 

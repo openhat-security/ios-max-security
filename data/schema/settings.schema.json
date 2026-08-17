@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "settings.schema.json",
+  "title": "Apple restriction settings",
+  "type": "object",
+  "required": ["items"],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": { "type": "string" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/setting" }
+    }
+  },
+  "$defs": {
+    "setting": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id", "key", "value", "via", "title", "category",
+        "source", "apple_default", "after", "verify", "notes"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "key": {
+          "type": "string",
+          "description": "Apple Restrictions payload key (com.apple.applicationaccess)"
+        },
+        "value": { "type": ["boolean", "integer", "string"] },
+        "via": { "enum": ["profile", "profile-supervised"] },
+        "title": { "type": "string" },
+        "category": { "type": "string" },
+        "source": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "IDs from sources.json"
+        },
+        "apple_default": { "type": "string" },
+        "after": { "type": "string" },
+        "verify": { "type": "string" },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

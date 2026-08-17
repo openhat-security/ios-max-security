@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a0000">
+  <title>Apple Configurator — this erases the iPhone</title>
+  <link rel="stylesheet" href="css/app.css?v=5" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="js/theme-boot.js?v=5"></script>
+</head>
+<body class="paper-page">
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</a>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="primer">Primer</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <div class="color-toggle" role="group" aria-label="Color">
+        <button type="button" data-color-set="system">Sys</button>
+        <button type="button" data-color-set="light">Light</button>
+        <button type="button" data-color-set="dark">Dark</button>
+      </div>
+    </div>
+    <p class="back"><a href="wipe.html">← Back to Level 4</a></p>
+    <span class="badge bad">Erases the iPhone</span>
+    <h1>Apple Configurator</h1>
+    <p class="lead">You manage the Supervised profile. OpenHat does not manage the phone and cannot see your data.</p>
+  </header>
+
+  <main class="paper-body">
+    <article class="paper">
+      <div class="note danger">
+        <strong>This procedure wipes the device.</strong>
+        <p>Every photo, thread, and app that is not in an encrypted backup is gone. Do not start Prepare until that backup exists and you have opened it once to confirm.</p>
+      </div>
+
+      <p>After Prepare, restrictions that a Safari profile cannot apply will start working. <strong>OpenHat Security: Level 4</strong> also hides Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn, and includes PIN plus the Safari list.</p>
+
+      <h2>Steps</h2>
+      <ol>
+        <li>Encrypted Finder backup of the iPhone. Verify you can see the backup on the Mac.</li>
+        <li>Install <a href="https://apps.apple.com/app/apple-configurator/id1037126344">Apple Configurator</a> (free).</li>
+        <li>Cable the iPhone. Trust the computer.</li>
+        <li>Select the device → <strong>Prepare</strong>.</li>
+        <li><strong>Manual Configuration</strong>. Enable <strong>Supervise devices</strong>. Leave MDM enrollment <strong>off</strong> unless you are also running your own Level 3 server.</li>
+        <li>Continue. The phone <strong>erases</strong> and returns Supervised.</li>
+        <li>During or right after setup, turn on <strong>Lockdown Mode</strong>: Settings → Privacy &amp; Security → Lockdown Mode → Turn On.</li>
+        <li>Restore the backup if you want data back, then install <strong>OpenHat Security: Level 4</strong> from <a href="wipe.html">the Level 4 page</a> (Safari or Configurator → Add → Profiles).</li>
+        <li>Confirm <strong>Settings → General → VPN &amp; Device Management</strong>. Blocked apps should be gone. AirDrop / Siri should be forced off.</li>
+      </ol>
+
+      <h2>Unsupervise</h2>
+      <p>Erase All Content and Settings again, or restore a backup from <strong>before</strong> Prepare. There is no unsupervise toggle.</p>
+    </article>
+  </main>
+  <script type="module">
+    import { wireThemeControls } from "./js/theme.js";
+    wireThemeControls();
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a0000">
+  <title>OpenHat Security: Level 4</title>
+  <link rel="stylesheet" href="css/app.css?v=5" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="js/theme-boot.js?v=5"></script>
+</head>
+<body>
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</a>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="primer">Primer</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <div class="color-toggle" role="group" aria-label="Color">
+        <button type="button" data-color-set="system">Sys</button>
+        <button type="button" data-color-set="light">Light</button>
+        <button type="button" data-color-set="dark">Dark</button>
+      </div>
+    </div>
+    <p class="back"><a href="./">← Back to profiles</a></p>
+    <span class="badge bad">Level 4 · erases the iPhone</span>
+    <h1>Erase, Lockdown Mode, Supervised</h1>
+    <p class="lead">You manage this profile. OpenHat does not manage the phone and cannot see your data.</p>
+  </header>
+
+  <main>
+    <div class="note danger">
+      <strong>Prepare always erases the iPhone.</strong>
+      <p>Level 4 is erase with Apple Configurator, then Lockdown Mode, then the Supervised profile. Level 1–3 do not require this.</p>
+    </div>
+
+    <p class="muted">Encrypted Finder backup first. After Prepare, turn on Lockdown Mode (Settings → Privacy &amp; Security → Lockdown Mode), then install Level 4. You own the profile. We cannot see your data.</p>
+    <div class="stack">
+      <a class="action secondary" href="configurator.html">
+        <span>
+          Configurator + Lockdown Mode steps
+          <small>Mac + cable · read before you start</small>
+        </span>
+        <span class="go">Open</span>
+      </a>
+      <a class="action danger" id="level4-mullvad" href="profiles/OpenHat-Level-4-Mullvad.mobileconfig">
+        <span>
+          Install Level 4 (Mullvad)
+          <small>Only after Prepare and Lockdown Mode</small>
+        </span>
+        <span class="go">Install</span>
+      </a>
+      <a class="action secondary" href="view.html?p=profiles/OpenHat-Level-4-Mullvad.mobileconfig">View Level 4 (Mullvad)</a>
+      <a class="action danger" id="level4-quad9" href="profiles/OpenHat-Level-4-Quad9.mobileconfig">
+        <span>
+          Install Level 4 (Quad9)
+          <small>Only after Prepare and Lockdown Mode</small>
+        </span>
+        <span class="go">Install</span>
+      </a>
+      <a class="action secondary" href="view.html?p=profiles/OpenHat-Level-4-Quad9.mobileconfig">View Level 4 (Quad9)</a>
+    </div>
+    <p class="muted">On a device that is not Supervised, app blocks in this file are ignored. Optional MDM after a wipe is a separate path you host yourself: see <a href="mdm.html">Level 3</a>.</p>
+  </main>
+  <script type="module">
+    import { wireInstallButton } from "./js/profile-install.js";
+    import { wireThemeControls, applyHostGuard } from "./js/theme.js";
+    wireThemeControls();
+    if (applyHostGuard() !== "phish") {
+      wireInstallButton(document.getElementById("level4-mullvad"), "profiles/OpenHat-Level-4-Mullvad.mobileconfig");
+      wireInstallButton(document.getElementById("level4-quad9"), "profiles/OpenHat-Level-4-Quad9.mobileconfig");
+    }
+  </script>
+</body>
+</html>

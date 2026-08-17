@@ -89,7 +89,7 @@ Default is **OpenHat Security: Level 1 (Mullvad)**. Pick **Level 1 (Quad9)** if 
 ### Local preview
 
 ```bash
-echo "iPhone Safari: http://$(ipconfig getifaddr en0):8080/" && python3 -m http.server 8080
+echo "iPhone Safari: http://$(ipconfig getifaddr en0):8080/" && python3 -m http.server 8080 --directory src
 ```
 
 Open that URL in Safari on the iPhone. GitHub Pages is the public host: **https://openhat-security.github.io/ios-max-security/**
@@ -128,11 +128,11 @@ You can stop here. This is the last step that keeps your data.
 
 ## Step 5 — Advanced setup (erases the iPhone)
 
-**Skip this unless you need Supervised restrictions.** Read [`wipe-required/README.md`](wipe-required/README.md) before you plug in a cable.
+**Skip this unless you need Supervised restrictions.** Read [wipe.html](https://openhat-security.github.io/ios-max-security/wipe.html) before you plug in a cable.
 
 A Safari install cannot apply those locks. Apple Configurator **Prepare** supervises the device and **always erases all content and settings**.
 
-After the wipe, turn on Lockdown Mode, then install **OpenHat Security: Level 4** from `wipe-required/` (Mullvad or Quad9). You manage that profile. OpenHat cannot see your data.
+After the wipe, turn on Lockdown Mode, then install **OpenHat Security: Level 4** from `src/profiles/` (Mullvad or Quad9). You manage that profile. OpenHat cannot see your data.
 
 ---
 
@@ -163,7 +163,7 @@ flowchart TD
 
 Enroll without erasing: open the enrollment page in Safari on the iPhone (`/enroll/` on your management server).
 
-Erase, then enroll: follow [`wipe-required/CONFIGURATOR.md`](wipe-required/CONFIGURATOR.md), turn **Supervise** on, then enroll. After that the server can install `wipe-required/OpenHat-Level-4-Mullvad.mobileconfig`.
+Erase, then enroll: follow [configurator.html](https://openhat-security.github.io/ios-max-security/configurator.html), turn **Supervise** on, then enroll. After that the server can install `src/profiles/OpenHat-Level-4-Mullvad.mobileconfig`.
 
 How to run the server: [`mdm/README.md`](mdm/README.md).
 
@@ -181,13 +181,19 @@ How to run the server: [`mdm/README.md`](mdm/README.md).
 
 Unknown restriction keys are ignored on older iOS. The leftover Settings checklist is the same on every version: a website cannot flip those switches.
 
+## No pip, no extra packages
+
+Every Python file in this repo uses the **Python 3 standard library only**. That includes `build_profile.py` and the optional MDM helpers (`mdm/generate_enrollment.py`, `mdm/enqueue_profile.py`). There is no `requirements.txt`, no virtualenv, and no third-party package to install or supply-chain review.
+
+That is intentional. You can read every `import` in a minute. We will not add PyPI dependencies. The public installer is static HTML on GitHub Pages. The optional MDM server is Docker images you pin yourself (NanoMDM, SCEP, Caddy), not Python packages we vendor.
+
 ## Contributing
 
 Bug reports, catalog items, and installer changes are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. This project follows the [Contributor Covenant](CODE_OF_CONDUCT.md). Security reports go through [SECURITY.md](SECURITY.md), not a public issue.
 
 ## License
 
-[MIT](LICENSE). Pico CSS in `vendor/` is MIT ([Pico CSS](https://picocss.com)).
+[MIT](LICENSE).
 
 ## Sources
 

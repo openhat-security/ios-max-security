@@ -1,0 +1,8 @@
+{
+  "$schema": "./schema/ios.schema.json",
+  "current_public": "26.6",
+  "full_restrictions": "18.2",
+  "safari_denylist": "16",
+  "encrypted_dns": "14",
+  "beta_unsupported": "27"
+}

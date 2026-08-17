@@ -1,15 +1,44 @@
-[
-  "https://www.facebook.com",
-  "https://m.facebook.com",
-  "https://www.instagram.com",
-  "https://www.snapchat.com",
-  "https://www.tiktok.com",
-  "https://www.doubleclick.net",
-  "https://googleads.g.doubleclick.net",
-  "https://pagead2.googlesyndication.com",
-  "https://www.google-analytics.com",
-  "https://graph.facebook.com",
-  "https://connect.facebook.net",
-  "https://ads.twitter.com",
-  "https://analytics.tiktok.com"
-]
+{
+  "$schema": "./schema/safari-denylist.schema.json",
+  "items": [
+    {
+      "url": "https://www.facebook.com"
+    },
+    {
+      "url": "https://m.facebook.com"
+    },
+    {
+      "url": "https://www.instagram.com"
+    },
+    {
+      "url": "https://www.snapchat.com"
+    },
+    {
+      "url": "https://www.tiktok.com"
+    },
+    {
+      "url": "https://www.doubleclick.net"
+    },
+    {
+      "url": "https://googleads.g.doubleclick.net"
+    },
+    {
+      "url": "https://pagead2.googlesyndication.com"
+    },
+    {
+      "url": "https://www.google-analytics.com"
+    },
+    {
+      "url": "https://graph.facebook.com"
+    },
+    {
+      "url": "https://connect.facebook.net"
+    },
+    {
+      "url": "https://ads.twitter.com"
+    },
+    {
+      "url": "https://analytics.tiktok.com"
+    }
+  ]
+}

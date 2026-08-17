@@ -1,0 +1,794 @@
+{
+  "$schema": "./schema/leftovers.schema.json",
+  "items": [
+    {
+      "id": "dns-doh",
+      "via": "profile",
+      "title": "Encrypted DNS over HTTPS (system-wide)",
+      "category": "Network",
+      "source": [
+        "encrypted-dns",
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Carrier / router DNS, unencrypted",
+      "after": "Mullvad Adblock DoH (or Quad9 if you install that file)",
+      "verify": "Settings → General → VPN & Device Management → OpenHat Security: Level 1",
+      "notes": "Hides DNS from the carrier and blocks ads/trackers (Mullvad Adblock). iOS only uses one DNS profile."
+    },
+    {
+      "id": "dns-quad9",
+      "via": "profile",
+      "title": "Optional DNS: Quad9 instead of Mullvad",
+      "category": "Network",
+      "source": [
+        "encrypted-dns",
+        "celenityy"
+      ],
+      "apple_default": "n/a",
+      "after": "Install OpenHat Security: Level 1 (Quad9) to replace Mullvad",
+      "verify": "Same DNS screen; server should show dns.quad9.net",
+      "notes": "Swiss malware-blocking resolver. Installing it replaces the Mullvad profile (same identifier)."
+    },
+    {
+      "id": "icloud-analytics",
+      "via": "manual",
+      "title": "Share iCloud Analytics",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On if signed into iCloud",
+      "after": "Off",
+      "verify": "Settings → Privacy & Security → Analytics & Improvements → Share iCloud Analytics",
+      "notes": "No separate profile key; turn it off next to iPhone Analytics."
+    },
+    {
+      "id": "improve-siri",
+      "via": "manual",
+      "title": "Improve Siri & Dictation",
+      "category": "Apple telemetry",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Privacy & Security → Analytics & Improvements → Improve Siri & Dictation",
+      "notes": "Profile also forces on-device dictation so audio is not sent to Siri servers."
+    },
+    {
+      "id": "location-master",
+      "via": "manual",
+      "title": "Location Services master switch",
+      "category": "Location",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Privacy & Security → Location Services",
+      "notes": "Apple will not let a profile flip this. Required for emergency/Find My accuracy if you leave Find My on."
+    },
+    {
+      "id": "significant-locations",
+      "via": "manual",
+      "title": "Significant Locations — clear and off",
+      "category": "Location",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On",
+      "after": "History cleared, toggle off",
+      "verify": "Location Services → System Services → Significant Locations",
+      "notes": ""
+    },
+    {
+      "id": "system-services-loc",
+      "via": "manual",
+      "title": "Location System Services (analytics, routing, cell search, timezone, networking)",
+      "category": "Location",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Mostly on",
+      "after": "Off: iPhone Analytics, Routing & Traffic, Improve Maps, Setting Time Zone, Networking & Wireless, Cell Network Search, System Customization, Location-Based Alerts/Suggestions, Compass Calibration, Device Management, HomeKit, Motion Calibration (if unused)",
+      "verify": "Location Services → System Services",
+      "notes": "Leave Status Bar Icon on so you can see when something still uses GPS."
+    },
+    {
+      "id": "lockdown",
+      "via": "manual",
+      "title": "Lockdown Mode",
+      "category": "Lock screen",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Off",
+      "after": "On; 2G cellular off",
+      "verify": "Settings → Privacy & Security → Lockdown Mode",
+      "notes": "Requires passcode. A profile cannot enable this."
+    },
+    {
+      "id": "apple-id",
+      "via": "manual",
+      "title": "Sign out of iCloud / Apple ID, or strip every iCloud toggle",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Signed in, most sync on",
+      "after": "Signed out, or Photos/Drive/Keychain/Messages/Health/Calendar/Contacts/Safari/Home/Wallet/Siri/Maps/Shortcuts/Backup all off",
+      "verify": "Settings → [your name]",
+      "notes": "If you keep iCloud: Advanced Data Protection on, Access iCloud Data on the Web off, 2FA / security keys on, communication emails off, Personalized Recommendations off."
+    },
+    {
+      "id": "icloud-photos",
+      "via": "skipped",
+      "title": "iCloud Photos",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On if iCloud Photos is enabled",
+      "after": "Off — do this yourself after photos are downloaded",
+      "verify": "Settings → [your name] → iCloud → Photos",
+      "notes": "A profile key exists (allowCloudPhotoLibrary=false) but Apple deletes local copies that were not fully downloaded. Too dangerous to automate."
+    },
+    {
+      "id": "find-my-device",
+      "via": "skipped",
+      "title": "Find My iPhone",
+      "category": "Location",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Left on (theft recovery). Turn off only if your threat model prefers that.",
+      "verify": "Settings → [your name] → Find My",
+      "notes": "celenityy recommends off. We do not force it: a stolen unsupervised phone with Find My off is gone."
+    },
+    {
+      "id": "private-wifi",
+      "via": "manual",
+      "title": "Private Wi-Fi Address + Limit IP Address Tracking",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Usually on for new networks",
+      "after": "On for every network you use",
+      "verify": "Settings → Wi-Fi → (i) next to the network",
+      "notes": "Must be set per network. A Wi-Fi payload could do this only if we knew your SSID and password."
+    },
+    {
+      "id": "ask-join",
+      "via": "manual",
+      "title": "Ask to Join Networks off; Auto-Join Hotspot Never",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Ask / Automatic",
+      "after": "Off / Never",
+      "verify": "Settings → Wi-Fi",
+      "notes": ""
+    },
+    {
+      "id": "wifi-off-unused",
+      "via": "manual",
+      "title": "Wi-Fi and Bluetooth off when unused; Airplane Mode when idle",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On",
+      "after": "Off when you are not using them",
+      "verify": "Control Center / Settings",
+      "notes": "A profile cannot schedule radios."
+    },
+    {
+      "id": "siri-manual",
+      "via": "manual",
+      "title": "Siri Listen for / Press Side Button off; all Apple suggestions off",
+      "category": "Siri",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Apple Intelligence & Siri",
+      "notes": "Required on a normal iPhone because allowAssistant is supervised-only."
+    },
+    {
+      "id": "airdrop-manual",
+      "via": "manual",
+      "title": "AirDrop Receiving Off; no cellular for AirDrop",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Contacts Only",
+      "after": "Receiving Off",
+      "verify": "Settings → General → AirDrop",
+      "notes": ""
+    },
+    {
+      "id": "handoff-manual",
+      "via": "manual",
+      "title": "Continuity Camera off; Automatically AirPlay → Never; AirPlay Receiver off",
+      "category": "iCloud",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On / Automatic",
+      "after": "Off / Never",
+      "verify": "Settings → General → AirPlay & Handoff",
+      "notes": "Handoff itself is also forced off by the profile."
+    },
+    {
+      "id": "lock-screen-rest",
+      "via": "manual",
+      "title": "Lock Screen: USB Accessories, Live Activities, Home Control, Return Missed Calls off",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Mostly on",
+      "after": "All Allow Access When Locked off",
+      "verify": "Settings → Face ID & Passcode → Allow Access When Locked",
+      "notes": "Control Center, Notification Center, Today View, and Wallet are already forced off by the profile."
+    },
+    {
+      "id": "passcode-strong",
+      "via": "manual",
+      "title": "Long alphanumeric passcode; optional Face ID off; Erase Data on; Require Immediately",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "6-digit + Face ID",
+      "after": "Custom alphanumeric; Face ID off if your threat model needs it; Erase Data on",
+      "verify": "Settings → Face ID & Passcode",
+      "notes": "Optional extra OpenHat Extras 1.1 enforces min length 6, no simple PINs, lock immediately. It will refuse to install until the passcode complies."
+    },
+    {
+      "id": "notification-previews",
+      "via": "manual",
+      "title": "Notification previews: When Unlocked; Screen Sharing notifications off",
+      "category": "Lock screen",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Always",
+      "after": "When Unlocked",
+      "verify": "Settings → Notifications → Show Previews",
+      "notes": ""
+    },
+    {
+      "id": "focus-share",
+      "via": "manual",
+      "title": "Focus: do not share across devices or share Focus Status",
+      "category": "iCloud",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Focus",
+      "notes": ""
+    },
+    {
+      "id": "device-name",
+      "via": "manual",
+      "title": "Device name: generic (not your real name)",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Adam's iPhone",
+      "after": "Device or similar",
+      "verify": "Settings → General → About → Name",
+      "notes": "Visible on some networks."
+    },
+    {
+      "id": "software-update",
+      "via": "manual",
+      "title": "Automatic iOS updates + Rapid Security Responses on",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Usually on",
+      "after": "On",
+      "verify": "Settings → General → Software Update → Automatic Updates",
+      "notes": "Delay major version jumps a few weeks; install 15.x.y / 16.x.y patches immediately."
+    },
+    {
+      "id": "bg-refresh",
+      "via": "manual",
+      "title": "Background App Refresh: off except messaging",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On for most apps",
+      "after": "Off except Signal / mail",
+      "verify": "Settings → General → Background App Refresh",
+      "notes": ""
+    },
+    {
+      "id": "app-store",
+      "via": "manual",
+      "title": "App Store: auto app downloads off, updates on, video autoplay off, in-app ratings off",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Mixed",
+      "after": "Updates on; everything else off",
+      "verify": "Settings → Apps → App Store",
+      "notes": ""
+    },
+    {
+      "id": "safari-manual",
+      "via": "manual",
+      "title": "Safari: DuckDuckGo, suggestions off, ad measurement off, camera/mic/location Deny, Hide IP from Trackers, Advanced Tracking on All Browsing",
+      "category": "Safari",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Google, suggestions on",
+      "after": "DuckDuckGo; all listed protections on",
+      "verify": "Settings → Apps → Safari",
+      "notes": "Also set Downloads to On My iPhone, Close Tabs After One Day, Block Pop-ups (profile helps), no AutoFill."
+    },
+    {
+      "id": "permissions",
+      "via": "manual",
+      "title": "Audit Camera, Mic, Contacts, Photos (never All Photos), Bluetooth, Local Network, Speech, Motion",
+      "category": "Third-party tracking",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Whatever you granted",
+      "after": "Least privilege; Speech Recognition never",
+      "verify": "Settings → Privacy & Security (each permission page)",
+      "notes": "A profile cannot revoke existing third-party grants."
+    },
+    {
+      "id": "privacy-report",
+      "via": "manual",
+      "title": "App Privacy Report on",
+      "category": "Third-party tracking",
+      "source": [
+        "iprivacy"
+      ],
+      "apple_default": "Off",
+      "after": "On",
+      "verify": "Settings → Privacy & Security → App Privacy Report",
+      "notes": "This is the closest built-in view of which servers apps contact. It is not a settings dump."
+    },
+    {
+      "id": "siri-per-app",
+      "via": "manual",
+      "title": "Per-app: Learn from this App / Suggest App / Show on Home Screen off",
+      "category": "Siri",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Off for every app, especially App Store, Safari, Maps, Photos, Health, TV",
+      "verify": "Settings → Apps → [app] → Siri & Search",
+      "notes": ""
+    },
+    {
+      "id": "imessage-email",
+      "via": "manual",
+      "title": "iMessage / FaceTime reachable only at your phone number, not email; RCS off",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "Email + phone; RCS on",
+      "after": "Phone number only; RCS off",
+      "verify": "Settings → Apps → Messages → Send & Receive; FaceTime; RCS",
+      "notes": "We do not disable iMessage in the profile (allowChat would brick Messages on supervised phones)."
+    },
+    {
+      "id": "contacts-photo",
+      "via": "manual",
+      "title": "Share Name and Photo off; Calendar location suggestions off; Reminders suggestions off",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Apps → Contacts / Calendar / Reminders",
+      "notes": ""
+    },
+    {
+      "id": "maps-contribute",
+      "via": "manual",
+      "title": "Maps: Ratings and Photos off; photo providers off",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Apps → Maps → Contribute to Maps",
+      "notes": ""
+    },
+    {
+      "id": "photos-manual",
+      "via": "manual",
+      "title": "Photos: Shared Albums off, cellular off, featured content off, Use Passcode on Hidden album",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Mixed",
+      "after": "As listed",
+      "verify": "Settings → Apps → Photos",
+      "notes": ""
+    },
+    {
+      "id": "tv-history",
+      "via": "manual",
+      "title": "TV: Use Play History off; autoplay next off",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Apps → TV",
+      "notes": ""
+    },
+    {
+      "id": "shortcuts-lock",
+      "via": "manual",
+      "title": "Shortcuts: iCloud Sync off, Private Sharing off, Allow Running Scripts off",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Sync on",
+      "after": "Off",
+      "verify": "Settings → Apps → Shortcuts",
+      "notes": ""
+    },
+    {
+      "id": "translate-cellular",
+      "via": "manual",
+      "title": "Translate: cellular off, On-Device Mode on",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Cellular on",
+      "after": "On-device, Wi-Fi only",
+      "verify": "Settings → Apps → Translate",
+      "notes": "Profile already forces on-device translation."
+    },
+    {
+      "id": "passwords-compromised",
+      "via": "manual",
+      "title": "Detect Compromised Passwords on; Delete After Use on",
+      "category": "Passwords",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Detect on",
+      "after": "On",
+      "verify": "Settings → Apps → Passwords",
+      "notes": "Detect Compromised Passwords is local. Prefer Bitwarden as default manager."
+    },
+    {
+      "id": "screen-time",
+      "via": "manual",
+      "title": "Screen Time Content & Privacy Restrictions (optional second lock)",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Off",
+      "after": "On: don't allow tracking requests, Apple Advertising, Share My Location, Speech Recognition, Bluetooth Sharing; Siri web search don't allow",
+      "verify": "Settings → Screen Time → Content & Privacy Restrictions",
+      "notes": "Overlaps the profile. Useful on a normal iPhone where supervised keys are ignored."
+    },
+    {
+      "id": "fitness",
+      "via": "manual",
+      "title": "Fitness Tracking off if unused",
+      "category": "Location",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → Privacy & Security → Motion & Fitness",
+      "notes": ""
+    },
+    {
+      "id": "wallet-cards",
+      "via": "manual",
+      "title": "Wallet compatible cards / unused Apple Pay merchant ID off",
+      "category": "Apps",
+      "source": [
+        "celenityy",
+        "iprivacy"
+      ],
+      "apple_default": "On",
+      "after": "Off if you do not use Apple Pay",
+      "verify": "Settings → Wallet & Apple Pay; Location System Services → Apple Pay Merchant Identification",
+      "notes": ""
+    },
+    {
+      "id": "imessage-key-verify",
+      "via": "manual",
+      "title": "iMessage Contact Key Verification on (if you keep iMessage)",
+      "category": "Apps",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "Off",
+      "after": "On",
+      "verify": "Settings → [your name] → Contact Key Verification",
+      "notes": ""
+    },
+    {
+      "id": "vpn",
+      "via": "manual",
+      "title": "No-logs VPN: Mullvad, IVPN, or Proton VPN, always-on",
+      "category": "Network",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "builder"
+      ],
+      "apple_default": "None",
+      "after": "Installed, connected, kill switch on",
+      "verify": "Settings → General → VPN & Device Management → VPN",
+      "notes": "ios-profile-builder can emit a VPN payload, but only if you already have a server and credentials. We will not bake a third-party account into this file."
+    },
+    {
+      "id": "adguard",
+      "via": "app",
+      "title": "Optional: AdGuard Pro or Lockdown Privacy as a local DNS firewall + Safari content blockers",
+      "category": "Network",
+      "source": [
+        "iprivacy",
+        "celenityy"
+      ],
+      "apple_default": "None",
+      "after": "Installed if you want per-app query logs on top of system DoH",
+      "verify": "App VPN/DNS permission; Safari → Extensions",
+      "notes": "System encrypted DNS (this profile) already blocks trackers without consuming the VPN slot. AdGuard Pro uses a local VPN and will conflict with a real VPN unless you pick one."
+    },
+    {
+      "id": "browser",
+      "via": "app",
+      "title": "Firefox Focus or Brave as default browser; Safari only for persistent logins",
+      "category": "Safari",
+      "source": [
+        "iprivacy",
+        "celenityy"
+      ],
+      "apple_default": "Safari",
+      "after": "Focus/Brave default; telemetry off inside the app",
+      "verify": "Settings → Apps → Safari → Default Browser App",
+      "notes": ""
+    },
+    {
+      "id": "bitwarden",
+      "via": "app",
+      "title": "Bitwarden or Proton Pass instead of iCloud Keychain",
+      "category": "Passwords",
+      "source": [
+        "iprivacy",
+        "celenityy"
+      ],
+      "apple_default": "iCloud Keychain",
+      "after": "Installed, AutoFill provider set",
+      "verify": "Settings → General → AutoFill & Passwords",
+      "notes": ""
+    },
+    {
+      "id": "proton-mail",
+      "via": "app",
+      "title": "Proton Mail (or Tuta) instead of Gmail/Outlook apps",
+      "category": "Apps",
+      "source": [
+        "iprivacy"
+      ],
+      "apple_default": "Mail / Gmail",
+      "after": "Proton app for encrypted mail; built-in Mail for conventional accounts",
+      "verify": "Installed apps",
+      "notes": "Do not install Gmail/Outlook/Yahoo apps."
+    },
+    {
+      "id": "signal",
+      "via": "app",
+      "title": "Signal for messaging; Standard Notes for notes; MySudo for burner numbers",
+      "category": "Apps",
+      "source": [
+        "iprivacy"
+      ],
+      "apple_default": "iMessage / Notes",
+      "after": "Installed as needed",
+      "verify": "Installed apps",
+      "notes": ""
+    },
+    {
+      "id": "localsend",
+      "via": "app",
+      "title": "LocalSend for local file/clipboard share (no Apple ID)",
+      "category": "Network",
+      "source": [
+        "builder"
+      ],
+      "apple_default": "AirDrop / Universal Clipboard",
+      "after": "Installed on phone and Mac",
+      "verify": "LocalSend on the same Wi-Fi",
+      "notes": "AirDrop has no public plugin API. Universal Clipboard requires the same iCloud account."
+    },
+    {
+      "id": "skip-mdm",
+      "via": "skipped",
+      "title": "MDM enrollment payload",
+      "category": "Skipped",
+      "source": [
+        "builder"
+      ],
+      "apple_default": "None",
+      "after": "Not included",
+      "verify": "n/a",
+      "notes": "ios-profile-builder can emit com.apple.mdm. That gives a remote server control of the phone — the opposite of this project."
+    },
+    {
+      "id": "skip-ca",
+      "via": "skipped",
+      "title": "Custom Root CA",
+      "category": "Skipped",
+      "source": [
+        "builder"
+      ],
+      "apple_default": "None",
+      "after": "Not included",
+      "verify": "n/a",
+      "notes": "A custom CA enables HTTPS interception. We will not ship one."
+    },
+    {
+      "id": "skip-wifi-payload",
+      "via": "skipped",
+      "title": "Wi-Fi payload with your home SSID",
+      "category": "Skipped",
+      "source": [
+        "builder"
+      ],
+      "apple_default": "User joins networks",
+      "after": "Not included",
+      "verify": "n/a",
+      "notes": "Needs your SSID and password. Set Private Address per network instead."
+    },
+    {
+      "id": "skip-imessage",
+      "via": "skipped",
+      "title": "Force-disable iMessage (allowChat)",
+      "category": "Skipped",
+      "source": [
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Left available; tighten Send & Receive manually",
+      "verify": "Settings → Apps → Messages",
+      "notes": "celenityy says turn iMessage off if unused. allowChat is supervised and would remove iMessage entirely, which is too sharp for a default profile."
+    },
+    {
+      "id": "skip-faceid",
+      "via": "skipped",
+      "title": "Force-disable Face ID / Touch ID",
+      "category": "Skipped",
+      "source": [
+        "celenityy",
+        "iprivacy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Your choice in Face ID & Passcode",
+      "verify": "Settings → Face ID & Passcode",
+      "notes": "allowFingerprintForUnlock=false is too easy to lock people out of a daily driver. Do it manually if your threat model needs it."
+    },
+    {
+      "id": "skip-private-relay",
+      "via": "skipped",
+      "title": "iCloud Private Relay / Mail Privacy Protection",
+      "category": "Skipped",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On with iCloud+",
+      "after": "Left on — these are privacy features",
+      "verify": "Settings → [your name] → iCloud → Private Relay; Mail Privacy Protection",
+      "notes": "A profile can disable them. We do not."
+    },
+    {
+      "id": "skip-qos",
+      "via": "skipped",
+      "title": "Dark Mode, Night Shift, True Tone, Reduce Motion, battery percentage",
+      "category": "Skipped",
+      "source": [
+        "celenityy"
+      ],
+      "apple_default": "User preference",
+      "after": "Unchanged",
+      "verify": "Display & Brightness / Accessibility / Battery",
+      "notes": "In celenityy's guide as comfort/battery, not telemetry. A profile cannot set most of these anyway."
+    },
+    {
+      "id": "safari-denylist",
+      "via": "manual",
+      "title": "Safari deny list for tracker / social-graph sites",
+      "category": "Safari",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "None",
+      "after": "Install OpenHat Extras 1.2 (iOS 16+)",
+      "verify": "Safari cannot open facebook.com / instagram.com / doubleclick.net etc.",
+      "notes": "Safari only. Native Instagram/Snapchat apps ignore this. Separate file so a filter rejection cannot break the main profile."
+    },
+    {
+      "id": "configurator-supervise",
+      "via": "manual",
+      "title": "Supervise the iPhone with Apple Configurator",
+      "category": "Apps",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Unsupervised",
+      "after": "Supervised; then install profiles/OpenHat-Level-4-Mullvad.mobileconfig",
+      "verify": "Settings → General → About → Supervised (or the profile applies AirDrop/Siri/app blocks)",
+      "notes": "USB + a Mac. ERASES the entire iPhone. See configurator.html, then install Level 4 from profiles/."
+    },
+    {
+      "id": "tracker-apps-delete",
+      "via": "manual",
+      "title": "Delete high-tracking apps (Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, LinkedIn)",
+      "category": "Third-party tracking",
+      "source": [
+        "iprivacy",
+        "celenityy"
+      ],
+      "apple_default": "Whatever you installed",
+      "after": "Deleted, or Screen Time → Never Allow, or Supervised profile after Configurator",
+      "verify": "Home Screen / App Library; data/tracker-apps.json has bundle IDs",
+      "notes": "A Safari-installed profile cannot hide these apps. That is Apple, not a missing payload."
+    }
+  ]
+}
