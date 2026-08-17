@@ -16,3 +16,15 @@ if (status !== "phish") {
     wireInstallButton(el, el.getAttribute("data-install") || el.getAttribute("href"));
   });
 }
+
+const readMore = document.getElementById("read-more");
+const introMore = document.getElementById("intro-more");
+if (readMore && introMore) {
+  readMore.addEventListener("click", (event) => {
+    event.preventDefault();
+    const open = introMore.hidden;
+    introMore.hidden = !open;
+    readMore.textContent = open ? "Read less" : "Read more";
+    readMore.setAttribute("aria-expanded", String(open));
+  });
+}

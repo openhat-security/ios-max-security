@@ -223,6 +223,53 @@ a.github-cta {
 .intro p { margin: 0 0 0.7rem; }
 .intro #repo-url-box { margin: 0 0 0.85rem; }
 
+.dev-byline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.55rem;
+  margin: 0 0 0.55rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.dev-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.dev-name:hover { color: var(--red-hot); }
+
+.dev-avatar {
+  width: 1.15rem;
+  height: 1.15rem;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+a.read-more {
+  color: var(--red-hot);
+  font-weight: 600;
+  text-decoration: none;
+  background: color-mix(in srgb, var(--red) 16%, transparent);
+  padding: 0.05em 0.35em;
+  border-radius: 0.2em;
+}
+
+a.read-more:hover {
+  color: var(--red-hot);
+  background: color-mix(in srgb, var(--red) 28%, transparent);
+}
+
+.intro-more { margin: 0 0 0.7rem; }
+.intro-more p { margin: 0; }
+
 .badge {
   display: inline-block;
   font-size: 0.68rem;
