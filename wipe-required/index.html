@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#11191f">
-  <title>Advanced setup — Apple Configurator</title>
-  <link rel="stylesheet" href="../vendor/pico.min.css">
+  <meta name="theme-color" content="#0a0000">
+  <title>OpenHat Security: Level 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/app.css">
 </head>
 <body>
+  <div class="scan" aria-hidden="true"></div>
   <header class="page">
-    <span class="badge bad">Advanced · erases the iPhone</span>
+    <p class="brand"><span class="hat" aria-hidden="true"></span> OPENHAT</p>
+    <span class="badge bad">Level 3 · erases the iPhone</span>
     <h1>Apple Configurator</h1>
-    <p class="lead">Supervised setup. Prepare erases all content and settings. Basic setup does not require this.</p>
+    <p class="lead">Supervised setup. Prepare erases all content and settings. Level 1 and Level 2 do not require this.</p>
   </header>
 
   <main>
     <div class="stack">
-      <a role="button" class="secondary" href="../">← Back to Basic setup</a>
+      <a role="button" class="secondary" href="../">← Back to levels</a>
     </div>
 
     <div class="note danger">
       <strong>Prepare always erases the iPhone.</strong>
-      <p>Use this path only if you need Supervised restrictions. Otherwise return to Basic setup.</p>
+      <p>Use Level 3 only if you need Supervised restrictions. Otherwise install Level 1 or Level 2 from the home page.</p>
     </div>
 
-    <p>Encrypted Finder backup first. Then follow the Configurator steps.</p>
+    <p class="muted">Encrypted Finder backup first. Then follow the Configurator steps. Level 3 includes everything: Max Privacy, Extra 1.1 (PIN), Extra 1.2 (Safari), and Supervised app hides.</p>
     <div class="stack">
       <a class="action secondary" href="CONFIGURATOR.md">
         <span>
@@ -35,9 +39,16 @@
         </span>
         <span class="go">Open</span>
       </a>
-      <a class="action danger" href="OpenHat-Supervised.mobileconfig">
+      <a class="action danger" id="level3-mullvad" href="OpenHat-Level-3-Mullvad.mobileconfig">
         <span>
-          Install Supervised configuration
+          Install Level 3 (Mullvad)
+          <small>Only after Prepare has finished</small>
+        </span>
+        <span class="go">Install</span>
+      </a>
+      <a class="action danger" id="level3-quad9" href="OpenHat-Level-3-Quad9.mobileconfig">
+        <span>
+          Install Level 3 (Quad9)
           <small>Only after Prepare has finished</small>
         </span>
         <span class="go">Install</span>
@@ -45,5 +56,10 @@
     </div>
     <p class="muted">On a device that is not Supervised, app blocks in this file are ignored. Remote enrollment after a wipe is a separate path: see <a href="../mdm/README.md">mdm/README.md</a>.</p>
   </main>
+  <script type="module">
+    import { wireInstallButton } from "../js/profile-install.js";
+    wireInstallButton(document.getElementById("level3-mullvad"), "OpenHat-Level-3-Mullvad.mobileconfig");
+    wireInstallButton(document.getElementById("level3-quad9"), "OpenHat-Level-3-Quad9.mobileconfig");
+  </script>
 </body>
 </html>

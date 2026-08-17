@@ -11,7 +11,7 @@
 	<key>PayloadIdentifier</key>
 	<string>org.openhat.ios-max-privacy.safari-denylist</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Safari Tracker Deny List</string>
+	<string>OpenHat Extras 1.2</string>
 	<key>PayloadDescription</key>
 	<string>Safari-only deny list for known tracker hosts.</string>
 	<key>PayloadOrganization</key>

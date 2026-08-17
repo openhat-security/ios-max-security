@@ -1,5 +1,5 @@
 {
-  "disclaimer": "These apps are not malware. They are widely documented as building advertising and identity graphs. A user-installed profile cannot hide them on a normal iPhone. Delete them, use Screen Time → Never Allow, or — after accepting a full iPhone erase — install wipe-required/OpenHat-Supervised.mobileconfig (Apple Configurator Supervise, no MDM, no paid Developer Program).",
+  "disclaimer": "These apps are not malware. They are widely documented as building advertising and identity graphs. A user-installed profile cannot hide them on a normal iPhone. Delete them, use Screen Time → Never Allow, or — after accepting a full iPhone erase — install wipe-required/OpenHat-Level-3-Mullvad.mobileconfig (Apple Configurator Supervise, no MDM, no paid Developer Program).",
   "screen_time": "Settings → Screen Time → Content & Privacy Restrictions → Allowed Apps / Never Allow",
   "default_block": [
     {

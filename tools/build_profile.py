@@ -131,6 +131,29 @@ def passcode_payload() -> dict:
     }
 
 
+def dns_short(provider_id: str) -> str:
+    return "Mullvad" if provider_id.startswith("mullvad") else "Quad9"
+
+
+def level_code(*, pin: bool, safari: bool) -> str:
+    """2.1N = one extra N; 2.2N = two-extra combo N. Extra 1 = PIN, extra 2 = Safari."""
+    extras = []
+    if pin:
+        extras.append(1)
+    if safari:
+        extras.append(2)
+    if not extras:
+        return "1"
+    count = len(extras)
+    if count == 1:
+        return f"2.1{extras[0]}"
+    return "2.21"
+
+
+def security_display_name(provider_id: str, *, pin: bool = False, safari: bool = False) -> str:
+    return f"OpenHat Security: Level {level_code(pin=pin, safari=safari)} ({dns_short(provider_id)})"
+
+
 def build_profile(provider_id: str) -> bytes:
     return build_setup_profile(provider_id, pin=False, safari=False)
 
@@ -154,6 +177,7 @@ def build_setup_profile(
             "may reject the Safari filter. Remove this profile attempt, turn "
             "that extra off, and install again."
         )
+    display = security_display_name(provider_id, pin=pin, safari=safari)
     consent = (
         "This profile encrypts DNS via "
         f"{spec['label']} and turns off Apple analytics, personalized ads, "
@@ -165,11 +189,6 @@ def build_setup_profile(
         "Remove anytime: Settings > General > VPN & Device Management."
         f"{fail_txt}"
     )
-    bits = [spec["label"]]
-    if pin:
-        bits.append("PIN")
-    if safari:
-        bits.append("Safari list")
     content = [dns_payload(provider_id), restrictions_payload()]
     if pin:
         content.append(passcode_payload())
@@ -180,7 +199,7 @@ def build_setup_profile(
         "PayloadVersion": VERSION,
         "PayloadUUID": uid(f"root.{provider_id}"),
         "PayloadIdentifier": BUNDLE,
-        "PayloadDisplayName": f"OpenHat Max Privacy ({', '.join(bits)})",
+        "PayloadDisplayName": display,
         "PayloadDescription": (
             "Encrypted DNS, no Apple analytics, no ad tracking, tighter lock "
             "screen"
@@ -202,9 +221,10 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
     consent = (
         "For a phone already SUPERVISED with Apple Configurator (USB, erases "
         "the device).\n\n"
-        "Adds a block list for Instagram, Facebook, Messenger, Snapchat, "
-        "TikTok, X, Pinterest, Reddit, and LinkedIn, plus every restriction "
-        "in the standard OpenHat profile.\n\n"
+        "Level 3 includes everything: encrypted DNS, Max Privacy restrictions, "
+        "stronger PIN, Safari website list, and a Supervised block list for "
+        "Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, "
+        "Reddit, and LinkedIn.\n\n"
         "On an unsupervised iPhone this file's app blocks are ignored."
     )
     profile = {
@@ -212,11 +232,10 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
         "PayloadVersion": VERSION,
         "PayloadUUID": uid(f"root.supervised.{provider_id}"),
         "PayloadIdentifier": f"{BUNDLE}.supervised",
-        "PayloadDisplayName": f"OpenHat Supervised Max Privacy ({spec['label']})",
+        "PayloadDisplayName": f"OpenHat Security: Level 3 ({dns_short(provider_id)})",
         "PayloadDescription": (
-            "Same privacy baseline plus blocked high-tracking apps. "
-            "Requires Apple Configurator supervision (erases the iPhone). "
-            "See wipe-required/CONFIGURATOR.md."
+            "Level 3: Max Privacy, PIN, Safari list, and Supervised app blocks. "
+            "Requires Apple Configurator Prepare (erases the iPhone)."
         ),
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
@@ -225,6 +244,7 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
         "PayloadContent": [
             dns_payload(provider_id),
             restrictions_payload(supervised_apps=True),
+            passcode_payload(),
             web_filter_payload(),
         ],
     }
@@ -244,7 +264,7 @@ def build_safari_denylist_profile() -> bytes:
         "PayloadVersion": VERSION,
         "PayloadUUID": uid("root.webfilter"),
         "PayloadIdentifier": f"{BUNDLE}.safari-denylist",
-        "PayloadDisplayName": "OpenHat Safari Tracker Deny List",
+        "PayloadDisplayName": "OpenHat Extras 1.2",
         "PayloadDescription": "Safari-only deny list for known tracker hosts.",
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
@@ -269,7 +289,7 @@ def build_passcode_profile() -> bytes:
         "PayloadVersion": VERSION,
         "PayloadUUID": uid("root.passcode"),
         "PayloadIdentifier": f"{BUNDLE}.passcode-profile",
-        "PayloadDisplayName": "OpenHat Passcode Policy",
+        "PayloadDisplayName": "OpenHat Extras 1.1",
         "PayloadDescription": "Optional: non-simple passcode, lock immediately.",
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
@@ -351,43 +371,41 @@ def main() -> None:
     args.out.mkdir(parents=True, exist_ok=True)
     args.wipe_out.mkdir(parents=True, exist_ok=True)
 
-    mapping = {
-        "mullvad-adblock": "OpenHat-MaxPrivacy.mobileconfig",
-        "quad9": "OpenHat-MaxPrivacy-Quad9.mobileconfig",
-    }
-    for provider_id, filename in mapping.items():
-        raw = build_profile(provider_id)
-        validate(raw)
-        path = args.out / filename
-        path.write_bytes(raw)
-        print(f"wrote {path} ({len(raw)} bytes)")
-
-    combos = [
-        ("mullvad-adblock", True, False, "OpenHat-MaxPrivacy-PIN.mobileconfig"),
-        ("mullvad-adblock", False, True, "OpenHat-MaxPrivacy-Safari.mobileconfig"),
-        ("mullvad-adblock", True, True, "OpenHat-MaxPrivacy-PIN-Safari.mobileconfig"),
-        ("quad9", True, False, "OpenHat-MaxPrivacy-Quad9-PIN.mobileconfig"),
-        ("quad9", False, True, "OpenHat-MaxPrivacy-Quad9-Safari.mobileconfig"),
-        ("quad9", True, True, "OpenHat-MaxPrivacy-Quad9-PIN-Safari.mobileconfig"),
+    outputs = [
+        ("mullvad-adblock", False, False, "OpenHat-Level-1-Mullvad.mobileconfig"),
+        ("quad9", False, False, "OpenHat-Level-1-Quad9.mobileconfig"),
+        ("mullvad-adblock", True, False, "OpenHat-Level-2.11-Mullvad.mobileconfig"),
+        ("quad9", True, False, "OpenHat-Level-2.11-Quad9.mobileconfig"),
+        ("mullvad-adblock", False, True, "OpenHat-Level-2.12-Mullvad.mobileconfig"),
+        ("quad9", False, True, "OpenHat-Level-2.12-Quad9.mobileconfig"),
+        ("mullvad-adblock", True, True, "OpenHat-Level-2.21-Mullvad.mobileconfig"),
+        ("quad9", True, True, "OpenHat-Level-2.21-Quad9.mobileconfig"),
     ]
-    for provider_id, pin, safari, filename in combos:
+    for provider_id, pin, safari, filename in outputs:
         raw = build_setup_profile(provider_id, pin=pin, safari=safari)
-        plistlib.loads(raw)
+        if not pin and not safari:
+            validate(raw)
+        else:
+            plistlib.loads(raw)
         path = args.out / filename
         path.write_bytes(raw)
         print(f"wrote {path} ({len(raw)} bytes)")
 
     passcode = build_passcode_profile()
     plistlib.loads(passcode)
-    ppath = args.out / "OpenHat-Passcode.mobileconfig"
+    ppath = args.out / "OpenHat-Extras-1.1.mobileconfig"
     ppath.write_bytes(passcode)
     print(f"wrote {ppath} ({len(passcode)} bytes)")
 
-    supervised = build_supervised_profile()
-    plistlib.loads(supervised)
-    spath = args.wipe_out / "OpenHat-Supervised.mobileconfig"
-    spath.write_bytes(supervised)
-    print(f"wrote {spath} ({len(supervised)} bytes)")
+    for provider_id, filename in (
+        ("mullvad-adblock", "OpenHat-Level-3-Mullvad.mobileconfig"),
+        ("quad9", "OpenHat-Level-3-Quad9.mobileconfig"),
+    ):
+        supervised = build_supervised_profile(provider_id)
+        plistlib.loads(supervised)
+        spath = args.wipe_out / filename
+        spath.write_bytes(supervised)
+        print(f"wrote {spath} ({len(supervised)} bytes)")
     leftover = args.out / "OpenHat-Supervised.mobileconfig"
     if leftover.exists():
         leftover.unlink()
@@ -395,7 +413,7 @@ def main() -> None:
 
     safari = build_safari_denylist_profile()
     plistlib.loads(safari)
-    safari_path = args.out / "OpenHat-SafariDenyList.mobileconfig"
+    safari_path = args.out / "OpenHat-Extras-1.2.mobileconfig"
     safari_path.write_bytes(safari)
     print(f"wrote {safari_path} ({len(safari)} bytes)")
 

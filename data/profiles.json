@@ -1,0 +1,132 @@
+{
+  "title": "OpenHat Security",
+  "lead": "These installs do not erase your iPhone unless you choose Level 3. The name on each button is the name iOS will show.",
+  "safari_note": "Safari only — Chrome and in-app browsers will not install a profile.",
+  "sections": [
+    {
+      "id": "level-1",
+      "title": "Level 1 — start here",
+      "description": "Private DNS plus Max Privacy restrictions. Mullvad blocks ads and trackers; Quad9 blocks malware. The phone only uses one DNS profile.",
+      "profiles": [
+        {
+          "id": "level-1-mullvad",
+          "file": "profiles/OpenHat-Level-1-Mullvad.mobileconfig",
+          "title": "OpenHat Security: Level 1 (Mullvad)",
+          "subtitle": "Encrypted DNS · ads and trackers blocked",
+          "description": "Mullvad DNS, Apple analytics off, personalized ads off, tighter lock screen. Does not erase the iPhone.",
+          "recommended": true
+        },
+        {
+          "id": "level-1-quad9",
+          "file": "profiles/OpenHat-Level-1-Quad9.mobileconfig",
+          "title": "OpenHat Security: Level 1 (Quad9)",
+          "subtitle": "Encrypted DNS · malware blocked",
+          "description": "Same Level 1 restrictions with Quad9 instead of Mullvad. Installing this replaces Level 1 (Mullvad)."
+        }
+      ]
+    },
+    {
+      "id": "level-2-one",
+      "title": "Level 2.1x — one extra",
+      "description": "Level 1 plus a single extra. .11 is stronger PIN. .12 is the Safari website list.",
+      "profiles": [
+        {
+          "id": "level-2-11-mullvad",
+          "file": "profiles/OpenHat-Level-2.11-Mullvad.mobileconfig",
+          "title": "OpenHat Security: Level 2.11 (Mullvad)",
+          "subtitle": "Level 1 + Extra 1.1 · PIN",
+          "description": "Level 1 (Mullvad) plus a passcode policy: at least 6 characters, no simple codes, locks immediately."
+        },
+        {
+          "id": "level-2-11-quad9",
+          "file": "profiles/OpenHat-Level-2.11-Quad9.mobileconfig",
+          "title": "OpenHat Security: Level 2.11 (Quad9)",
+          "subtitle": "Level 1 + Extra 1.1 · PIN",
+          "description": "Level 1 (Quad9) plus the stronger PIN policy."
+        },
+        {
+          "id": "level-2-12-mullvad",
+          "file": "profiles/OpenHat-Level-2.12-Mullvad.mobileconfig",
+          "title": "OpenHat Security: Level 2.12 (Mullvad)",
+          "subtitle": "Level 1 + Extra 1.2 · Safari",
+          "description": "Level 1 (Mullvad) plus a Safari deny list for social and ad sites. Apps are not removed."
+        },
+        {
+          "id": "level-2-12-quad9",
+          "file": "profiles/OpenHat-Level-2.12-Quad9.mobileconfig",
+          "title": "OpenHat Security: Level 2.12 (Quad9)",
+          "subtitle": "Level 1 + Extra 1.2 · Safari",
+          "description": "Level 1 (Quad9) plus the Safari website deny list."
+        }
+      ]
+    },
+    {
+      "id": "level-2-two",
+      "title": "Level 2.2x — two extras",
+      "description": "Level 1 plus both extras in one file. Later .22 / .23 slots are reserved if more extras ship.",
+      "profiles": [
+        {
+          "id": "level-2-21-mullvad",
+          "file": "profiles/OpenHat-Level-2.21-Mullvad.mobileconfig",
+          "title": "OpenHat Security: Level 2.21 (Mullvad)",
+          "subtitle": "Level 1 + PIN + Safari",
+          "description": "Mullvad DNS, Max Privacy, stronger PIN, and Safari website list."
+        },
+        {
+          "id": "level-2-21-quad9",
+          "file": "profiles/OpenHat-Level-2.21-Quad9.mobileconfig",
+          "title": "OpenHat Security: Level 2.21 (Quad9)",
+          "subtitle": "Level 1 + PIN + Safari",
+          "description": "Quad9 DNS, Max Privacy, stronger PIN, and Safari website list."
+        }
+      ]
+    },
+    {
+      "id": "extras",
+      "title": "OpenHat Extras — add-ons only",
+      "description": "Install these on top of Level 1 if you did not pick a Level 2 bundle. Extra 1.1 is PIN. Extra 1.2 is Safari.",
+      "profiles": [
+        {
+          "id": "extras-1-1",
+          "file": "profiles/OpenHat-Extras-1.1.mobileconfig",
+          "title": "OpenHat Extras 1.1",
+          "subtitle": "Stronger PIN only",
+          "description": "Passcode policy only. Use if Level 1 is already installed and you do not want a Level 2.11 bundle."
+        },
+        {
+          "id": "extras-1-2",
+          "file": "profiles/OpenHat-Extras-1.2.mobileconfig",
+          "title": "OpenHat Extras 1.2",
+          "subtitle": "Safari block list only",
+          "description": "Safari website deny list only. Does not affect Instagram, Snapchat, or other apps."
+        }
+      ]
+    },
+    {
+      "id": "level-3",
+      "title": "Level 3 — supervised · erases the iPhone",
+      "description": "Everything: Level 1, Extra 1.1, Extra 1.2, plus Supervised app hides. Requires Apple Configurator Prepare, which wipes the device.",
+      "danger": true,
+      "profiles": [
+        {
+          "id": "level-3-mullvad",
+          "file": "wipe-required/OpenHat-Level-3-Mullvad.mobileconfig",
+          "title": "OpenHat Security: Level 3 (Mullvad)",
+          "subtitle": "After Configurator Prepare only",
+          "description": "Full stack with Mullvad DNS. Hides tracking apps and applies Supervised-only locks. Only install after the phone is supervised.",
+          "danger": true,
+          "guide": "wipe-required/"
+        },
+        {
+          "id": "level-3-quad9",
+          "file": "wipe-required/OpenHat-Level-3-Quad9.mobileconfig",
+          "title": "OpenHat Security: Level 3 (Quad9)",
+          "subtitle": "After Configurator Prepare only",
+          "description": "Full stack with Quad9 DNS. Same Supervised locks as Level 3 (Mullvad).",
+          "danger": true,
+          "guide": "wipe-required/"
+        }
+      ]
+    }
+  ]
+}

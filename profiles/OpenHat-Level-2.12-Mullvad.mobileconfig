@@ -11,9 +11,9 @@
 	<key>PayloadIdentifier</key>
 	<string>org.openhat.ios-max-privacy</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Max Privacy (Mullvad Adblock, PIN)</string>
+	<string>OpenHat Security: Level 2.12 (Mullvad)</string>
 	<key>PayloadDescription</key>
-	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, PIN policy.</string>
+	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, Safari site list.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,7 +23,7 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>This profile encrypts DNS via Mullvad Adblock and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a stronger PIN policy.
+		<string>This profile encrypts DNS via Mullvad Adblock and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a Safari website block list.
 
 It cannot read your current Settings, turn off Location Services, enable Lockdown Mode, or sign you out of Apple ID.
 
@@ -149,31 +149,43 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 		</dict>
 		<dict>
 			<key>PayloadType</key>
-			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<string>com.apple.webcontent-filter</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>PayloadUUID</key>
-			<string>D570C462-19FC-5996-9258-50AA414A6049</string>
+			<string>4E0A10DF-A861-52AF-8504-037059AD5041</string>
 			<key>PayloadIdentifier</key>
-			<string>org.openhat.ios-max-privacy.passcode</string>
+			<string>org.openhat.ios-max-privacy.webfilter</string>
 			<key>PayloadDisplayName</key>
-			<string>OpenHat Passcode Policy</string>
+			<string>OpenHat Safari Tracker Deny List</string>
 			<key>PayloadDescription</key>
-			<string>Require a non-simple passcode of at least 6 characters; lock immediately.</string>
+			<string>Blocks known tracker and social-graph sites in Safari. Native apps are unaffected.</string>
 			<key>PayloadOrganization</key>
 			<string>OpenHat</string>
-			<key>forcePIN</key>
-			<true/>
-			<key>allowSimple</key>
+			<key>FilterType</key>
+			<string>BuiltIn</string>
+			<key>AutoFilterEnabled</key>
 			<false/>
-			<key>minLength</key>
-			<integer>6</integer>
-			<key>maxGracePeriod</key>
-			<integer>0</integer>
-			<key>maxInactivity</key>
-			<integer>2</integer>
-			<key>requireAlphanumeric</key>
-			<false/>
+			<key>UserDefinedName</key>
+			<string>OpenHat Safari Deny List</string>
+			<key>ContentFilterUUID</key>
+			<string>CCF8B5CF-710C-5A2F-B937-04D45D2E2937</string>
+			<key>DenyListURLs</key>
+			<array>
+				<string>https://www.facebook.com</string>
+				<string>https://m.facebook.com</string>
+				<string>https://www.instagram.com</string>
+				<string>https://www.snapchat.com</string>
+				<string>https://www.tiktok.com</string>
+				<string>https://www.doubleclick.net</string>
+				<string>https://googleads.g.doubleclick.net</string>
+				<string>https://pagead2.googlesyndication.com</string>
+				<string>https://www.google-analytics.com</string>
+				<string>https://graph.facebook.com</string>
+				<string>https://connect.facebook.net</string>
+				<string>https://ads.twitter.com</string>
+				<string>https://analytics.tiktok.com</string>
+			</array>
 		</dict>
 	</array>
 </dict>

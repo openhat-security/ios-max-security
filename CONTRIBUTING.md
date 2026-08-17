@@ -26,10 +26,10 @@ You need Python 3.9+ (stdlib only: no pip packages for the installer).
 
 ```bash
 python3 tools/build_profile.py
-python3 serve.py
+echo "iPhone Safari: http://$(ipconfig getifaddr en0):8080/" && python3 -m http.server 8080
 ```
 
-Open the printed LAN URL **in Safari on an iPhone**. Chrome and desktop Safari will not install a configuration profile the same way.
+Open the printed LAN URL **in Safari on an iPhone**. Chrome and desktop Safari will not install a configuration profile the same way. Public host is GitHub Pages.
 
 ## Where to edit
 
@@ -39,8 +39,7 @@ Open the printed LAN URL **in Safari on an iPhone**. Chrome and desktop Safari w
 | DNS providers | `tools/build_profile.py` (`DNS_PROVIDERS`) | rebuild |
 | Safari deny list | `data/safari-denylist.json` | rebuild |
 | Tracker apps | `data/tracker-apps.json` | rebuild |
-| Installer UI | `js/app.js`, `css/app.css`, `index.html` | refresh Safari |
-| Local server / MIME | `serve.py` | restart `serve.py` |
+| Installer UI | `js/install.js`, `css/app.css`, `index.html`, `data/profiles.json` | refresh Safari |
 | Supervised (erase) path | `wipe-required/` | keep it isolated from `profiles/` |
 
 **Do not hand-edit** `profiles/*.mobileconfig` or `catalog.json`. Those are generated.

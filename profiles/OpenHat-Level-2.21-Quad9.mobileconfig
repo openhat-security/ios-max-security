@@ -11,9 +11,9 @@
 	<key>PayloadIdentifier</key>
 	<string>org.openhat.ios-max-privacy</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Max Privacy (Quad9, Safari list)</string>
+	<string>OpenHat Security: Level 2.21 (Quad9)</string>
 	<key>PayloadDescription</key>
-	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, Safari site list.</string>
+	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, PIN policy, Safari site list.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,7 +23,7 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>This profile encrypts DNS via Quad9 and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a Safari website block list.
+		<string>This profile encrypts DNS via Quad9 and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a stronger PIN policy and a Safari website block list.
 
 It cannot read your current Settings, turn off Location Services, enable Lockdown Mode, or sign you out of Apple ID.
 
@@ -148,6 +148,34 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadUUID</key>
+			<string>D570C462-19FC-5996-9258-50AA414A6049</string>
+			<key>PayloadIdentifier</key>
+			<string>org.openhat.ios-max-privacy.passcode</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenHat Passcode Policy</string>
+			<key>PayloadDescription</key>
+			<string>Require a non-simple passcode of at least 6 characters; lock immediately.</string>
+			<key>PayloadOrganization</key>
+			<string>OpenHat</string>
+			<key>forcePIN</key>
+			<true/>
+			<key>allowSimple</key>
+			<false/>
+			<key>minLength</key>
+			<integer>6</integer>
+			<key>maxGracePeriod</key>
+			<integer>0</integer>
+			<key>maxInactivity</key>
+			<integer>2</integer>
+			<key>requireAlphanumeric</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>PayloadType</key>

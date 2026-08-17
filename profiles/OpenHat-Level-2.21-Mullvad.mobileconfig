@@ -7,13 +7,13 @@
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>PayloadUUID</key>
-	<string>183CEED0-4BEB-56E2-9B73-E9A2003021FE</string>
+	<string>89830D80-3C3D-5B04-B471-6B8B9BE09B66</string>
 	<key>PayloadIdentifier</key>
 	<string>org.openhat.ios-max-privacy</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Max Privacy (Quad9)</string>
+	<string>OpenHat Security: Level 2.21 (Mullvad)</string>
 	<key>PayloadDescription</key>
-	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen.</string>
+	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, PIN policy, Safari site list.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,11 +23,13 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>This profile encrypts DNS via Quad9 and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup.
+		<string>This profile encrypts DNS via Mullvad Adblock and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a stronger PIN policy and a Safari website block list.
 
 It cannot read your current Settings, turn off Location Services, enable Lockdown Mode, or sign you out of Apple ID.
 
-Before Install, tap More Details to see every payload. Remove anytime: Settings &gt; General &gt; VPN &amp; Device Management.</string>
+Before Install, tap More Details to see every payload. Remove anytime: Settings &gt; General &gt; VPN &amp; Device Management.
+
+If Install fails, your PIN may be too simple or this iPhone may reject the Safari filter. Remove this profile attempt, turn that extra off, and install again.</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>
@@ -37,13 +39,13 @@ Before Install, tap More Details to see every payload. Remove anytime: Settings 
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>PayloadUUID</key>
-			<string>9AA4E38A-CFA2-5E26-9778-C38CCA3AE1DF</string>
+			<string>16A040A6-8AEF-5169-8909-38761A25A418</string>
 			<key>PayloadIdentifier</key>
 			<string>org.openhat.ios-max-privacy.dns</string>
 			<key>PayloadDisplayName</key>
-			<string>Quad9 Encrypted DNS</string>
+			<string>Mullvad Adblock Encrypted DNS</string>
 			<key>PayloadDescription</key>
-			<string>Quad9 Foundation (Switzerland). Encrypts DNS and blocks known malware domains.</string>
+			<string>Mullvad VPN AB (Sweden). Encrypts DNS and blocks ads, trackers, and malware.</string>
 			<key>PayloadOrganization</key>
 			<string>OpenHat</string>
 			<key>ProhibitDisablement</key>
@@ -53,13 +55,11 @@ Before Install, tap More Details to see every payload. Remove anytime: Settings 
 				<key>DNSProtocol</key>
 				<string>HTTPS</string>
 				<key>ServerURL</key>
-				<string>https://dns.quad9.net/dns-query</string>
+				<string>https://adblock.doh.mullvad.net/dns-query</string>
 				<key>ServerAddresses</key>
 				<array>
-					<string>9.9.9.9</string>
-					<string>149.112.112.112</string>
-					<string>2620:fe::fe</string>
-					<string>2620:fe::9</string>
+					<string>194.242.2.3</string>
+					<string>2a07:e340::3</string>
 				</array>
 			</dict>
 		</dict>
@@ -146,6 +146,74 @@ Before Install, tap More Details to see every payload. Remove anytime: Settings 
 			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadUUID</key>
+			<string>D570C462-19FC-5996-9258-50AA414A6049</string>
+			<key>PayloadIdentifier</key>
+			<string>org.openhat.ios-max-privacy.passcode</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenHat Passcode Policy</string>
+			<key>PayloadDescription</key>
+			<string>Require a non-simple passcode of at least 6 characters; lock immediately.</string>
+			<key>PayloadOrganization</key>
+			<string>OpenHat</string>
+			<key>forcePIN</key>
+			<true/>
+			<key>allowSimple</key>
+			<false/>
+			<key>minLength</key>
+			<integer>6</integer>
+			<key>maxGracePeriod</key>
+			<integer>0</integer>
+			<key>maxInactivity</key>
+			<integer>2</integer>
+			<key>requireAlphanumeric</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.webcontent-filter</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadUUID</key>
+			<string>4E0A10DF-A861-52AF-8504-037059AD5041</string>
+			<key>PayloadIdentifier</key>
+			<string>org.openhat.ios-max-privacy.webfilter</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenHat Safari Tracker Deny List</string>
+			<key>PayloadDescription</key>
+			<string>Blocks known tracker and social-graph sites in Safari. Native apps are unaffected.</string>
+			<key>PayloadOrganization</key>
+			<string>OpenHat</string>
+			<key>FilterType</key>
+			<string>BuiltIn</string>
+			<key>AutoFilterEnabled</key>
+			<false/>
+			<key>UserDefinedName</key>
+			<string>OpenHat Safari Deny List</string>
+			<key>ContentFilterUUID</key>
+			<string>CCF8B5CF-710C-5A2F-B937-04D45D2E2937</string>
+			<key>DenyListURLs</key>
+			<array>
+				<string>https://www.facebook.com</string>
+				<string>https://m.facebook.com</string>
+				<string>https://www.instagram.com</string>
+				<string>https://www.snapchat.com</string>
+				<string>https://www.tiktok.com</string>
+				<string>https://www.doubleclick.net</string>
+				<string>https://googleads.g.doubleclick.net</string>
+				<string>https://pagead2.googlesyndication.com</string>
+				<string>https://www.google-analytics.com</string>
+				<string>https://graph.facebook.com</string>
+				<string>https://connect.facebook.net</string>
+				<string>https://ads.twitter.com</string>
+				<string>https://analytics.tiktok.com</string>
+			</array>
 		</dict>
 	</array>
 </dict>

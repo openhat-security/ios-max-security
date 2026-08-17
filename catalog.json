@@ -28,7 +28,7 @@
       "via": "profile",
       "after": "Mullvad Adblock DoH (or Quad9 if you install that file)",
       "apple_default": "Carrier / router DNS, unencrypted",
-      "verify": "Settings \u2192 General \u2192 VPN & Device Management \u2192 DNS / OpenHat Max Privacy",
+      "verify": "Settings \u2192 General \u2192 VPN & Device Management \u2192 OpenHat Security: Level 1",
       "notes": "Hides DNS from the carrier and blocks ads/trackers (Mullvad Adblock). iOS only uses one DNS profile."
     },
     {
@@ -40,7 +40,7 @@
         "celenityy/ios-settings"
       ],
       "via": "profile",
-      "after": "Install OpenHat-MaxPrivacy-Quad9.mobileconfig to replace Mullvad",
+      "after": "Install OpenHat Security: Level 1 (Quad9) to replace Mullvad",
       "apple_default": "n/a",
       "verify": "Same DNS screen; server should show dns.quad9.net",
       "notes": "Swiss malware-blocking resolver. Installing it replaces the Mullvad profile (same identifier)."
@@ -1459,7 +1459,7 @@
       "after": "Custom alphanumeric; Face ID off if your threat model needs it; Erase Data on",
       "apple_default": "6-digit + Face ID",
       "verify": "Settings \u2192 Face ID & Passcode",
-      "notes": "Optional extra file OpenHat-Passcode.mobileconfig enforces min length 6, no simple PINs, lock immediately. It will refuse to install until the passcode complies."
+      "notes": "Optional extra OpenHat Extras 1.1 enforces min length 6, no simple PINs, lock immediately. It will refuse to install until the passcode complies."
     },
     {
       "id": "notification-previews",
@@ -1968,7 +1968,7 @@
         "Apple Restrictions payload"
       ],
       "via": "manual",
-      "after": "Install OpenHat-SafariDenyList.mobileconfig (iOS 16+)",
+      "after": "Install OpenHat Extras 1.2 (iOS 16+)",
       "apple_default": "None",
       "verify": "Safari cannot open facebook.com / instagram.com / doubleclick.net etc.",
       "notes": "Safari only. Native Instagram/Snapchat apps ignore this. Separate file so a filter rejection cannot break the main profile."
@@ -1981,7 +1981,7 @@
         "Apple Restrictions payload"
       ],
       "via": "manual",
-      "after": "Supervised; then install wipe-required/OpenHat-Supervised.mobileconfig",
+      "after": "Supervised; then install wipe-required/OpenHat-Level-3-Mullvad.mobileconfig",
       "apple_default": "Unsupervised",
       "verify": "Settings \u2192 General \u2192 About \u2192 Supervised (or the profile applies AirDrop/Siri/app blocks)",
       "notes": "USB + a Mac. ERASES the entire iPhone. Isolated in wipe-required/ so it cannot be mixed with the no-wipe Safari profiles. See wipe-required/CONFIGURATOR.md."

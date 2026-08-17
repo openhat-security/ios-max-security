@@ -9,6 +9,9 @@ Apple will not let a normal iPhone hide Instagram or force Siri / AirDrop off. T
 
 ## After you accept the wipe
 
-Follow [CONFIGURATOR.md](CONFIGURATOR.md), then install:
+Follow [CONFIGURATOR.md](CONFIGURATOR.md), then install **OpenHat Security: Level 3**:
 
-`OpenHat-Supervised.mobileconfig`
+- `OpenHat-Level-3-Mullvad.mobileconfig`
+- `OpenHat-Level-3-Quad9.mobileconfig`
+
+Level 3 includes Max Privacy, Extra 1.1 (PIN), Extra 1.2 (Safari), and Supervised app hides.

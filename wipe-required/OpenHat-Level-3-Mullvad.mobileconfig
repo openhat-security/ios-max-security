@@ -7,13 +7,13 @@
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>PayloadUUID</key>
-	<string>89830D80-3C3D-5B04-B471-6B8B9BE09B66</string>
+	<string>CB7A05EE-831A-54D2-B83F-823C5E775F84</string>
 	<key>PayloadIdentifier</key>
-	<string>org.openhat.ios-max-privacy</string>
+	<string>org.openhat.ios-max-privacy.supervised</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Max Privacy (Mullvad Adblock, Safari list)</string>
+	<string>OpenHat Security: Level 3 (Mullvad)</string>
 	<key>PayloadDescription</key>
-	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, Safari site list.</string>
+	<string>Level 3: Max Privacy, PIN, Safari list, and Supervised app blocks. Requires Apple Configurator Prepare (erases the iPhone).</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,13 +23,11 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>This profile encrypts DNS via Mullvad Adblock and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a Safari website block list.
+		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device).
 
-It cannot read your current Settings, turn off Location Services, enable Lockdown Mode, or sign you out of Apple ID.
+Level 3 includes everything: encrypted DNS, Max Privacy restrictions, stronger PIN, Safari website list, and a Supervised block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn.
 
-Before Install, tap More Details to see every payload. Remove anytime: Settings &gt; General &gt; VPN &amp; Device Management.
-
-If Install fails, your PIN may be too simple or this iPhone may reject the Safari filter. Remove this profile attempt, turn that extra off, and install again.</string>
+On an unsupervised iPhone this file's app blocks are ignored.</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>
@@ -69,7 +67,7 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>PayloadUUID</key>
-			<string>AD4F431B-AAD1-5304-9143-58E3668CC713</string>
+			<string>C730FD06-5401-54B2-8EDD-48CFCFFC3085</string>
 			<key>PayloadIdentifier</key>
 			<string>org.openhat.ios-max-privacy.restrictions</string>
 			<key>PayloadDisplayName</key>
@@ -79,6 +77,8 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 			<key>PayloadOrganization</key>
 			<string>OpenHat</string>
 			<key>allowDiagnosticSubmission</key>
+			<false/>
+			<key>allowDiagnosticSubmissionModification</key>
 			<false/>
 			<key>allowApplePersonalizedAdvertising</key>
 			<false/>
@@ -144,8 +144,140 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 			<false/>
 			<key>allowAssistantWhileLocked</key>
 			<false/>
+			<key>allowAssistant</key>
+			<false/>
+			<key>allowAssistantUserGeneratedContent</key>
+			<false/>
+			<key>allowDictation</key>
+			<false/>
+			<key>allowAirDrop</key>
+			<false/>
+			<key>allowGameCenter</key>
+			<false/>
+			<key>allowAddingGameCenterFriends</key>
+			<false/>
+			<key>allowMultiplayerGaming</key>
+			<false/>
+			<key>allowNews</key>
+			<false/>
+			<key>allowPodcasts</key>
+			<false/>
+			<key>allowMusicService</key>
+			<false/>
+			<key>allowRadioService</key>
+			<false/>
+			<key>allowBookstore</key>
+			<false/>
+			<key>allowFindMyFriends</key>
+			<false/>
+			<key>allowFindMyFriendsModification</key>
+			<false/>
+			<key>allowAppClips</key>
+			<false/>
+			<key>allowMarketplaceAppInstallation</key>
+			<false/>
+			<key>allowWebDistributionAppInstallation</key>
+			<false/>
+			<key>allowAutomaticAppDownloads</key>
+			<false/>
+			<key>allowProximitySetupToNewDevice</key>
+			<false/>
+			<key>allowPasswordSharing</key>
+			<false/>
+			<key>allowPasswordProximityRequests</key>
+			<false/>
+			<key>allowPasswordAutoFill</key>
+			<false/>
+			<key>safariAllowAutoFill</key>
+			<false/>
+			<key>forceAuthenticationBeforeAutoFill</key>
+			<true/>
+			<key>allowiPhoneMirroring</key>
+			<false/>
+			<key>allowiPhoneWidgetsOnMac</key>
+			<false/>
+			<key>allowLiveVoicemail</key>
+			<false/>
+			<key>allowRCSMessaging</key>
+			<false/>
+			<key>allowVideoConferencingRemoteControl</key>
+			<false/>
+			<key>allowAirPrintiBeaconDiscovery</key>
+			<false/>
+			<key>forceAirPrintTrustedTLSRequirement</key>
+			<true/>
+			<key>allowHostPairing</key>
+			<false/>
+			<key>forceAutomaticDateAndTime</key>
+			<true/>
+			<key>allowDefinitionLookup</key>
+			<false/>
+			<key>allowGenmoji</key>
+			<false/>
+			<key>allowImagePlayground</key>
+			<false/>
+			<key>allowImageWand</key>
+			<false/>
+			<key>allowWritingTools</key>
+			<false/>
+			<key>allowPersonalizedHandwritingResults</key>
+			<false/>
+			<key>allowAppleIntelligenceReport</key>
+			<false/>
+			<key>allowMailSmartReplies</key>
+			<false/>
+			<key>allowMailSummary</key>
+			<false/>
+			<key>allowNotesTranscription</key>
+			<false/>
+			<key>allowNotesTranscriptionSummary</key>
+			<false/>
+			<key>allowSafariSummary</key>
+			<false/>
+			<key>allowVisualIntelligenceSummary</key>
+			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>
+			<key>blockedAppBundleIDs</key>
+			<array>
+				<string>com.burbn.instagram</string>
+				<string>com.facebook.Facebook</string>
+				<string>com.facebook.Messenger</string>
+				<string>com.toyopagroup.picaboo</string>
+				<string>com.zhiliaoapp.musically</string>
+				<string>com.atebits.Tweetie2</string>
+				<string>pinterest</string>
+				<string>com.reddit.Reddit</string>
+				<string>com.linkedin.LinkedIn</string>
+			</array>
+		</dict>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadUUID</key>
+			<string>D570C462-19FC-5996-9258-50AA414A6049</string>
+			<key>PayloadIdentifier</key>
+			<string>org.openhat.ios-max-privacy.passcode</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenHat Passcode Policy</string>
+			<key>PayloadDescription</key>
+			<string>Require a non-simple passcode of at least 6 characters; lock immediately.</string>
+			<key>PayloadOrganization</key>
+			<string>OpenHat</string>
+			<key>forcePIN</key>
+			<true/>
+			<key>allowSimple</key>
+			<false/>
+			<key>minLength</key>
+			<integer>6</integer>
+			<key>maxGracePeriod</key>
+			<integer>0</integer>
+			<key>maxInactivity</key>
+			<integer>2</integer>
+			<key>requireAlphanumeric</key>
+			<false/>
 		</dict>
 		<dict>
 			<key>PayloadType</key>

@@ -2,7 +2,7 @@
 
 via:
   profile              — written into profiles/*.mobileconfig; applies on a normal iPhone (no wipe)
-  profile-supervised   — only in wipe-required/OpenHat-Supervised.mobileconfig; needs Supervised (full erase)
+  profile-supervised   — only in wipe-required/OpenHat-Level-3-*.mobileconfig; needs Supervised (full erase)
   manual               — user must tap in Settings; a profile cannot set this
   skipped              — deliberately not automated (destructive, anti-theft, or needs credentials)
   app                  — recommended app/service, not a system toggle
@@ -38,7 +38,7 @@ CATALOG: list[dict] = [
         "via": "profile",
         "after": "Mullvad Adblock DoH (or Quad9 if you install that file)",
         "apple_default": "Carrier / router DNS, unencrypted",
-        "verify": "Settings → General → VPN & Device Management → DNS / OpenHat Max Privacy",
+        "verify": "Settings → General → VPN & Device Management → OpenHat Security: Level 1",
         "notes": "Hides DNS from the carrier and blocks ads/trackers (Mullvad Adblock). iOS only uses one DNS profile.",
     },
     {
@@ -47,7 +47,7 @@ CATALOG: list[dict] = [
         "category": "Network",
         "source": ["encrypted-dns", "celenityy"],
         "via": "profile",
-        "after": "Install OpenHat-MaxPrivacy-Quad9.mobileconfig to replace Mullvad",
+        "after": "Install OpenHat Security: Level 1 (Quad9) to replace Mullvad",
         "apple_default": "n/a",
         "verify": "Same DNS screen; server should show dns.quad9.net",
         "notes": "Swiss malware-blocking resolver. Installing it replaces the Mullvad profile (same identifier).",
@@ -1283,7 +1283,7 @@ CATALOG: list[dict] = [
         "apple_default": "6-digit + Face ID",
         "after": "Custom alphanumeric; Face ID off if your threat model needs it; Erase Data on",
         "verify": "Settings → Face ID & Passcode",
-        "notes": "Optional extra file OpenHat-Passcode.mobileconfig enforces min length 6, no simple PINs, lock immediately. It will refuse to install until the passcode complies.",
+        "notes": "Optional extra OpenHat Extras 1.1 enforces min length 6, no simple PINs, lock immediately. It will refuse to install until the passcode complies.",
     },
     {
         "id": "notification-previews",
@@ -1702,7 +1702,7 @@ CATALOG: list[dict] = [
         "source": ["apple"],
         "via": "manual",
         "apple_default": "None",
-        "after": "Install OpenHat-SafariDenyList.mobileconfig (iOS 16+)",
+        "after": "Install OpenHat Extras 1.2 (iOS 16+)",
         "verify": "Safari cannot open facebook.com / instagram.com / doubleclick.net etc.",
         "notes": "Safari only. Native Instagram/Snapchat apps ignore this. Separate file so a filter rejection cannot break the main profile.",
     },
@@ -1713,7 +1713,7 @@ CATALOG: list[dict] = [
         "source": ["apple"],
         "via": "manual",
         "apple_default": "Unsupervised",
-        "after": "Supervised; then install wipe-required/OpenHat-Supervised.mobileconfig",
+        "after": "Supervised; then install wipe-required/OpenHat-Level-3-Mullvad.mobileconfig",
         "verify": "Settings → General → About → Supervised (or the profile applies AirDrop/Siri/app blocks)",
         "notes": "USB + a Mac. ERASES the entire iPhone. Isolated in wipe-required/ so it cannot be mixed with the no-wipe Safari profiles. See wipe-required/CONFIGURATOR.md.",
     },

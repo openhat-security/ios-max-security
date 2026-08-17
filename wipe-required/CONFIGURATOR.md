@@ -2,7 +2,7 @@
 
 **This procedure wipes the device.** Every photo, thread, and app that is not in an encrypted backup is gone. Do not start Prepare until that backup exists and you have opened it once to confirm.
 
-After this, restrictions that a Safari profile cannot apply will start working. `OpenHat-Supervised.mobileconfig` in this folder also hides Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn.
+After this, restrictions that a Safari profile cannot apply will start working. **OpenHat Security: Level 3** in this folder also hides Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn, and includes PIN plus the Safari list.
 
 ## Steps
 
@@ -12,7 +12,7 @@ After this, restrictions that a Safari profile cannot apply will start working. 
 4. Select the device → **Prepare**.
 5. **Manual Configuration**. Enable **Supervise devices**. Leave MDM enrollment **off**.
 6. Continue. The phone **erases** and returns Supervised.
-7. Restore the backup if you want data back, then install `OpenHat-Supervised.mobileconfig` from this folder (Safari or Configurator → Add → Profiles).
+7. Restore the backup if you want data back, then install **OpenHat Security: Level 3** from this folder (Safari or Configurator → Add → Profiles).
 8. Confirm **Settings → General → VPN & Device Management**. Blocked apps should be gone. AirDrop / Siri should be forced off.
 
 ## Unsupervise

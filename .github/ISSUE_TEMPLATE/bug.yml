@@ -44,7 +44,7 @@ body:
     attributes:
       label: Steps to reproduce
       placeholder: |
-        1. python3 serve.py
+        1. python3 -m http.server 8080
         2. Open the URL in Safari on iPhone
         3. …
     validations:

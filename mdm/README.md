@@ -49,7 +49,7 @@ cp config.example.env .env
 ./upload_pushcert.sh
 # paste the returned Topic into .env as MDM_TOPIC and regenerate enrollment
 
-./enqueue_profile.py ../profiles/OpenHat-MaxPrivacy.mobileconfig --udid DEVICE_UDID
+./enqueue_profile.py ../profiles/OpenHat-Level-1-Mullvad.mobileconfig --udid DEVICE_UDID
 ```
 
 Open `https://$MDM_PUBLIC_URL/enroll/` in Safari on the iPhone. That enrollment **does not erase** the phone.
@@ -61,7 +61,7 @@ Open `https://$MDM_PUBLIC_URL/enroll/` in Safari on the iPhone. That enrollment 
 3. After enrollment:
 
 ```bash
-./enqueue_profile.py ../wipe-required/OpenHat-Supervised.mobileconfig --udid DEVICE_UDID
+./enqueue_profile.py ../wipe-required/OpenHat-Level-3-Mullvad.mobileconfig --udid DEVICE_UDID
 ```
 
 ## Layout

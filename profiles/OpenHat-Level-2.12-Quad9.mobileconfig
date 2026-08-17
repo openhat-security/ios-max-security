@@ -7,13 +7,13 @@
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>PayloadUUID</key>
-	<string>CB7A05EE-831A-54D2-B83F-823C5E775F84</string>
+	<string>183CEED0-4BEB-56E2-9B73-E9A2003021FE</string>
 	<key>PayloadIdentifier</key>
-	<string>org.openhat.ios-max-privacy.supervised</string>
+	<string>org.openhat.ios-max-privacy</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Supervised Max Privacy (Mullvad Adblock)</string>
+	<string>OpenHat Security: Level 2.12 (Quad9)</string>
 	<key>PayloadDescription</key>
-	<string>Same privacy baseline plus blocked high-tracking apps. Requires Apple Configurator supervision (erases the iPhone). See wipe-required/CONFIGURATOR.md.</string>
+	<string>Encrypted DNS, no Apple analytics, no ad tracking, tighter lock screen, Safari site list.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,11 +23,13 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device).
+		<string>This profile encrypts DNS via Quad9 and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a Safari website block list.
 
-Adds a block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn, plus every restriction in the standard OpenHat profile.
+It cannot read your current Settings, turn off Location Services, enable Lockdown Mode, or sign you out of Apple ID.
 
-On an unsupervised iPhone this file's app blocks are ignored.</string>
+Before Install, tap More Details to see every payload. Remove anytime: Settings &gt; General &gt; VPN &amp; Device Management.
+
+If Install fails, your PIN may be too simple or this iPhone may reject the Safari filter. Remove this profile attempt, turn that extra off, and install again.</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>
@@ -37,13 +39,13 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>PayloadUUID</key>
-			<string>16A040A6-8AEF-5169-8909-38761A25A418</string>
+			<string>9AA4E38A-CFA2-5E26-9778-C38CCA3AE1DF</string>
 			<key>PayloadIdentifier</key>
 			<string>org.openhat.ios-max-privacy.dns</string>
 			<key>PayloadDisplayName</key>
-			<string>Mullvad Adblock Encrypted DNS</string>
+			<string>Quad9 Encrypted DNS</string>
 			<key>PayloadDescription</key>
-			<string>Mullvad VPN AB (Sweden). Encrypts DNS and blocks ads, trackers, and malware.</string>
+			<string>Quad9 Foundation (Switzerland). Encrypts DNS and blocks known malware domains.</string>
 			<key>PayloadOrganization</key>
 			<string>OpenHat</string>
 			<key>ProhibitDisablement</key>
@@ -53,11 +55,13 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 				<key>DNSProtocol</key>
 				<string>HTTPS</string>
 				<key>ServerURL</key>
-				<string>https://adblock.doh.mullvad.net/dns-query</string>
+				<string>https://dns.quad9.net/dns-query</string>
 				<key>ServerAddresses</key>
 				<array>
-					<string>194.242.2.3</string>
-					<string>2a07:e340::3</string>
+					<string>9.9.9.9</string>
+					<string>149.112.112.112</string>
+					<string>2620:fe::fe</string>
+					<string>2620:fe::9</string>
 				</array>
 			</dict>
 		</dict>
@@ -67,7 +71,7 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 			<key>PayloadVersion</key>
 			<integer>1</integer>
 			<key>PayloadUUID</key>
-			<string>C730FD06-5401-54B2-8EDD-48CFCFFC3085</string>
+			<string>AD4F431B-AAD1-5304-9143-58E3668CC713</string>
 			<key>PayloadIdentifier</key>
 			<string>org.openhat.ios-max-privacy.restrictions</string>
 			<key>PayloadDisplayName</key>
@@ -77,8 +81,6 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 			<key>PayloadOrganization</key>
 			<string>OpenHat</string>
 			<key>allowDiagnosticSubmission</key>
-			<false/>
-			<key>allowDiagnosticSubmissionModification</key>
 			<false/>
 			<key>allowApplePersonalizedAdvertising</key>
 			<false/>
@@ -144,112 +146,8 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 			<false/>
 			<key>allowAssistantWhileLocked</key>
 			<false/>
-			<key>allowAssistant</key>
-			<false/>
-			<key>allowAssistantUserGeneratedContent</key>
-			<false/>
-			<key>allowDictation</key>
-			<false/>
-			<key>allowAirDrop</key>
-			<false/>
-			<key>allowGameCenter</key>
-			<false/>
-			<key>allowAddingGameCenterFriends</key>
-			<false/>
-			<key>allowMultiplayerGaming</key>
-			<false/>
-			<key>allowNews</key>
-			<false/>
-			<key>allowPodcasts</key>
-			<false/>
-			<key>allowMusicService</key>
-			<false/>
-			<key>allowRadioService</key>
-			<false/>
-			<key>allowBookstore</key>
-			<false/>
-			<key>allowFindMyFriends</key>
-			<false/>
-			<key>allowFindMyFriendsModification</key>
-			<false/>
-			<key>allowAppClips</key>
-			<false/>
-			<key>allowMarketplaceAppInstallation</key>
-			<false/>
-			<key>allowWebDistributionAppInstallation</key>
-			<false/>
-			<key>allowAutomaticAppDownloads</key>
-			<false/>
-			<key>allowProximitySetupToNewDevice</key>
-			<false/>
-			<key>allowPasswordSharing</key>
-			<false/>
-			<key>allowPasswordProximityRequests</key>
-			<false/>
-			<key>allowPasswordAutoFill</key>
-			<false/>
-			<key>safariAllowAutoFill</key>
-			<false/>
-			<key>forceAuthenticationBeforeAutoFill</key>
-			<true/>
-			<key>allowiPhoneMirroring</key>
-			<false/>
-			<key>allowiPhoneWidgetsOnMac</key>
-			<false/>
-			<key>allowLiveVoicemail</key>
-			<false/>
-			<key>allowRCSMessaging</key>
-			<false/>
-			<key>allowVideoConferencingRemoteControl</key>
-			<false/>
-			<key>allowAirPrintiBeaconDiscovery</key>
-			<false/>
-			<key>forceAirPrintTrustedTLSRequirement</key>
-			<true/>
-			<key>allowHostPairing</key>
-			<false/>
-			<key>forceAutomaticDateAndTime</key>
-			<true/>
-			<key>allowDefinitionLookup</key>
-			<false/>
-			<key>allowGenmoji</key>
-			<false/>
-			<key>allowImagePlayground</key>
-			<false/>
-			<key>allowImageWand</key>
-			<false/>
-			<key>allowWritingTools</key>
-			<false/>
-			<key>allowPersonalizedHandwritingResults</key>
-			<false/>
-			<key>allowAppleIntelligenceReport</key>
-			<false/>
-			<key>allowMailSmartReplies</key>
-			<false/>
-			<key>allowMailSummary</key>
-			<false/>
-			<key>allowNotesTranscription</key>
-			<false/>
-			<key>allowNotesTranscriptionSummary</key>
-			<false/>
-			<key>allowSafariSummary</key>
-			<false/>
-			<key>allowVisualIntelligenceSummary</key>
-			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>
-			<key>blockedAppBundleIDs</key>
-			<array>
-				<string>com.burbn.instagram</string>
-				<string>com.facebook.Facebook</string>
-				<string>com.facebook.Messenger</string>
-				<string>com.toyopagroup.picaboo</string>
-				<string>com.zhiliaoapp.musically</string>
-				<string>com.atebits.Tweetie2</string>
-				<string>pinterest</string>
-				<string>com.reddit.Reddit</string>
-				<string>com.linkedin.LinkedIn</string>
-			</array>
 		</dict>
 		<dict>
 			<key>PayloadType</key>

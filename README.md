@@ -12,7 +12,7 @@ This branch also has a **separate** [remote management](#remote-management) path
 
 ```mermaid
 flowchart TD
-  start([Start]) --> s1["1. Install OpenHat Max Privacy in Safari"]
+  start([Start]) --> s1["1. Install OpenHat Security: Level 1 in Safari"]
   s1 --> s1d["What this does for you:
 private DNS that blocks ads and trackers,
 Apple analytics off, personalized ads off,
@@ -61,25 +61,37 @@ Siri and AirDrop can be forced off"]
 
 | Step | What it is | Can you stop after this? | Erases the iPhone? |
 | --- | --- | --- | --- |
-| **1. OpenHat Max Privacy** | The main install. Private DNS (Mullvad, blocks ads), Apple ads/analytics off, tighter lock screen. | **Yes — recommended stop** | No |
-| **2a. Quad9 DNS** | Same as step 1, but DNS from Quad9 instead of Mullvad. One or the other, not both. | Yes | No |
-| **2b. Stronger PIN** | An extra install we made. Blocks easy PINs like `123456` and locks the phone immediately. | Yes | No |
-| **2c. Safari website block list** | An extra install we made. A list of sites we chose (Facebook, Instagram, Snapchat, TikTok websites, plus ad/tracker pages). Only affects **Safari**. The apps stay. | Yes | No |
-| **3. Settings taps** | Things Apple will not let an install change: Location, Lockdown Mode, iCloud, Private Wi-Fi, VPN. Checklist is on the audit page. | Yes | No |
-| **4. Tracking apps** | Delete them, or Screen Time → Never Allow. You can undo Screen Time later. | **Yes — last stop that keeps your data** | No |
-| **5. Advanced setup** | Apple Configurator on a Mac. **Erases the iPhone.** Supervised restrictions a Safari install cannot apply. | — | **Yes** |
+| **Level 1 (Mullvad or Quad9)** | The main install. Private DNS, Apple ads/analytics off, tighter lock screen. | **Yes — recommended stop** | No |
+| **Level 2.11** | Level 1 plus Extra 1.1 (stronger PIN). | Yes | No |
+| **Level 2.12** | Level 1 plus Extra 1.2 (Safari website list). | Yes | No |
+| **Level 2.21** | Level 1 plus both extras. | Yes | No |
+| **Extras 1.1 / 1.2** | PIN or Safari only, if Level 1 is already installed. | Yes | No |
+| **Settings taps** | Things Apple will not let an install change: Location, Lockdown Mode, iCloud, Private Wi-Fi, VPN. | Yes | No |
+| **Tracking apps** | Delete them, or Screen Time → Never Allow. | **Yes — last stop that keeps your data** | No |
+| **Level 3** | Apple Configurator on a Mac. **Erases the iPhone.** Everything, including Supervised app hides. | — | **Yes** |
 
 ---
 
-## Step 1 — OpenHat Max Privacy
+## Step 1 — OpenHat Security: Level 1
 
 This does **not** erase the iPhone. Stop here if you only wanted private DNS and ads/analytics off.
 
-1. On a computer in this folder, run `python3 serve.py`.
-2. On the iPhone, open the printed URL **in Safari** (not Chrome).
-3. Tap **Install Max Privacy**. Then **Settings → General → VPN & Device Management → Install**.
+### Install from GitHub Pages (recommended)
 
-Default DNS is Mullvad (Sweden, blocks ads and trackers). Tap **Install with Quad9 DNS** instead if you want Quad9 (Switzerland, blocks malware). Installing Quad9 replaces Mullvad — the phone only uses one.
+1. On the iPhone, open **Safari** (not Chrome):  
+   **https://openhat-security.github.io/ios-max-security/**
+2. Tap the profile you want, then **Allow** when iOS prompts you.
+3. Finish in **Settings → General → VPN & Device Management → Install**.
+
+Default is **OpenHat Security: Level 1 (Mullvad)**. Pick **Level 1 (Quad9)** if you prefer that resolver. Level 2 bundles add extras in one file (`.11` = PIN, `.12` = Safari, `.21` = both).
+
+### Local preview
+
+```bash
+echo "iPhone Safari: http://$(ipconfig getifaddr en0):8080/" && python3 -m http.server 8080
+```
+
+Open that URL in Safari on the iPhone. GitHub Pages is the public host: **https://openhat-security.github.io/ios-max-security/**
 
 ---
 
@@ -119,7 +131,7 @@ You can stop here. This is the last step that keeps your data.
 
 A Safari install cannot apply those locks. Apple Configurator **Prepare** supervises the device and **always erases all content and settings**.
 
-After the wipe, install `wipe-required/OpenHat-Supervised.mobileconfig`.
+After the wipe, install **OpenHat Security: Level 3** from `wipe-required/` (Mullvad or Quad9). It includes everything: Max Privacy, PIN, Safari list, and Supervised locks.
 
 ---
 
@@ -150,7 +162,7 @@ flowchart TD
 
 Enroll without erasing: open the enrollment page in Safari on the iPhone (`/enroll/` on your management server).
 
-Erase, then enroll: follow [`wipe-required/CONFIGURATOR.md`](wipe-required/CONFIGURATOR.md), turn **Supervise** on, then enroll. After that the server can install `wipe-required/OpenHat-Supervised.mobileconfig`.
+Erase, then enroll: follow [`wipe-required/CONFIGURATOR.md`](wipe-required/CONFIGURATOR.md), turn **Supervise** on, then enroll. After that the server can install `wipe-required/OpenHat-Level-3-Mullvad.mobileconfig`.
 
 How to run the server: [`mdm/README.md`](mdm/README.md).
 

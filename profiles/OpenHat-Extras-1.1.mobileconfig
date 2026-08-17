@@ -11,7 +11,7 @@
 	<key>PayloadIdentifier</key>
 	<string>org.openhat.ios-max-privacy.passcode-profile</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Passcode Policy</string>
+	<string>OpenHat Extras 1.1</string>
 	<key>PayloadDescription</key>
 	<string>Optional: non-simple passcode, lock immediately.</string>
 	<key>PayloadOrganization</key>
