@@ -1,6 +1,7 @@
 import { wireInstallButton } from "./profile-install.js";
 import { wireCopyButton } from "./copy.js";
-import { wireThemeControls, hostStatus } from "./theme.js?v=7";
+import { wireThemeControls, hostStatus } from "./theme.js?v=9";
+import { wireLevelPicker } from "./levels.js?v=12";
 
 wireThemeControls();
 
@@ -11,9 +12,11 @@ if (status === "local") document.body.classList.add("host-local");
 const copy = document.querySelector("[data-copy]");
 if (copy) wireCopyButton(copy, copy.getAttribute("data-copy"));
 
+wireLevelPicker(status !== "phish");
+
 if (status !== "phish") {
   document.querySelectorAll("[data-install]").forEach((el) => {
-    wireInstallButton(el, el.getAttribute("data-install") || el.getAttribute("href"));
+    wireInstallButton(el);
   });
 }
 

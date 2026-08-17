@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7f0f0">
-  <title>OpenHat Security: Level 4.1</title>
+  <title>OpenHat Security: Level 1</title>
   <link rel="stylesheet" href="css/app.css?v=15" id="theme-base">
   <link rel="stylesheet" href="" id="theme-overlay" disabled>
   <script src="js/theme-boot.js?v=9"></script>
@@ -32,42 +32,31 @@
       </button>
     </div>
     <p class="back"><a href="./">← Back to profiles</a></p>
-    <span class="badge">Level 4.1 · does not erase</span>
-    <h1>User-enrolled MDM</h1>
-    <p class="lead">You run the server. OpenHat does not manage the phone and cannot see your data. Lockdown Mode is Level 3 and optional.</p>
+    <span class="badge">Level 1 · no erase</span>
+    <h1>Privacy restrictions</h1>
+    <p class="lead">Encrypted DNS plus the Level 1 restrictions. Mullvad is the default. Use Safari to install.</p>
   </header>
 
   <main>
-    <div class="note">
-      <strong>You manage this. We do not.</strong>
-      <p>Apple allows user-approved MDM enrollment without wiping the iPhone. That path can push Level 1 / Level 2 later. It does not Supervise the device, so it cannot hide Instagram or apply the Level 4.2 keys (Siri / AirDrop / USB pairing / app blocks).</p>
-    </div>
-
-    <p class="muted">This is not the same as Level 3. Level 3 is Lockdown Mode in Settings. You can enroll here with Lockdown Mode on, or off. If Lockdown Mode is already on, enroll through your MDM URL — Safari will not install a new local profile.</p>
-
-    <div class="stack">
-      <a class="action secondary" href="https://github.com/openhat-security/ios-max-security/blob/main/mdm/README.md">
-        <span>
-          How to run your own MDM
-          <small>NanoMDM on a host you control · no wipe</small>
-        </span>
-        <span class="go">Open</span>
-      </a>
-      <a class="action secondary" href="lockdown.html">
-        <span>
-          Level 3 — Lockdown Mode
-          <small>Settings tap · no server · no erase</small>
-        </span>
-        <span class="go">Open</span>
-      </a>
-      <a class="action" href="wipe.html">
-        <span>
-          Level 4.2 — Supervised
-          <small>Erase, then the Supervised profile</small>
-        </span>
-        <span class="go">Open</span>
-      </a>
-    </div>
+    <article class="level is-open" id="level-1">
+      <div class="level-panel">
+        <fieldset class="choice">
+          <legend>DNS Resolver</legend>
+          <label class="choice-row">
+            <input type="radio" name="l1-dns" value="Mullvad" checked>
+            <span>Mullvad <small>Blocks ads and trackers</small></span>
+          </label>
+          <label class="choice-row">
+            <input type="radio" name="l1-dns" value="Quad9">
+            <span>Quad9 <small>Blocks malware</small></span>
+          </label>
+        </fieldset>
+        <div class="level-actions">
+          <a href="profiles/OpenHat-Level-1-Mullvad.mobileconfig" role="button" data-install data-pick-install>Install Profile</a>
+          <a href="view.html?p=profiles/OpenHat-Level-1-Mullvad.mobileconfig" role="button" class="secondary" data-pick-view>View Profile</a>
+        </div>
+      </div>
+    </article>
   </main>
 
   <footer class="site-foot">
@@ -90,9 +79,6 @@
     <p class="foot-copy">© 2026 OpenHat Security</p>
   </footer>
 
-  <script type="module">
-    import { wireThemeControls } from "./js/theme.js?v=9";
-    wireThemeControls();
-  </script>
+  <script type="module" src="js/install.js?v=14"></script>
 </body>
 </html>

@@ -198,6 +198,120 @@
       "notes": "Use Bitwarden or Proton Pass instead, as both guides recommend."
     },
     {
+      "id": "icloud-mail",
+      "key": "allowCloudMail",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Mail",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On if iCloud Mail is enabled",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → iCloud Mail",
+      "notes": "Use Proton Mail or Tuta. This does not delete an existing @icloud.com address."
+    },
+    {
+      "id": "icloud-contacts",
+      "key": "allowCloudAddressBook",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Contacts",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Contacts",
+      "notes": ""
+    },
+    {
+      "id": "icloud-calendar",
+      "key": "allowCloudCalendar",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Calendar",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Calendar",
+      "notes": "Proton Calendar if you still need sync."
+    },
+    {
+      "id": "icloud-reminders",
+      "key": "allowCloudReminders",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Reminders",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Reminders",
+      "notes": ""
+    },
+    {
+      "id": "icloud-bookmarks",
+      "key": "allowCloudBookmarks",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Safari bookmarks / tabs",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Safari",
+      "notes": ""
+    },
+    {
+      "id": "icloud-notes",
+      "key": "allowCloudNotes",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Notes",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Notes",
+      "notes": "Standard Notes if you still need sync."
+    },
+    {
+      "id": "icloud-freeform",
+      "key": "allowCloudFreeform",
+      "value": false,
+      "via": "profile",
+      "title": "iCloud Freeform",
+      "category": "iCloud",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → [your name] → iCloud → Freeform",
+      "notes": ""
+    },
+    {
       "id": "handoff",
       "key": "allowActivityContinuation",
       "value": false,
@@ -901,18 +1015,19 @@
       "id": "safari-autofill",
       "key": "safariAllowAutoFill",
       "value": false,
-      "via": "profile-supervised",
+      "via": "profile",
       "title": "Safari AutoFill (contacts / cards / passwords)",
       "category": "Safari",
       "source": [
+        "ianonymous",
         "celenityy",
         "iprivacy",
         "apple"
       ],
       "apple_default": "On",
-      "after": "Off (supervised only)",
+      "after": "Off",
       "verify": "Settings → Apps → Safari → AutoFill",
-      "notes": "Disable Use Contact Info and Credit Cards manually on a normal iPhone."
+      "notes": "Apple documents this key without a supervision requirement. Use Bitwarden or Proton Pass."
     },
     {
       "id": "auth-before-autofill",
@@ -1261,6 +1376,53 @@
       "after": "Off (supervised only)",
       "verify": "Camera visual intelligence",
       "notes": ""
+    },
+    {
+      "id": "namedrop",
+      "key": "allowERDiscovery",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "NameDrop / bringing devices together",
+      "category": "Network",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off (supervised only)",
+      "verify": "Settings → General → AirDrop → Bringing Devices Together",
+      "notes": "Turn Bringing Devices Together off manually on a normal iPhone."
+    },
+    {
+      "id": "usb-restricted",
+      "key": "allowUSBRestrictedMode",
+      "value": true,
+      "via": "profile-supervised",
+      "title": "USB Restricted Mode (lock accessories after an hour)",
+      "category": "Lock screen",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On, user can disable",
+      "after": "Forced on (supervised only)",
+      "verify": "Settings → Face ID & Passcode → Allow Access When Locked → Accessories",
+      "notes": "Apple Platform Security: USB data is denied until unlock after the device has been locked about an hour. Setting this false would weaken that. Also turn Accessories off on the lock screen yourself."
+    },
+    {
+      "id": "unpaired-recovery",
+      "key": "allowUnpairedExternalBootToRecovery",
+      "value": false,
+      "via": "profile-supervised",
+      "title": "Unpaired boot to recovery over USB",
+      "category": "Lock screen",
+      "source": [
+        "apple"
+      ],
+      "apple_default": "Allowed",
+      "after": "Off (supervised only)",
+      "verify": "Recovery over USB from an unpaired host fails",
+      "notes": "Cuts a physical-access path used by some extraction tools."
     },
     {
       "id": "watch-wrist",

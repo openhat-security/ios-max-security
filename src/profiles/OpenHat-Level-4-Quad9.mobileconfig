@@ -13,7 +13,7 @@
 	<key>PayloadDisplayName</key>
 	<string>OpenHat Security: Level 4 (Quad9)</string>
 	<key>PayloadDescription</key>
-	<string>Level 4: Max Privacy, PIN, Safari list, and Supervised app blocks. Requires Apple Configurator Prepare (erases the iPhone), then Lockdown Mode.</string>
+	<string>Level 4.2 Supervised: Max Privacy, PIN, Safari list, and app blocks. Requires Apple Configurator Prepare (erases the iPhone). Lockdown Mode is Level 3 and optional.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,11 +23,11 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device).
+		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device). That is Level 4.2. Lockdown Mode is Level 3 and optional; a profile cannot turn it on.
 
-Level 4 includes everything: encrypted DNS, Max Privacy restrictions, stronger PIN, Safari website list, and a Supervised block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn.
+This file includes encrypted DNS, Max Privacy restrictions, a stronger PIN, the Safari website list, and a Supervised block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn.
 
-On an unsupervised iPhone this file's app blocks are ignored.</string>
+On an unsupervised iPhone the app blocks and other Supervised keys are ignored. Use Level 1 or 2 instead, or Level 4.1 MDM without a wipe.</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>
@@ -101,6 +101,20 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 			<key>allowCloudDocumentSync</key>
 			<false/>
 			<key>allowCloudKeychainSync</key>
+			<false/>
+			<key>allowCloudMail</key>
+			<false/>
+			<key>allowCloudAddressBook</key>
+			<false/>
+			<key>allowCloudCalendar</key>
+			<false/>
+			<key>allowCloudReminders</key>
+			<false/>
+			<key>allowCloudBookmarks</key>
+			<false/>
+			<key>allowCloudNotes</key>
+			<false/>
+			<key>allowCloudFreeform</key>
 			<false/>
 			<key>allowActivityContinuation</key>
 			<false/>
@@ -237,6 +251,12 @@ On an unsupervised iPhone this file's app blocks are ignored.</string>
 			<key>allowSafariSummary</key>
 			<false/>
 			<key>allowVisualIntelligenceSummary</key>
+			<false/>
+			<key>allowERDiscovery</key>
+			<false/>
+			<key>allowUSBRestrictedMode</key>
+			<true/>
+			<key>allowUnpairedExternalBootToRecovery</key>
 			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>

@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7f0f0">
   <title>View profile — OpenHat Security</title>
-  <link rel="stylesheet" href="css/app.css?v=8" id="theme-base">
+  <link rel="stylesheet" href="css/app.css?v=15" id="theme-base">
   <link rel="stylesheet" href="" id="theme-overlay" disabled>
-  <script src="js/theme-boot.js?v=7"></script>
+  <script src="js/theme-boot.js?v=9"></script>
 </head>
 <body>
   <div class="scan" aria-hidden="true"></div>
@@ -22,7 +22,6 @@
         <select id="style-select">
           <option value="app">Red Hat</option>
           <option value="blackhat">Black Hat</option>
-          <option value="primer">Primer</option>
           <option value="paper">Paper</option>
           <option value="terminal">Terminal</option>
         </select>
@@ -43,6 +42,26 @@
 
   <main id="audit"></main>
 
-  <script type="module" src="js/profile-view.js?v=7"></script>
+  <footer class="site-foot">
+    <nav class="foot-row">
+      <a href="./">Home</a>
+      <a href="paper.html">Paper</a>
+      <a href="https://github.com/openhat-security">GitHub</a>
+      <a href="https://github.com/openhat-security/ios-max-security">Repo</a>
+    </nav>
+    <nav class="foot-row">
+      <a href="level1.html">Level 1</a>
+      <a href="level2.html">Level 2</a>
+      <a href="lockdown.html">Level 3</a>
+      <a href="mdm.html">Level 4.1</a>
+      <a href="wipe.html">Level 4.2</a>
+      <a href="configurator.html">Config</a>
+      <a href="extras.html">Extra</a>
+      <a href="remove.html">Remove</a>
+    </nav>
+    <p class="foot-copy">© 2026 OpenHat Security</p>
+  </footer>
+
+  <script type="module" src="js/profile-view.js?v=10"></script>
 </body>
 </html>

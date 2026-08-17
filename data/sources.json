@@ -20,6 +20,10 @@
     {
       "id": "apple",
       "name": "Apple Restrictions payload"
+    },
+    {
+      "id": "ianonymous",
+      "name": "iAnonymous3000/iOS-Hardening-Guide"
     }
   ]
 }

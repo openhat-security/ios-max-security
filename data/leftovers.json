@@ -102,15 +102,74 @@
     {
       "id": "lockdown",
       "via": "manual",
-      "title": "Lockdown Mode",
+      "title": "Lockdown Mode (Level 3)",
       "category": "Lock screen",
       "source": [
-        "celenityy"
+        "ianonymous",
+        "celenityy",
+        "apple"
       ],
       "apple_default": "Off",
-      "after": "On; 2G cellular off",
+      "after": "On after Level 1 / 2 is installed; 2G cellular off",
       "verify": "Settings → Privacy & Security → Lockdown Mode",
-      "notes": "Requires passcode. A profile cannot enable this."
+      "notes": "Apple will not let a profile turn this on. Install profiles first — Lockdown Mode blocks new Safari profile installs unless you use MDM. Optional with Level 4. See lockdown.html."
+    },
+    {
+      "id": "stolen-device",
+      "via": "manual",
+      "title": "Stolen Device Protection",
+      "category": "Lock screen",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "Off",
+      "after": "On; Require Security Delay → Always if Significant Locations is off",
+      "verify": "Settings → Face ID & Passcode → Stolen Device Protection",
+      "notes": "Needs a passcode, Face ID or Touch ID, Find My, and Apple ID 2FA. The default 'away from familiar places' mode uses Significant Locations. If you turned those off, set the delay to Always."
+    },
+    {
+      "id": "apple-id-2fa",
+      "via": "manual",
+      "title": "Apple ID two-factor authentication",
+      "category": "iCloud",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On for new Apple IDs",
+      "after": "On",
+      "verify": "Settings → [your name] → Sign-In & Security → Two-Factor Authentication",
+      "notes": "Required for Stolen Device Protection. Prefer security keys if your threat model is targeted."
+    },
+    {
+      "id": "namedrop-manual",
+      "via": "manual",
+      "title": "NameDrop / Bringing Devices Together off",
+      "category": "Network",
+      "source": [
+        "ianonymous",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "Off",
+      "verify": "Settings → General → AirDrop → Bringing Devices Together",
+      "notes": "Supervised Level 4.2 also forces allowERDiscovery=false. Do this tap on a normal iPhone."
+    },
+    {
+      "id": "auto-datetime-manual",
+      "via": "manual",
+      "title": "Set Date & Time automatically",
+      "category": "Network",
+      "source": [
+        "ianonymous",
+        "celenityy",
+        "apple"
+      ],
+      "apple_default": "On",
+      "after": "On",
+      "verify": "Settings → General → Date & Time → Set Automatically",
+      "notes": "Wrong clocks break TLS. Supervised Level 4.2 locks this on."
     },
     {
       "id": "apple-id",
@@ -122,9 +181,9 @@
         "iprivacy"
       ],
       "apple_default": "Signed in, most sync on",
-      "after": "Signed out, or Photos/Drive/Keychain/Messages/Health/Calendar/Contacts/Safari/Home/Wallet/Siri/Maps/Shortcuts/Backup all off",
+      "after": "Signed out, or leftover iCloud toggles off (Photos, Messages, Health, Home, Wallet, Siri, Maps, Shortcuts)",
       "verify": "Settings → [your name]",
-      "notes": "If you keep iCloud: Advanced Data Protection on, Access iCloud Data on the Web off, 2FA / security keys on, communication emails off, Personalized Recommendations off."
+      "notes": "Level 1 already turns off Backup, Drive, Keychain, Mail, Contacts, Calendar, Reminders, Safari, Notes, and Freeform. If you keep the Apple ID: Advanced Data Protection on, Access iCloud Data on the Web off, 2FA / security keys on."
     },
     {
       "id": "icloud-photos",
@@ -249,7 +308,7 @@
       "apple_default": "Mostly on",
       "after": "All Allow Access When Locked off",
       "verify": "Settings → Face ID & Passcode → Allow Access When Locked",
-      "notes": "Control Center, Notification Center, Today View, and Wallet are already forced off by the profile."
+      "notes": "Control Center, Notification Center, Today View, and Wallet are already forced off by the profile. Accessories off is USB Restricted Mode: after about an hour locked, USB data needs an unlock. That is the Apple Platform Security default; keep it."
     },
     {
       "id": "passcode-strong",
@@ -774,7 +833,7 @@
       "apple_default": "Unsupervised",
       "after": "Supervised; then install profiles/OpenHat-Level-4-Mullvad.mobileconfig",
       "verify": "Settings → General → About → Supervised (or the profile applies AirDrop/Siri/app blocks)",
-      "notes": "USB + a Mac. ERASES the entire iPhone. See configurator.html, then install Level 4 from profiles/."
+      "notes": "Level 4.2. USB + a Mac. ERASES the entire iPhone. Lockdown Mode is Level 3 and optional. See configurator.html, then install the Level 4 profile from profiles/."
     },
     {
       "id": "tracker-apps-delete",

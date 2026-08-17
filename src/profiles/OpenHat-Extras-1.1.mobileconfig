@@ -23,9 +23,9 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>Optional extra profile. Requires a passcode that is not a simple pattern (123456, 111111) and is at least 6 characters. The phone locks immediately when idle. It does not erase the device after failed attempts.
+		<string>This additional configuration profile includes a passcode policy. Install it if Level 1 is already on this iPhone and you do not want to replace that profile.
 
-If your current passcode is too weak, iOS will ask you to change it within 60 minutes of install.</string>
+A passcode policy requires a code that is not a simple pattern and is at least 6 characters. The Safari filter blocks listed sites in Safari only; Instagram and Snapchat apps still work.</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>

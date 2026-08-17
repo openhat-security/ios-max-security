@@ -4,7 +4,7 @@ This folder is **not** the personal installer. The Safari profile in `src/profil
 
 The Python here (`generate_enrollment.py`, `enqueue_profile.py`) is **stdlib only** — `plistlib`, `urllib.request`, no pip. Keep it that way. The server itself is Docker (NanoMDM, SCEP, Caddy), not a Python package.
 
-The user-facing MDM chart lives in the [root README](../README.md#remote-management). This page is how to run the server.
+The user-facing MDM pages are [Level 4.1](../src/mdm.html) (no erase) and [Level 4.2](../src/wipe.html) (Supervise). Lockdown Mode is [Level 3](../src/lockdown.html) and is optional. This page is how to run the server.
 
 ```mermaid
 flowchart TD

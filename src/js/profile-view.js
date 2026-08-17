@@ -1,7 +1,7 @@
 import { parsePlist } from "./plist.js";
 import { wireInstallButton } from "./profile-install.js";
 import { githubUrlBox } from "./copy.js";
-import { wireThemeControls, applyHostGuard } from "./theme.js?v=7";
+import { wireThemeControls, applyHostGuard } from "./theme.js?v=9";
 
 wireThemeControls();
 const host = applyHostGuard();
@@ -32,6 +32,17 @@ const KEY_LABELS = {
   forceEncryptedBackup: "Encrypt local backups",
   allowCloudDocumentSync: "iCloud Drive",
   allowCloudKeychainSync: "iCloud Keychain",
+  allowCloudMail: "iCloud Mail",
+  allowCloudAddressBook: "iCloud Contacts",
+  allowCloudCalendar: "iCloud Calendar",
+  allowCloudReminders: "iCloud Reminders",
+  allowCloudBookmarks: "iCloud Safari",
+  allowCloudNotes: "iCloud Notes",
+  allowCloudFreeform: "iCloud Freeform",
+  safariAllowAutoFill: "Safari AutoFill",
+  allowERDiscovery: "NameDrop",
+  allowUSBRestrictedMode: "USB Restricted Mode",
+  allowUnpairedExternalBootToRecovery: "Unpaired USB recovery",
   allowActivityContinuation: "Handoff",
   allowSharedStream: "iCloud Shared Album",
   allowPhotoStream: "My Photo Stream",

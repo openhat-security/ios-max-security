@@ -6,9 +6,9 @@
   <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#f7f0f0">
   <title>Why These Settings Matter — Adam Siwiec</title>
-  <link rel="stylesheet" href="css/app.css?v=8" id="theme-base">
+  <link rel="stylesheet" href="css/app.css?v=15" id="theme-base">
   <link rel="stylesheet" href="" id="theme-overlay" disabled>
-  <script src="js/theme-boot.js?v=7"></script>
+  <script src="js/theme-boot.js?v=9"></script>
 </head>
 <body class="paper-page">
   <div class="scan" aria-hidden="true"></div>
@@ -22,7 +22,6 @@
         <select id="style-select">
           <option value="app">Red Hat</option>
           <option value="blackhat">Black Hat</option>
-          <option value="primer">Primer</option>
           <option value="paper">Paper</option>
           <option value="terminal">Terminal</option>
         </select>
@@ -81,7 +80,7 @@
       <ol>
         <li>Cut third-party tracking at the network layer: private DNS, Apple analytics and personalized ads off, tighter lock screen.</li>
         <li>Make the worst graph-building apps harder to use: Safari deny lists; delete or Screen Time block Instagram, Snapchat, TikTok, and the rest.</li>
-        <li>Offer a harder posture: Lockdown Mode, optional self-hosted MDM you run (Level 3), or erase-and-supervise (Level 4). You manage those profiles. OpenHat cannot see your data.</li>
+        <li>Offer a harder posture: Lockdown Mode (Level 3, a Settings switch), optional self-hosted MDM you run (Level 4.1, no erase), or erase-and-supervise (Level 4.2). Lockdown Mode and MDM are independent. You manage those steps. OpenHat cannot see your data.</li>
       </ol>
       <p>It is not possible to fully secure an iPhone or a Mac. The OS is proprietary and closed. Updates can change the ground. These levels configure as much as a user-installed profile is allowed to configure, depending on how far you want to go.</p>
 
@@ -101,8 +100,29 @@
       <p class="muted">Also: <a href="https://www.apple.com/legal/privacy/en-ww/governance/">Apple privacy governance</a> · <a href="https://www.pogo.org/fact-sheets/fact-sheet-closing-the-data-broker-loophole">POGO, data-broker loophole</a> · <a href="https://cdt.org/insights/section-702-reauthorization-must-close-the-data-broker-loophole/">CDT on the data-broker loophole</a></p>
     </article>
   </main>
+
+  <footer class="site-foot">
+    <nav class="foot-row">
+      <a href="./">Home</a>
+      <a href="paper.html">Paper</a>
+      <a href="https://github.com/openhat-security">GitHub</a>
+      <a href="https://github.com/openhat-security/ios-max-security">Repo</a>
+    </nav>
+    <nav class="foot-row">
+      <a href="level1.html">Level 1</a>
+      <a href="level2.html">Level 2</a>
+      <a href="lockdown.html">Level 3</a>
+      <a href="mdm.html">Level 4.1</a>
+      <a href="wipe.html">Level 4.2</a>
+      <a href="configurator.html">Config</a>
+      <a href="extras.html">Extra</a>
+      <a href="remove.html">Remove</a>
+    </nav>
+    <p class="foot-copy">© 2026 OpenHat Security</p>
+  </footer>
+
   <script type="module">
-    import { wireThemeControls } from "./js/theme.js?v=7";
+    import { wireThemeControls } from "./js/theme.js?v=9";
     wireThemeControls();
   </script>
 </body>

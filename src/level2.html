@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-color="light" data-style="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7f0f0">
+  <title>OpenHat Security: Level 2</title>
+  <link rel="stylesheet" href="css/app.css?v=15" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="js/theme-boot.js?v=9"></script>
+</head>
+<body>
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</a>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="blackhat">Black Hat</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <button type="button" class="mode-toggle" id="mode-toggle" aria-label="Switch to dark mode">
+        <span class="icon-moon" aria-hidden="true"></span>
+        <span class="icon-sun" aria-hidden="true"></span>
+      </button>
+    </div>
+    <p class="back"><a href="./">← Back to profiles</a></p>
+    <span class="badge">Level 2 · no erase</span>
+    <h1>Passcode and Safari filter</h1>
+    <p class="lead">Level 1, plus a passcode policy and the Safari content filter. Mullvad is the default. Use Safari to install.</p>
+  </header>
+
+  <main>
+    <article class="level is-open" id="level-2">
+      <div class="level-panel">
+        <fieldset class="choice">
+          <legend>DNS Resolver</legend>
+          <label class="choice-row">
+            <input type="radio" name="l2-dns" value="Mullvad" checked>
+            <span>Mullvad <small>Blocks ads and trackers</small></span>
+          </label>
+          <label class="choice-row">
+            <input type="radio" name="l2-dns" value="Quad9">
+            <span>Quad9 <small>Blocks malware</small></span>
+          </label>
+        </fieldset>
+        <fieldset class="choice">
+          <legend>Include</legend>
+          <label class="choice-row">
+            <input type="checkbox" name="l2-pin" checked>
+            <span>Passcode Policy <small>No simple codes · lock immediately</small></span>
+          </label>
+          <label class="choice-row">
+            <input type="checkbox" name="l2-safari" checked>
+            <span>Safari Content Filter <small>Blocks listed sites in Safari only</small></span>
+          </label>
+        </fieldset>
+        <details class="blocklist">
+          <summary>View Safari Content Filter</summary>
+          <ul>
+            <li>facebook.com</li>
+            <li>m.facebook.com</li>
+            <li>instagram.com</li>
+            <li>snapchat.com</li>
+            <li>tiktok.com</li>
+            <li>doubleclick.net</li>
+            <li>googleads.g.doubleclick.net</li>
+            <li>pagead2.googlesyndication.com</li>
+            <li>google-analytics.com</li>
+            <li>graph.facebook.com</li>
+            <li>connect.facebook.net</li>
+            <li>ads.twitter.com</li>
+            <li>analytics.tiktok.com</li>
+          </ul>
+        </details>
+        <p class="pick-hint" id="l2-hint" hidden>Turn on Passcode Policy or Safari Content Filter to continue.</p>
+        <div class="level-actions">
+          <a href="profiles/OpenHat-Level-2.21-Mullvad.mobileconfig" role="button" data-install data-pick-install>Install Profile</a>
+          <a href="view.html?p=profiles/OpenHat-Level-2.21-Mullvad.mobileconfig" role="button" class="secondary" data-pick-view>View Profile</a>
+        </div>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <nav class="foot-row">
+      <a href="./">Home</a>
+      <a href="paper.html">Paper</a>
+      <a href="https://github.com/openhat-security">GitHub</a>
+      <a href="https://github.com/openhat-security/ios-max-security">Repo</a>
+    </nav>
+    <nav class="foot-row">
+      <a href="level1.html">Level 1</a>
+      <a href="level2.html">Level 2</a>
+      <a href="lockdown.html">Level 3</a>
+      <a href="mdm.html">Level 4.1</a>
+      <a href="wipe.html">Level 4.2</a>
+      <a href="configurator.html">Config</a>
+      <a href="extras.html">Extra</a>
+      <a href="remove.html">Remove</a>
+    </nav>
+    <p class="foot-copy">© 2026 OpenHat Security</p>
+  </footer>
+
+  <script type="module" src="js/install.js?v=14"></script>
+</body>
+</html>

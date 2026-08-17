@@ -163,7 +163,8 @@ def build_setup_profile(provider_id: str, *, pin: bool = False, safari: bool = F
         "and app tracking requests. It also tightens the lock screen and "
         f"disables iCloud Backup.{extra_txt}\n\n"
         "It cannot read your current Settings, turn off Location Services, "
-        "enable Lockdown Mode, or sign you out of Apple ID.\n\n"
+        "enable Lockdown Mode (do that yourself after Install — Level 3), "
+        "or sign you out of Apple ID.\n\n"
         "Before Install, tap More Details to see every payload. "
         "Remove anytime: Settings > General > VPN & Device Management."
         f"{fail_txt}"
@@ -198,12 +199,14 @@ def build_setup_profile(provider_id: str, *, pin: bool = False, safari: bool = F
 def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
     consent = (
         "For a phone already SUPERVISED with Apple Configurator (USB, erases "
-        "the device).\n\n"
-        "Level 4 includes everything: encrypted DNS, Max Privacy restrictions, "
-        "stronger PIN, Safari website list, and a Supervised block list for "
+        "the device). That is Level 4.2. Lockdown Mode is Level 3 and optional; "
+        "a profile cannot turn it on.\n\n"
+        "This file includes encrypted DNS, Max Privacy restrictions, a stronger "
+        "PIN, the Safari website list, and a Supervised block list for "
         "Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, "
         "Reddit, and LinkedIn.\n\n"
-        "On an unsupervised iPhone this file's app blocks are ignored."
+        "On an unsupervised iPhone the app blocks and other Supervised keys "
+        "are ignored. Use Level 1 or 2 instead, or Level 4.1 MDM without a wipe."
     )
     profile = {
         "PayloadType": "Configuration",
@@ -212,8 +215,9 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
         "PayloadIdentifier": f"{BUNDLE}.supervised",
         "PayloadDisplayName": f"OpenHat Security: Level 4 ({dns_short(provider_id)})",
         "PayloadDescription": (
-            "Level 4: Max Privacy, PIN, Safari list, and Supervised app blocks. "
-            "Requires Apple Configurator Prepare (erases the iPhone), then Lockdown Mode."
+            "Level 4.2 Supervised: Max Privacy, PIN, Safari list, and app blocks. "
+            "Requires Apple Configurator Prepare (erases the iPhone). "
+            "Lockdown Mode is Level 3 and optional."
         ),
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
@@ -229,51 +233,53 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
     return plistlib.dumps(profile, fmt=plistlib.FMT_XML, sort_keys=False)
 
 
-def build_safari_denylist_profile() -> bytes:
+def build_extras_profile(*, pin: bool = False, safari: bool = False) -> bytes:
+    content = []
+    parts = []
+    if pin:
+        content.append(passcode_payload())
+        parts.append("a passcode policy")
+    if safari:
+        content.append(web_filter_payload())
+        parts.append("a Safari content filter")
+    if not content:
+        raise ValueError("extras profile needs pin or safari")
+    included = " and ".join(parts)
+    if pin and safari:
+        ident = f"{BUNDLE}.extras"
+        uuid_name = "root.extras"
+        display = "OpenHat Additional Profiles"
+        desc = "Passcode policy and Safari content filter."
+    elif pin:
+        ident = f"{BUNDLE}.passcode-profile"
+        uuid_name = "root.passcode"
+        display = "OpenHat Extras 1.1"
+        desc = "Optional: non-simple passcode, lock immediately."
+    else:
+        ident = f"{BUNDLE}.safari-denylist"
+        uuid_name = "root.webfilter"
+        display = "OpenHat Extras 1.2"
+        desc = "Safari-only deny list for known tracker hosts."
     consent = (
-        "Optional. Blocks a short list of tracker and social-graph sites "
-        "inside Safari only. Instagram/Snapchat apps still work until you "
-        "delete them or use the Supervised profile.\n\n"
-        "Needs iOS 16+. If install fails, your iOS build may require "
-        "supervision for Built-in web filters — use Configurator then."
+        f"This additional configuration profile includes {included}. "
+        "Install it if Level 1 is already on this iPhone and you do not "
+        "want to replace that profile.\n\n"
+        "A passcode policy requires a code that is not a simple pattern "
+        "and is at least 6 characters. The Safari filter blocks listed "
+        "sites in Safari only; Instagram and Snapchat apps still work."
     )
     profile = {
         "PayloadType": "Configuration",
         "PayloadVersion": VERSION,
-        "PayloadUUID": uid("root.webfilter"),
-        "PayloadIdentifier": f"{BUNDLE}.safari-denylist",
-        "PayloadDisplayName": "OpenHat Extras 1.2",
-        "PayloadDescription": "Safari-only deny list for known tracker hosts.",
+        "PayloadUUID": uid(uuid_name),
+        "PayloadIdentifier": ident,
+        "PayloadDisplayName": display,
+        "PayloadDescription": desc,
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
         "PayloadScope": "System",
         "ConsentText": {"default": consent},
-        "PayloadContent": [web_filter_payload()],
-    }
-    return plistlib.dumps(profile, fmt=plistlib.FMT_XML, sort_keys=False)
-
-
-def build_passcode_profile() -> bytes:
-    consent = (
-        "Optional extra profile. Requires a passcode that is not a simple "
-        "pattern (123456, 111111) and is at least 6 characters. The phone "
-        "locks immediately when idle. It does not erase the device after "
-        "failed attempts.\n\n"
-        "If your current passcode is too weak, iOS will ask you to change it "
-        "within 60 minutes of install."
-    )
-    profile = {
-        "PayloadType": "Configuration",
-        "PayloadVersion": VERSION,
-        "PayloadUUID": uid("root.passcode"),
-        "PayloadIdentifier": f"{BUNDLE}.passcode-profile",
-        "PayloadDisplayName": "OpenHat Extras 1.1",
-        "PayloadDescription": "Optional: non-simple passcode, lock immediately.",
-        "PayloadOrganization": ORG,
-        "PayloadRemovalDisallowed": False,
-        "PayloadScope": "System",
-        "ConsentText": {"default": consent},
-        "PayloadContent": [passcode_payload()],
+        "PayloadContent": content,
     }
     return plistlib.dumps(profile, fmt=plistlib.FMT_XML, sort_keys=False)
 
@@ -331,11 +337,17 @@ def main() -> None:
         path.write_bytes(raw)
         print(f"wrote {path} ({len(raw)} bytes)")
 
-    passcode = build_passcode_profile()
-    plistlib.loads(passcode)
-    ppath = args.out / "OpenHat-Extras-1.1.mobileconfig"
-    ppath.write_bytes(passcode)
-    print(f"wrote {ppath} ({len(passcode)} bytes)")
+    extras = [
+        (True, False, "OpenHat-Extras-1.1.mobileconfig"),
+        (False, True, "OpenHat-Extras-1.2.mobileconfig"),
+        (True, True, "OpenHat-Extras-Both.mobileconfig"),
+    ]
+    for pin, safari, filename in extras:
+        raw = build_extras_profile(pin=pin, safari=safari)
+        plistlib.loads(raw)
+        path = args.out / filename
+        path.write_bytes(raw)
+        print(f"wrote {path} ({len(raw)} bytes)")
 
     for provider_id, filename in (
         ("mullvad-adblock", "OpenHat-Level-4-Mullvad.mobileconfig"),
@@ -351,11 +363,6 @@ def main() -> None:
         leftover.unlink()
         print(f"removed {leftover}")
 
-    safari = build_safari_denylist_profile()
-    plistlib.loads(safari)
-    safari_path = args.out / "OpenHat-Extras-1.2.mobileconfig"
-    safari_path.write_bytes(safari)
-    print(f"wrote {safari_path} ({len(safari)} bytes)")
 
 
 if __name__ == "__main__":

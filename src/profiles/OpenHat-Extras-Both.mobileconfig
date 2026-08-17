@@ -7,13 +7,13 @@
 	<key>PayloadVersion</key>
 	<integer>1</integer>
 	<key>PayloadUUID</key>
-	<string>CCD20532-D8A8-5326-B3A6-F131A4856F69</string>
+	<string>6304DF87-9E67-54D4-B927-D6CE4A6B43D9</string>
 	<key>PayloadIdentifier</key>
-	<string>org.openhat.ios-max-privacy.safari-denylist</string>
+	<string>org.openhat.ios-max-privacy.extras</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Extras 1.2</string>
+	<string>OpenHat Additional Profiles</string>
 	<key>PayloadDescription</key>
-	<string>Safari-only deny list for known tracker hosts.</string>
+	<string>Passcode policy and Safari content filter.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -23,12 +23,40 @@
 	<key>ConsentText</key>
 	<dict>
 		<key>default</key>
-		<string>This additional configuration profile includes a Safari content filter. Install it if Level 1 is already on this iPhone and you do not want to replace that profile.
+		<string>This additional configuration profile includes a passcode policy and a Safari content filter. Install it if Level 1 is already on this iPhone and you do not want to replace that profile.
 
 A passcode policy requires a code that is not a simple pattern and is at least 6 characters. The Safari filter blocks listed sites in Safari only; Instagram and Snapchat apps still work.</string>
 	</dict>
 	<key>PayloadContent</key>
 	<array>
+		<dict>
+			<key>PayloadType</key>
+			<string>com.apple.mobiledevice.passwordpolicy</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
+			<key>PayloadUUID</key>
+			<string>D570C462-19FC-5996-9258-50AA414A6049</string>
+			<key>PayloadIdentifier</key>
+			<string>org.openhat.ios-max-privacy.passcode</string>
+			<key>PayloadDisplayName</key>
+			<string>OpenHat Passcode Policy</string>
+			<key>PayloadDescription</key>
+			<string>Require a non-simple passcode of at least 6 characters; lock immediately.</string>
+			<key>PayloadOrganization</key>
+			<string>OpenHat</string>
+			<key>forcePIN</key>
+			<true/>
+			<key>allowSimple</key>
+			<false/>
+			<key>minLength</key>
+			<integer>6</integer>
+			<key>maxGracePeriod</key>
+			<integer>0</integer>
+			<key>maxInactivity</key>
+			<integer>2</integer>
+			<key>requireAlphanumeric</key>
+			<false/>
+		</dict>
 		<dict>
 			<key>PayloadType</key>
 			<string>com.apple.webcontent-filter</string>

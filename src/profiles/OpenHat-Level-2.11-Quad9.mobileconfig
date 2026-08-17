@@ -25,7 +25,7 @@
 		<key>default</key>
 		<string>This profile encrypts DNS via Quad9 and turns off Apple analytics, personalized ads, and app tracking requests. It also tightens the lock screen and disables iCloud Backup. Also includes a stronger PIN policy.
 
-It cannot read your current Settings, turn off Location Services, enable Lockdown Mode, or sign you out of Apple ID.
+It cannot read your current Settings, turn off Location Services, enable Lockdown Mode (do that yourself after Install — Level 3), or sign you out of Apple ID.
 
 Before Install, tap More Details to see every payload. Remove anytime: Settings &gt; General &gt; VPN &amp; Device Management.
 
@@ -102,6 +102,20 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 			<false/>
 			<key>allowCloudKeychainSync</key>
 			<false/>
+			<key>allowCloudMail</key>
+			<false/>
+			<key>allowCloudAddressBook</key>
+			<false/>
+			<key>allowCloudCalendar</key>
+			<false/>
+			<key>allowCloudReminders</key>
+			<false/>
+			<key>allowCloudBookmarks</key>
+			<false/>
+			<key>allowCloudNotes</key>
+			<false/>
+			<key>allowCloudFreeform</key>
+			<false/>
 			<key>allowActivityContinuation</key>
 			<false/>
 			<key>allowSharedStream</key>
@@ -145,6 +159,8 @@ If Install fails, your PIN may be too simple or this iPhone may reject the Safar
 			<key>allowPassbookWhileLocked</key>
 			<false/>
 			<key>allowAssistantWhileLocked</key>
+			<false/>
+			<key>safariAllowAutoFill</key>
 			<false/>
 			<key>forceWatchWristDetection</key>
 			<true/>

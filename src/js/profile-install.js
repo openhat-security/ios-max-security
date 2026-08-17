@@ -1,4 +1,4 @@
-import { markInstalled, wasInstalled, INSTALL_DONE } from "./store.js?v=7";
+import { markInstalled, wasInstalled, INSTALL_DONE } from "./store.js?v=8";
 
 /** Serve .mobileconfig with the MIME type iOS expects (static hosts often use octet-stream). */
 export async function installProfile(url, filename) {
@@ -30,17 +30,21 @@ export function applyInstallLabel(button, url) {
 }
 
 export function wireInstallButton(button, url, filename) {
-  applyInstallLabel(button, url);
+  const resolve = () =>
+    url || button.getAttribute("data-install") || button.getAttribute("href") || "";
+  applyInstallLabel(button, resolve());
   button.addEventListener("click", async (event) => {
     event.preventDefault();
+    const current = resolve();
+    if (!current || current === "#" || button.getAttribute("aria-disabled") === "true") return;
     const label = button.textContent;
     button.disabled = true;
     button.textContent = "Loading…";
     try {
-      markInstalled(url);
+      markInstalled(current);
       button.textContent = INSTALL_DONE;
       button.classList.add("started");
-      await installProfile(url, filename);
+      await installProfile(current, filename);
     } catch (err) {
       button.disabled = false;
       button.textContent = label;

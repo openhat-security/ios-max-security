@@ -46,7 +46,7 @@ Open the printed LAN URL **in Safari on an iPhone**. Chrome and desktop Safari w
 | `src/` | GitHub Pages site. Published as the site root, so URLs stay `/`, `/paper.html`, `/wipe.html`, `/mdm.html`, `/profiles/…` |
 | `data/` | Schema-stable JSON: Apple settings, leftovers, DNS, deny list, apps |
 | `build_profile.py` | Writes `src/profiles/*.mobileconfig` from `data/` |
-| `mdm/` | Self-hosted MDM server (not the public Level 3 page) |
+| `mdm/` | Self-hosted MDM server (Level 4.1; not Lockdown Mode) |
 | `logos/` | Brand marks |
 
 Local preview must serve `src/`, not the repo root.
@@ -61,7 +61,8 @@ Local preview must serve `src/`, not the repo root.
 | Safari deny list | `data/safari-denylist.json` | rebuild |
 | Tracker apps | `data/tracker-apps.json` | rebuild |
 | Installer UI | `src/index.html`, `src/css/`, `src/js/` | refresh Safari |
-| Supervised (erase) path | `src/wipe.html`, `src/configurator.html`, Level 4 files in `src/profiles/` | Level 4 still erases the iPhone |
+| Lockdown Mode (Level 3) | `src/lockdown.html` | no rebuild |
+| Supervised (erase) path | `src/wipe.html`, `src/configurator.html`, Level 4 files in `src/profiles/` | Level 4.2 still erases the iPhone |
 
 **Do not hand-edit** `src/profiles/*.mobileconfig`. Those are generated from `data/settings.json` and the other `data/*.json` lists. Each file has a schema in `data/schema/`.
 
@@ -76,14 +77,14 @@ These are Apple’s rules, not missing payloads:
 - Do not set `allowCloudPhotoLibrary=false` (can delete undownloaded photos)
 - Do not set `allowFindMyDevice=false` on the default profile
 - Do not force-disable iMessage or Face ID on the default profile
-- `blockedAppBundleIDs` only works after Apple Configurator **Prepare** (erases the phone) — that is Level 4 in `src/profiles/`
+- `blockedAppBundleIDs` only works after Apple Configurator **Prepare** (erases the phone) — that is Level 4.2 in `src/profiles/`
 
 If a setting cannot be flipped by a profile, add it to the catalog as `via: "manual"` (or `skipped` / `app`). Do not invent a restriction key.
 
 ## Pull requests
 
 1. Open an issue first for anything that changes payload keys or the keep-vs-erase story.
-2. Keep `main` free of MDM. Supervised / erase work belongs on `wipe.html` / Level 4 profiles.
+2. Keep `main` free of MDM enrollment payloads. Supervised / erase work belongs on `wipe.html` / Level 4.2 profiles. Lockdown Mode is `lockdown.html` (Level 3).
 3. Rebuild generated files in the same commit as the catalog or data change.
 4. Say how you tested: iOS version, Safari install, and whether extras (PIN / Safari list) were on.
 5. Do not add pip packages. New `import`s must be from the Python standard library.

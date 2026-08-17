@@ -7,7 +7,7 @@
       JSON.parse(localStorage.getItem("openhat-ios-ui-v1") || "{}")
     );
     color = d.color === "dark" ? "dark" : "light";
-    style = ["app", "blackhat", "primer", "paper", "terminal"].indexOf(d.style) >= 0 ? d.style : "app";
+    style = ["app", "blackhat", "paper", "terminal"].indexOf(d.style) >= 0 ? d.style : "app";
   } catch (e) {}
   document.documentElement.dataset.color = color;
   document.documentElement.dataset.style = style;
@@ -15,12 +15,11 @@
   var base = document.getElementById("theme-base");
   var map = {
     blackhat: "theme-blackhat.css",
-    primer: "theme-primer.css",
     paper: "theme-paper.css",
     terminal: "theme-terminal.css",
   };
   if (overlay && base && map[style]) {
-    overlay.href = base.href.replace(/app\.css[^/]*$/, map[style] + "?v=7");
+    overlay.href = base.href.replace(/app\.css[^/]*$/, map[style] + "?v=8");
     overlay.disabled = false;
   }
 })();

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" data-color="light" data-style="app">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#f7f0f0">
+  <title>OpenHat Security: Level 3 — Lockdown Mode</title>
+  <link rel="stylesheet" href="css/app.css?v=15" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="js/theme-boot.js?v=9"></script>
+</head>
+<body class="paper-page">
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <a class="brand" href="./"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</a>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="blackhat">Black Hat</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <button type="button" class="mode-toggle" id="mode-toggle" aria-label="Switch to dark mode">
+        <span class="icon-moon" aria-hidden="true"></span>
+        <span class="icon-sun" aria-hidden="true"></span>
+      </button>
+    </div>
+    <p class="back"><a href="./">← Back to profiles</a></p>
+    <span class="badge">Level 3 · no profile · no erase</span>
+    <h1>Lockdown Mode</h1>
+    <p class="lead">A Settings switch. Not a profile. Not MDM. You can use it with Level 4 or skip Level 4 entirely.</p>
+  </header>
+
+  <main class="paper-body">
+    <article class="paper">
+      <div class="note">
+        <strong>Install Level 1 or 2 first.</strong>
+        <p>Apple blocks new Safari configuration-profile installs while Lockdown Mode is on. MDM can still push profiles later. Turn this on after the profile you want is already installed.</p>
+      </div>
+
+      <h2>Why this is its own level</h2>
+      <p>Apple’s Platform Security guide describes Lockdown Mode as an optional, extreme reduction of the attack surface for people who may be targeted by mercenary spyware. There is no Restrictions key that turns it on. A website cannot flip it. MDM cannot flip it. That is why the old Level 3/4 pages felt sloppy: Lockdown Mode was glued onto “erase and supervise,” even though the two are independent.</p>
+      <p>Level 3 is this switch. Level 4 is optional MDM (user enrollment without a wipe, or Supervised after a wipe). Use one, both, or neither.</p>
+
+      <h2>What it does</h2>
+      <ul>
+        <li>Most incoming message attachments are blocked except images.</li>
+        <li>WebKit disables just-in-time JavaScript compilation and some other web technologies.</li>
+        <li>Incoming FaceTime is limited to people you have called.</li>
+        <li>Wired / USB data connections are refused while the phone is locked.</li>
+        <li>2G cellular is turned off.</li>
+        <li>Configuration profiles cannot be installed from Safari until you turn Lockdown Mode off (or you use your own MDM).</li>
+      </ul>
+      <p>Some everyday features break. That is the point. Turn it off later if you do not need it.</p>
+
+      <h2>Turn it on</h2>
+      <ol>
+        <li>Finish <a href="./">Level 1 or Level 2</a> in Safari.</li>
+        <li>Settings → Privacy &amp; Security → Lockdown Mode → Turn On.</li>
+        <li>Enter your passcode. The phone restarts.</li>
+        <li>Confirm 2G is off on the same screen.</li>
+      </ol>
+
+      <h2>Optional next step</h2>
+      <p>If you also want a server you run to push settings, that is <a href="mdm.html">Level 4.1 (no erase)</a> or <a href="wipe.html">Level 4.2 (Supervised, erases)</a>. Lockdown Mode still works on those phones. You do not have to enroll to use Level 3.</p>
+    </article>
+  </main>
+
+  <footer class="site-foot">
+    <nav class="foot-row">
+      <a href="./">Home</a>
+      <a href="paper.html">Paper</a>
+      <a href="https://github.com/openhat-security">GitHub</a>
+      <a href="https://github.com/openhat-security/ios-max-security">Repo</a>
+    </nav>
+    <nav class="foot-row">
+      <a href="level1.html">Level 1</a>
+      <a href="level2.html">Level 2</a>
+      <a href="lockdown.html">Level 3</a>
+      <a href="mdm.html">Level 4.1</a>
+      <a href="wipe.html">Level 4.2</a>
+      <a href="configurator.html">Config</a>
+      <a href="extras.html">Extra</a>
+      <a href="remove.html">Remove</a>
+    </nav>
+    <p class="foot-copy">© 2026 OpenHat Security</p>
+  </footer>
+
+  <script type="module">
+    import { wireThemeControls } from "./js/theme.js?v=9";
+    wireThemeControls();
+  </script>
+</body>
+</html>

@@ -1,6 +1,6 @@
 const KEY = "openhat-ios-ui-v1";
 
-const STYLES = ["app", "blackhat", "primer", "paper", "terminal"];
+const STYLES = ["app", "blackhat", "paper", "terminal"];
 
 function read() {
   try {

@@ -1,8 +1,7 @@
-import { getColor, setColor, getStyle, setStyle } from "./store.js?v=7";
+import { getColor, setColor, getStyle, setStyle } from "./store.js?v=9";
 
 const OVERLAY = {
   blackhat: "theme-blackhat.css",
-  primer: "theme-primer.css",
   paper: "theme-paper.css",
   terminal: "theme-terminal.css",
 };
@@ -23,7 +22,7 @@ export function applyTheme(overrides = {}) {
   const overlay = document.getElementById("theme-overlay");
   if (overlay) {
     if (OVERLAY[style]) {
-      overlay.href = cssDir() + OVERLAY[style] + "?v=7";
+      overlay.href = cssDir() + OVERLAY[style] + "?v=8";
       overlay.disabled = false;
     } else {
       overlay.removeAttribute("href");
