@@ -2,7 +2,9 @@
 
 **This procedure wipes the device.** Every photo, thread, and app that is not in an encrypted backup is gone. Do not start Prepare until that backup exists and you have opened it once to confirm.
 
-After this, restrictions that a Safari profile cannot apply will start working. **OpenHat Security: Level 3** in this folder also hides Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn, and includes PIN plus the Safari list.
+You manage the Supervised profile. OpenHat does not manage the phone and cannot see your data.
+
+After Prepare, restrictions that a Safari profile cannot apply will start working. **OpenHat Security: Level 4** also hides Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn, and includes PIN plus the Safari list.
 
 ## Steps
 
@@ -10,10 +12,11 @@ After this, restrictions that a Safari profile cannot apply will start working. 
 2. Install [Apple Configurator](https://apps.apple.com/app/apple-configurator/id1037126344) (free).
 3. Cable the iPhone. Trust the computer.
 4. Select the device → **Prepare**.
-5. **Manual Configuration**. Enable **Supervise devices**. Leave MDM enrollment **off**.
+5. **Manual Configuration**. Enable **Supervise devices**. Leave MDM enrollment **off** unless you are also running your own Level 3 server.
 6. Continue. The phone **erases** and returns Supervised.
-7. Restore the backup if you want data back, then install **OpenHat Security: Level 3** from this folder (Safari or Configurator → Add → Profiles).
-8. Confirm **Settings → General → VPN & Device Management**. Blocked apps should be gone. AirDrop / Siri should be forced off.
+7. During or right after setup, turn on **Lockdown Mode**: Settings → Privacy & Security → Lockdown Mode → Turn On.
+8. Restore the backup if you want data back, then install **OpenHat Security: Level 4** from this folder (Safari or Configurator → Add → Profiles).
+9. Confirm **Settings → General → VPN & Device Management**. Blocked apps should be gone. AirDrop / Siri should be forced off.
 
 ## Unsupervise
 

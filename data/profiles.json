@@ -1,7 +1,9 @@
 {
   "title": "OpenHat Security",
-  "lead": "These installs do not erase your iPhone unless you choose Level 3. The name on each button is the name iOS will show.",
+  "lead": "Levels 1 and 2 do not erase the iPhone. Level 3 is optional self-hosted MDM. Level 4 erases the iPhone.",
   "safari_note": "Safari only — Chrome and in-app browsers will not install a profile.",
+  "repo": "https://github.com/openhat-security/ios-max-security",
+  "pages": "https://openhat-security.github.io/ios-max-security/",
   "sections": [
     {
       "id": "level-1",
@@ -104,27 +106,44 @@
     },
     {
       "id": "level-3",
-      "title": "Level 3 — supervised · erases the iPhone",
-      "description": "Everything: Level 1, Extra 1.1, Extra 1.2, plus Supervised app hides. Requires Apple Configurator Prepare, which wipes the device.",
+      "title": "Level 3 — self-hosted MDM · does not erase",
+      "description": "Optional. You can enroll the iPhone in MDM without wiping it. You run the server. OpenHat does not manage the phone, cannot see your data, and has no access to your device. This cannot hide Instagram or Snapchat — that still needs Level 4.",
+      "profiles": [
+        {
+          "id": "level-3-mdm",
+          "title": "OpenHat Security: Level 3",
+          "subtitle": "You manage it · we cannot see your data",
+          "description": "Enroll without erasing, using a server you host. OpenHat does not operate that server and cannot see photos, messages, or settings. Skip this unless you want remote push of your own profiles.",
+          "guide": "mdm/",
+          "guideLabel": "Level 3 instructions"
+        }
+      ]
+    },
+    {
+      "id": "level-4",
+      "title": "Level 4 — erase, Lockdown Mode, then Supervised",
+      "description": "Erase the iPhone with Apple Configurator Prepare, turn on Lockdown Mode, then install the Supervised profile. You manage that profile. OpenHat does not manage it and cannot see your data.",
       "danger": true,
       "profiles": [
         {
-          "id": "level-3-mullvad",
-          "file": "wipe-required/OpenHat-Level-3-Mullvad.mobileconfig",
-          "title": "OpenHat Security: Level 3 (Mullvad)",
-          "subtitle": "After Configurator Prepare only",
-          "description": "Full stack with Mullvad DNS. Hides tracking apps and applies Supervised-only locks. Only install after the phone is supervised.",
+          "id": "level-4-mullvad",
+          "file": "wipe-required/OpenHat-Level-4-Mullvad.mobileconfig",
+          "title": "OpenHat Security: Level 4 (Mullvad)",
+          "subtitle": "After erase + Lockdown Mode",
+          "description": "Full stack with Mullvad DNS. Hides tracking apps and applies Supervised-only locks. Only after Prepare and Lockdown Mode.",
           "danger": true,
-          "guide": "wipe-required/"
+          "guide": "wipe-required/",
+          "guideLabel": "Level 4 instructions"
         },
         {
-          "id": "level-3-quad9",
-          "file": "wipe-required/OpenHat-Level-3-Quad9.mobileconfig",
-          "title": "OpenHat Security: Level 3 (Quad9)",
-          "subtitle": "After Configurator Prepare only",
-          "description": "Full stack with Quad9 DNS. Same Supervised locks as Level 3 (Mullvad).",
+          "id": "level-4-quad9",
+          "file": "wipe-required/OpenHat-Level-4-Quad9.mobileconfig",
+          "title": "OpenHat Security: Level 4 (Quad9)",
+          "subtitle": "After erase + Lockdown Mode",
+          "description": "Full stack with Quad9 DNS. Same Supervised locks as Level 4 (Mullvad).",
           "danger": true,
-          "guide": "wipe-required/"
+          "guide": "wipe-required/",
+          "guideLabel": "Level 4 instructions"
         }
       ]
     }

@@ -68,7 +68,8 @@ Siri and AirDrop can be forced off"]
 | **Extras 1.1 / 1.2** | PIN or Safari only, if Level 1 is already installed. | Yes | No |
 | **Settings taps** | Things Apple will not let an install change: Location, Lockdown Mode, iCloud, Private Wi-Fi, VPN. | Yes | No |
 | **Tracking apps** | Delete them, or Screen Time → Never Allow. | **Yes — last stop that keeps your data** | No |
-| **Level 3** | Apple Configurator on a Mac. **Erases the iPhone.** Everything, including Supervised app hides. | — | **Yes** |
+| **Level 3** | Optional self-hosted MDM. **Does not erase.** You run the server. OpenHat cannot see your data. | Yes | No |
+| **Level 4** | Erase with Apple Configurator, turn on Lockdown Mode, then Supervised profile. You manage it. | — | **Yes** |
 
 ---
 
@@ -131,7 +132,7 @@ You can stop here. This is the last step that keeps your data.
 
 A Safari install cannot apply those locks. Apple Configurator **Prepare** supervises the device and **always erases all content and settings**.
 
-After the wipe, install **OpenHat Security: Level 3** from `wipe-required/` (Mullvad or Quad9). It includes everything: Max Privacy, PIN, Safari list, and Supervised locks.
+After the wipe, turn on Lockdown Mode, then install **OpenHat Security: Level 4** from `wipe-required/` (Mullvad or Quad9). You manage that profile. OpenHat cannot see your data.
 
 ---
 
@@ -162,7 +163,7 @@ flowchart TD
 
 Enroll without erasing: open the enrollment page in Safari on the iPhone (`/enroll/` on your management server).
 
-Erase, then enroll: follow [`wipe-required/CONFIGURATOR.md`](wipe-required/CONFIGURATOR.md), turn **Supervise** on, then enroll. After that the server can install `wipe-required/OpenHat-Level-3-Mullvad.mobileconfig`.
+Erase, then enroll: follow [`wipe-required/CONFIGURATOR.md`](wipe-required/CONFIGURATOR.md), turn **Supervise** on, then enroll. After that the server can install `wipe-required/OpenHat-Level-4-Mullvad.mobileconfig`.
 
 How to run the server: [`mdm/README.md`](mdm/README.md).
 

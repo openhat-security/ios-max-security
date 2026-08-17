@@ -3,21 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="color-scheme" content="dark">
+  <meta name="color-scheme" content="light dark">
   <meta name="theme-color" content="#0a0000">
-  <title>OpenHat Security: Level 3</title>
+  <title>OpenHat Security: Level 4</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=Orbitron:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/app.css">
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Orbitron:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css?v=theme1" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="../js/theme-boot.js?v=theme1"></script>
 </head>
 <body>
   <div class="scan" aria-hidden="true"></div>
   <header class="page">
-    <p class="brand"><span class="hat" aria-hidden="true"></span> OPENHAT</p>
-    <span class="badge bad">Level 3 · erases the iPhone</span>
-    <h1>Apple Configurator</h1>
-    <p class="lead">Supervised setup. Prepare erases all content and settings. Level 1 and Level 2 do not require this.</p>
+    <div class="topbar">
+      <p class="brand"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</p>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="primer">Primer</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <div class="color-toggle" role="group" aria-label="Color">
+        <button type="button" data-color-set="system">Sys</button>
+        <button type="button" data-color-set="light">Light</button>
+        <button type="button" data-color-set="dark">Dark</button>
+      </div>
+    </div>
+    <span class="badge bad">Level 4 · erases the iPhone</span>
+    <h1>Erase, Lockdown Mode, Supervised</h1>
+    <p class="lead">You manage this profile. OpenHat does not manage the phone and cannot see your data.</p>
   </header>
 
   <main>
@@ -27,39 +47,45 @@
 
     <div class="note danger">
       <strong>Prepare always erases the iPhone.</strong>
-      <p>Use Level 3 only if you need Supervised restrictions. Otherwise install Level 1 or Level 2 from the home page.</p>
+      <p>Level 4 is erase with Apple Configurator, then Lockdown Mode, then the Supervised profile. Level 1–3 do not require this.</p>
     </div>
 
-    <p class="muted">Encrypted Finder backup first. Then follow the Configurator steps. Level 3 includes everything: Max Privacy, Extra 1.1 (PIN), Extra 1.2 (Safari), and Supervised app hides.</p>
+    <p class="muted">Encrypted Finder backup first. After Prepare, turn on Lockdown Mode (Settings → Privacy &amp; Security → Lockdown Mode), then install Level 4. You own the profile. We cannot see your data.</p>
     <div class="stack">
       <a class="action secondary" href="CONFIGURATOR.md">
         <span>
-          Configurator instructions
+          Configurator + Lockdown Mode steps
           <small>Mac + cable · read before you start</small>
         </span>
         <span class="go">Open</span>
       </a>
-      <a class="action danger" id="level3-mullvad" href="OpenHat-Level-3-Mullvad.mobileconfig">
+      <a class="action danger" id="level4-mullvad" href="OpenHat-Level-4-Mullvad.mobileconfig">
         <span>
-          Install Level 3 (Mullvad)
-          <small>Only after Prepare has finished</small>
+          Install Level 4 (Mullvad)
+          <small>Only after Prepare and Lockdown Mode</small>
         </span>
         <span class="go">Install</span>
       </a>
-      <a class="action danger" id="level3-quad9" href="OpenHat-Level-3-Quad9.mobileconfig">
+      <a class="action secondary" href="../view.html?p=wipe-required/OpenHat-Level-4-Mullvad.mobileconfig">View Level 4 (Mullvad)</a>
+      <a class="action danger" id="level4-quad9" href="OpenHat-Level-4-Quad9.mobileconfig">
         <span>
-          Install Level 3 (Quad9)
-          <small>Only after Prepare has finished</small>
+          Install Level 4 (Quad9)
+          <small>Only after Prepare and Lockdown Mode</small>
         </span>
         <span class="go">Install</span>
       </a>
+      <a class="action secondary" href="../view.html?p=wipe-required/OpenHat-Level-4-Quad9.mobileconfig">View Level 4 (Quad9)</a>
     </div>
-    <p class="muted">On a device that is not Supervised, app blocks in this file are ignored. Remote enrollment after a wipe is a separate path: see <a href="../mdm/README.md">mdm/README.md</a>.</p>
+    <p class="muted">On a device that is not Supervised, app blocks in this file are ignored. Optional MDM after a wipe is a separate path you host yourself: see <a href="../mdm/">Level 3</a>.</p>
   </main>
   <script type="module">
     import { wireInstallButton } from "../js/profile-install.js";
-    wireInstallButton(document.getElementById("level3-mullvad"), "OpenHat-Level-3-Mullvad.mobileconfig");
-    wireInstallButton(document.getElementById("level3-quad9"), "OpenHat-Level-3-Quad9.mobileconfig");
+    import { wireThemeControls, applyHostGuard } from "../js/theme.js";
+    wireThemeControls();
+    if (applyHostGuard() !== "phish") {
+      wireInstallButton(document.getElementById("level4-mullvad"), "OpenHat-Level-4-Mullvad.mobileconfig");
+      wireInstallButton(document.getElementById("level4-quad9"), "OpenHat-Level-4-Quad9.mobileconfig");
+    }
   </script>
 </body>
 </html>

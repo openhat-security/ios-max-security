@@ -11,9 +11,9 @@
 	<key>PayloadIdentifier</key>
 	<string>org.openhat.ios-max-privacy.supervised</string>
 	<key>PayloadDisplayName</key>
-	<string>OpenHat Security: Level 3 (Mullvad)</string>
+	<string>OpenHat Security: Level 4 (Mullvad)</string>
 	<key>PayloadDescription</key>
-	<string>Level 3: Max Privacy, PIN, Safari list, and Supervised app blocks. Requires Apple Configurator Prepare (erases the iPhone).</string>
+	<string>Level 4: Max Privacy, PIN, Safari list, and Supervised app blocks. Requires Apple Configurator Prepare (erases the iPhone), then Lockdown Mode.</string>
 	<key>PayloadOrganization</key>
 	<string>OpenHat</string>
 	<key>PayloadRemovalDisallowed</key>
@@ -25,7 +25,7 @@
 		<key>default</key>
 		<string>For a phone already SUPERVISED with Apple Configurator (USB, erases the device).
 
-Level 3 includes everything: encrypted DNS, Max Privacy restrictions, stronger PIN, Safari website list, and a Supervised block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn.
+Level 4 includes everything: encrypted DNS, Max Privacy restrictions, stronger PIN, Safari website list, and a Supervised block list for Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, Reddit, and LinkedIn.
 
 On an unsupervised iPhone this file's app blocks are ignored.</string>
 	</dict>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a0000">
+  <title>OpenHat Security: Level 3</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Orbitron:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/app.css?v=theme1" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="../js/theme-boot.js?v=theme1"></script>
+</head>
+<body>
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <p class="brand"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</p>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="primer">Primer</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <div class="color-toggle" role="group" aria-label="Color">
+        <button type="button" data-color-set="system">Sys</button>
+        <button type="button" data-color-set="light">Light</button>
+        <button type="button" data-color-set="dark">Dark</button>
+      </div>
+    </div>
+    <span class="badge">Level 3 · does not erase</span>
+    <h1>Self-hosted MDM</h1>
+    <p class="lead">You can enroll an iPhone in MDM without wiping it. You run the server. OpenHat does not manage the phone and cannot see your data.</p>
+  </header>
+
+  <main>
+    <div class="stack">
+      <a role="button" class="secondary" href="../">← Back to levels</a>
+    </div>
+
+    <div class="note">
+      <strong>You manage this. We do not.</strong>
+      <p>Level 3 is optional. OpenHat does not operate an MDM for you, cannot see photos, messages, or settings, and has no access to your device. If you enroll, the server is yours.</p>
+    </div>
+
+    <p class="muted">Apple allows user-approved MDM enrollment without erasing the iPhone. That path can push Level 1 / Level 2 profiles later. It cannot hide Instagram or Snapchat. Those app hides need Level 4 (erase + Supervise).</p>
+
+    <div class="stack">
+      <a class="action secondary" href="README.md">
+        <span>
+          How to run your own MDM
+          <small>NanoMDM on a host you control · no wipe</small>
+        </span>
+        <span class="go">Open</span>
+      </a>
+      <a class="action" href="../wipe-required/">
+        <span>
+          Skip to Level 4
+          <small>Erase, Lockdown Mode, then Supervised</small>
+        </span>
+        <span class="go">Open</span>
+      </a>
+    </div>
+  </main>
+  <script type="module">
+    import { wireThemeControls } from "../js/theme.js";
+    wireThemeControls();
+  </script>
+</body>
+</html>

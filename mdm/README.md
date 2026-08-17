@@ -61,7 +61,7 @@ Open `https://$MDM_PUBLIC_URL/enroll/` in Safari on the iPhone. That enrollment 
 3. After enrollment:
 
 ```bash
-./enqueue_profile.py ../wipe-required/OpenHat-Level-3-Mullvad.mobileconfig --udid DEVICE_UDID
+./enqueue_profile.py ../wipe-required/OpenHat-Level-4-Mullvad.mobileconfig --udid DEVICE_UDID
 ```
 
 ## Layout

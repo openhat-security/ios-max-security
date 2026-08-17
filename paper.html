@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#0a0000">
+  <title>Why These Settings Matter — Adam Siwiec</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;600&family=Orbitron:wght@600;700&family=Source+Serif+4:opsz,wght@8..60,500;8..60,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app.css?v=theme1" id="theme-base">
+  <link rel="stylesheet" href="" id="theme-overlay" disabled>
+  <script src="js/theme-boot.js?v=theme1"></script>
+</head>
+<body class="paper-page">
+  <div class="scan" aria-hidden="true"></div>
+  <header class="page">
+    <div class="topbar">
+      <p class="brand"><span class="hat" aria-hidden="true"></span> OpenHat - ios-max-security</p>
+      <a class="github-btn" href="https://github.com/openhat-security/ios-max-security"><span class="gh-mark" aria-hidden="true"></span> GitHub</a>
+    </div>
+    <div class="chrome">
+      <label class="chrome-field">Style
+        <select id="style-select">
+          <option value="app">Red Hat</option>
+          <option value="primer">Primer</option>
+          <option value="paper">Paper</option>
+          <option value="terminal">Terminal</option>
+        </select>
+      </label>
+      <div class="color-toggle" role="group" aria-label="Color">
+        <button type="button" data-color-set="system">Sys</button>
+        <button type="button" data-color-set="light">Light</button>
+        <button type="button" data-color-set="dark">Dark</button>
+      </div>
+    </div>
+    <p class="back"><a href="./">← Back to profiles</a></p>
+    <h1>Why These Settings Matter</h1>
+    <a class="paper-author" href="https://github.com/adamsiwiec1">
+      <img class="paper-avatar" src="https://github.com/adamsiwiec1.png?size=96" alt="" width="40" height="40">
+      <span>Adam Siwiec · Founder · OpenHat Security</span>
+    </a>
+    <p class="lead">Commercial surveillance, Apple’s own terms, and a Fourth Amendment loophole that does not need your front door.</p>
+  </header>
+  <main class="paper-body">
+    <article class="paper">
+      <h2>Abstract</h2>
+      <p>These iPhone configuration profiles exist because a modern iPhone is not a sealed vault. Even apps that advertise end-to-end encryption can still leave data on Apple’s servers. Apple’s public privacy policy and iCloud terms describe collection for “personalization” and “convenience,” and they reserve the right to disclose information for national security and law enforcement. U.S. agencies can also buy commercially collected location and behavioral data from brokers — often without a warrant. That is a quieter path around the Fourth Amendment’s warrant requirement than kicking in a door. This paper quotes Apple’s own documents, cites U.S. opt-out law, and explains why the OpenHat levels exist. They do not fully secure an iPhone. Nothing can, on a closed, proprietary OS that updates on Apple’s schedule. They do cut the amount of tracking a personal device will volunteer.</p>
+
+      <h2>1. They do not need the Fourth Amendment anymore</h2>
+      <p>The Fourth Amendment protects against unreasonable searches and seizures. The classic picture is a warrant, probable cause, a judge. That picture is incomplete if the same facts can be purchased.</p>
+      <p>The ACLU has documented that DHS components have bought data they would normally need a warrant to compel.<sup><a href="#ref-aclu">1</a></sup> The Brennan Center describes “a glaring loophole in current law” that lets law enforcement and intelligence agencies pay data brokers for private information.<sup><a href="#ref-brennan">2</a></sup> NPR put it in one line: “Your data is everywhere. The government is buying it up.”<sup><a href="#ref-npr">3</a></sup></p>
+      <p>They do not need the Fourth Amendment anymore — not if a vendor will sell location, associations, and timing. The government found a better, easier way to reach the same facts: the commercial stack that already profiles you for ads.</p>
+
+      <h2>2. “Secure” apps still touch Apple</h2>
+      <p>Telegram, Signal, Proton, and similar apps encrypt traffic between clients. That is not the same as “Apple never sees anything.”</p>
+      <p>Apple’s iCloud Terms state:</p>
+      <blockquote>“If you sign in to certain third party apps with your iCloud credentials, you agree to allow that app to store data in your personal iCloud account and for Apple to collect, store and process such data on behalf of the relevant third-party app developer.”<sup><a href="#ref-icloud">4</a></sup></blockquote>
+      <p>If iCloud Backup is on, backups can include app data, messages, and photos, depending on settings.<sup><a href="#ref-backup">5</a></sup> Under Standard Data Protection, some iCloud material — including certain message-backup keys — can be produced under legal process. Advanced Data Protection encrypts more categories so Apple says it cannot produce that content.<sup><a href="#ref-adp">5</a></sup></p>
+      <p>End-to-end encryption in the app does not mean nothing lands in iCloud, CloudKit, push infrastructure, or diagnostics. If it lands there, Apple is in the chain.</p>
+
+      <h2>3. Personalization, convenience, and what the policy actually lists</h2>
+      <p>Apple’s Privacy Policy (updated July 30, 2025) lists Usage Data as “app launches within our services, including browsing history; search history; product interaction; crash data, performance and other diagnostic data; and other usage data.” It also describes coarse location and device identifiers, including serial numbers that can make a device identifiable — to “power our services,” “improve our offerings,” and “personalize your experience.”<sup><a href="#ref-privacy">6</a></sup></p>
+      <p>That is the official story: personalization and convenience. In a market already dominated by Apple and Google, those features are sold as being solely for you. Apple also says it does not sell personal data as “sale” is defined in California and Nevada, and does not “share” it as California defines that term.<sup><a href="#ref-privacy">6</a></sup></p>
+      <p>The same policy continues:</p>
+      <blockquote>“We may also disclose information about you if we determine that for purposes of national security, law enforcement, or other issues of public importance, disclosure is necessary or appropriate.”<sup><a href="#ref-privacy">6</a></sup></blockquote>
+      <p>Apple publishes a U.S. Transparency Report on government requests — account data, content (photos, email, backups, contacts, calendars), and national-security counts.<sup><a href="#ref-trans">7</a></sup> iMessage in transit is end-to-end encrypted. iCloud backups under Standard Data Protection may still make Messages in iCloud producible. With Advanced Data Protection, Apple says it cannot produce that content.<sup><a href="#ref-adp">5</a></sup></p>
+      <p>So: not an ad-network sale, by Apple’s definition. Still a pipeline that can answer a government request. Still a behavioral picture built for “personalization.” Whether that picture is also useful to partners, or to a state that already buys broker data, is not a mystery the policy bothers to deny in full. It does not have to. You tapped Agree.</p>
+
+      <h2>4. The 500-page door</h2>
+      <p>Almost nobody reads the Apple Media Services Terms, iCloud Terms, and Privacy Policy before the first unlock. They are not written to be read. They are written to grant broad permission to collect and process data for services, security, fraud prevention, personalization, and compliance with law; to reserve national-security and law-enforcement disclosure; and to let third-party apps store data in iCloud while Apple processes it for the developer.<sup><a href="#ref-icloud">4</a></sup><sup><a href="#ref-privacy">6</a></sup></p>
+      <p>That click is legal consent. It is also a wall of text designed to hide the sentence that matters. That is how this stays “legal.” You were not too lazy. The document was built so that reading it is the unreasonable act.</p>
+
+      <h2>5. You do have opt-out rights — in some states</h2>
+      <p>U.S. law already treats commercial profiling as real. In California, the CCPA as amended by the CPRA gives consumers the right to opt out of the “sale” or “sharing” of personal information, including for cross-context behavioral advertising, and requires a clear “Do Not Sell or Share My Personal Information” (or “Your Privacy Choices”) link, plus honor for Global Privacy Control.<sup><a href="#ref-ccpa">8</a></sup> After an opt-out, a business generally cannot ask you to opt back in for 12 months.</p>
+      <p>The FTC has treated automated profiling and behavioral targeting as commercial surveillance that can be unfair or deceptive if hidden.<sup><a href="#ref-ftc">9</a></sup> There is still no single federal “opt out of all profiling” statute. State law is why a “no” button exists at all.</p>
+
+      <h2>6. What these profiles actually do</h2>
+      <p>OpenHat does not fix Apple, the brokers, or the warrant loophole. It does three concrete things on a phone you hold:</p>
+      <ol>
+        <li>Cut third-party tracking at the network layer: private DNS, Apple analytics and personalized ads off, tighter lock screen.</li>
+        <li>Make the worst graph-building apps harder to use: Safari deny lists; delete or Screen Time block Instagram, Snapchat, TikTok, and the rest.</li>
+        <li>Offer a harder posture: Lockdown Mode, optional self-hosted MDM you run (Level 3), or erase-and-supervise (Level 4). You manage those profiles. OpenHat cannot see your data.</li>
+      </ol>
+      <p>It is not possible to fully secure an iPhone or a Mac. The OS is proprietary and closed. Updates can change the ground. These levels configure as much as a user-installed profile is allowed to configure, depending on how far you want to go.</p>
+
+      <h2>Sources</h2>
+      <ol class="refs">
+        <li id="ref-aclu"><a href="https://www.aclu.org/news/privacy-technology/dhs-is-circumventing-constitution-by-buying-data-it-would-normally-need-a-warrant-to-access">ACLU, “DHS Is Circumventing the Constitution by Buying Data It Would Normally Need a Warrant to Access.”</a></li>
+        <li id="ref-brennan"><a href="https://www.brennancenter.org/our-work/research-reports/congress-must-close-data-broker-loophole-prohibiting-government-0">Brennan Center, “Congress Must Close the Data Broker Loophole.”</a></li>
+        <li id="ref-npr"><a href="https://www.npr.org/2026/03/25/nx-s1-5752369/ice-surveillance-data-brokers-congress-anthropic">NPR, reporting on government purchase of commercially collected data.</a></li>
+        <li id="ref-icloud"><a href="https://www.apple.com/legal/internet-services/icloud/">Apple, iCloud Terms of Service.</a></li>
+        <li id="ref-backup"><a href="https://support.apple.com/en-us/102651">Apple, iCloud data security / Advanced Data Protection overview.</a></li>
+        <li id="ref-adp"><a href="https://www.apple.com/legal/privacy/pdfs/apple-privacy-policy-en-ww.pdf">Apple Privacy Policy (PDF).</a> See also <a href="https://www.apple.com/legal/privacy/en-ww/">apple.com/legal/privacy/en-ww</a>.</li>
+        <li id="ref-privacy"><a href="https://www.apple.com/legal/privacy/en-ww/">Apple Privacy Policy (web).</a></li>
+        <li id="ref-trans"><a href="https://www.apple.com/legal/transparency/us.html">Apple Transparency Report (United States).</a> See also <a href="https://www.apple.com/legal/transparency/">overview</a> and <a href="https://www.apple.com/legal/transparency/report-pdf.html">PDF reports</a>.</li>
+        <li id="ref-ccpa"><a href="https://cppa.ca.gov/announcements/2025/20250909.html">California Privacy Protection Agency, CCPA/CPRA materials.</a></li>
+        <li id="ref-ftc"><a href="https://anonym.legal/blog/ftc-us-ai-privacy-section5-enforcement-2025">Discussion of FTC Section 5 enforcement on commercial surveillance and AI profiling.</a></li>
+      </ol>
+      <p class="muted">Also: <a href="https://www.apple.com/legal/privacy/en-ww/governance/">Apple privacy governance</a> · <a href="https://www.pogo.org/fact-sheets/fact-sheet-closing-the-data-broker-loophole">POGO, data-broker loophole</a> · <a href="https://cdt.org/insights/section-702-reauthorization-must-close-the-data-broker-loophole/">CDT on the data-broker loophole</a></p>
+    </article>
+  </main>
+  <script type="module">
+    import { wireThemeControls } from "./js/theme.js";
+    wireThemeControls();
+  </script>
+</body>
+</html>

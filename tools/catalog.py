@@ -2,7 +2,7 @@
 
 via:
   profile              — written into profiles/*.mobileconfig; applies on a normal iPhone (no wipe)
-  profile-supervised   — only in wipe-required/OpenHat-Level-3-*.mobileconfig; needs Supervised (full erase)
+  profile-supervised   — only in wipe-required/OpenHat-Level-4-*.mobileconfig; needs Supervised (full erase)
   manual               — user must tap in Settings; a profile cannot set this
   skipped              — deliberately not automated (destructive, anti-theft, or needs credentials)
   app                  — recommended app/service, not a system toggle
@@ -1713,7 +1713,7 @@ CATALOG: list[dict] = [
         "source": ["apple"],
         "via": "manual",
         "apple_default": "Unsupervised",
-        "after": "Supervised; then install wipe-required/OpenHat-Level-3-Mullvad.mobileconfig",
+        "after": "Supervised; then install wipe-required/OpenHat-Level-4-Mullvad.mobileconfig",
         "verify": "Settings → General → About → Supervised (or the profile applies AirDrop/Siri/app blocks)",
         "notes": "USB + a Mac. ERASES the entire iPhone. Isolated in wipe-required/ so it cannot be mixed with the no-wipe Safari profiles. See wipe-required/CONFIGURATOR.md.",
     },

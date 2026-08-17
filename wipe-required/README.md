@@ -1,17 +1,20 @@
-# Supervised locks — this folder erases the iPhone
+# Level 4 — this folder erases the iPhone
 
-**You can skip this folder.** Encrypted DNS, ads off, and the leftover Settings taps do not live here and do not wipe the phone.
+**You can skip this folder.** Encrypted DNS, ads off, and leftover Settings taps do not live here and do not wipe the phone.
 
-Apple will not let a normal iPhone hide Instagram or force Siri / AirDrop off. That only works in **Supervised** mode. The way to become Supervised yourself is Apple Configurator **Prepare**, and **Prepare always erases all content and settings**. There is no supervise-without-wiping option, with or without remote management.
+Apple will not let a normal iPhone hide Instagram or force Siri / AirDrop off. That only works in **Supervised** mode. The way to become Supervised yourself is Apple Configurator **Prepare**, and **Prepare always erases all content and settings**.
+
+You manage the profile. OpenHat does not manage the device and cannot see your data.
 
 - Encrypted Finder backup first.
-- If you only wanted DNS and ads off, go back to the main installer.
+- After Prepare, enable **Lockdown Mode**.
+- If you only wanted DNS and ads off, go back to Level 1.
 
 ## After you accept the wipe
 
-Follow [CONFIGURATOR.md](CONFIGURATOR.md), then install **OpenHat Security: Level 3**:
+Follow [CONFIGURATOR.md](CONFIGURATOR.md), then install **OpenHat Security: Level 4**:
 
-- `OpenHat-Level-3-Mullvad.mobileconfig`
-- `OpenHat-Level-3-Quad9.mobileconfig`
+- `OpenHat-Level-4-Mullvad.mobileconfig`
+- `OpenHat-Level-4-Quad9.mobileconfig`
 
-Level 3 includes Max Privacy, Extra 1.1 (PIN), Extra 1.2 (Safari), and Supervised app hides.
+Level 4 includes Max Privacy, Extra 1.1 (PIN), Extra 1.2 (Safari), and Supervised app hides.

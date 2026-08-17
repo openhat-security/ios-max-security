@@ -14,4 +14,4 @@ The name inside each file is what iOS shows under VPN & Device Management:
 | `OpenHat-Extras-1.1.mobileconfig` | OpenHat Extras 1.1 |
 | `OpenHat-Extras-1.2.mobileconfig` | OpenHat Extras 1.2 |
 
-They cannot hide Instagram or Snapchat. That needs Level 3 — see `../wipe-required/`.
+They cannot hide Instagram or Snapchat. That needs Level 4 — see `../wipe-required/`.

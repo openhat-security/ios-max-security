@@ -221,7 +221,7 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
     consent = (
         "For a phone already SUPERVISED with Apple Configurator (USB, erases "
         "the device).\n\n"
-        "Level 3 includes everything: encrypted DNS, Max Privacy restrictions, "
+        "Level 4 includes everything: encrypted DNS, Max Privacy restrictions, "
         "stronger PIN, Safari website list, and a Supervised block list for "
         "Instagram, Facebook, Messenger, Snapchat, TikTok, X, Pinterest, "
         "Reddit, and LinkedIn.\n\n"
@@ -232,10 +232,10 @@ def build_supervised_profile(provider_id: str = "mullvad-adblock") -> bytes:
         "PayloadVersion": VERSION,
         "PayloadUUID": uid(f"root.supervised.{provider_id}"),
         "PayloadIdentifier": f"{BUNDLE}.supervised",
-        "PayloadDisplayName": f"OpenHat Security: Level 3 ({dns_short(provider_id)})",
+        "PayloadDisplayName": f"OpenHat Security: Level 4 ({dns_short(provider_id)})",
         "PayloadDescription": (
-            "Level 3: Max Privacy, PIN, Safari list, and Supervised app blocks. "
-            "Requires Apple Configurator Prepare (erases the iPhone)."
+            "Level 4: Max Privacy, PIN, Safari list, and Supervised app blocks. "
+            "Requires Apple Configurator Prepare (erases the iPhone), then Lockdown Mode."
         ),
         "PayloadOrganization": ORG,
         "PayloadRemovalDisallowed": False,
@@ -398,8 +398,8 @@ def main() -> None:
     print(f"wrote {ppath} ({len(passcode)} bytes)")
 
     for provider_id, filename in (
-        ("mullvad-adblock", "OpenHat-Level-3-Mullvad.mobileconfig"),
-        ("quad9", "OpenHat-Level-3-Quad9.mobileconfig"),
+        ("mullvad-adblock", "OpenHat-Level-4-Mullvad.mobileconfig"),
+        ("quad9", "OpenHat-Level-4-Quad9.mobileconfig"),
     ):
         supervised = build_supervised_profile(provider_id)
         plistlib.loads(supervised)

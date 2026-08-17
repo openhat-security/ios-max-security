@@ -1981,7 +1981,7 @@
         "Apple Restrictions payload"
       ],
       "via": "manual",
-      "after": "Supervised; then install wipe-required/OpenHat-Level-3-Mullvad.mobileconfig",
+      "after": "Supervised; then install wipe-required/OpenHat-Level-4-Mullvad.mobileconfig",
       "apple_default": "Unsupervised",
       "verify": "Settings \u2192 General \u2192 About \u2192 Supervised (or the profile applies AirDrop/Siri/app blocks)",
       "notes": "USB + a Mac. ERASES the entire iPhone. Isolated in wipe-required/ so it cannot be mixed with the no-wipe Safari profiles. See wipe-required/CONFIGURATOR.md."
